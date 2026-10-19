@@ -146,7 +146,7 @@ Sitemap: {BASE_URL}/sitemap.xml
 Personal plus two integrations (Gmail, Google Calendar, Notion, Jira, Bitrix24, WhatsApp, Slack, Discord, n8n) with minimal permissions, an express security audit with a prioritized report, a setup call, 30 days of support. Optional support plan: $19/month (1 900 RUB).
 
 ## Why not one-click hosting
-One-click hosts run the agent on their servers and often expose it to the internet. In early 2026 scanners found tens of thousands of exposed OpenClaw instances, 800+ malicious skills in the marketplace and CVE-2026-25253 (one-click RCE). OwnAgent installs on the client's server behind closed ports and holds no standing access after handover.
+One-click hosts run the agent on their servers and often expose it to the internet. In February 2026 SecurityScorecard found 40,214 exposed OpenClaw instances (63% vulnerable), Snyk found 534 marketplace skills with critical findings and 76 confirmed malicious, and CVE-2026-25253 (one-click RCE) was followed by CVE-2026-33579 in March. OwnAgent installs on the client's server behind closed ports and holds no standing access after handover.
 
 ## Pages
 - English: {BASE_URL}/en/

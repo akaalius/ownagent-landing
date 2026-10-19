@@ -11,11 +11,11 @@ HTML_KEYS = {"ap.alt", "term.body"}
 
 META = {
   "ru": dict(lang="ru", title="OwnAgent: личный ИИ-агент на вашем сервере",
-             desc="Ставим Hermes Agent или OpenClaw на ваш VPS, закрываем порты, подключаем Telegram и лимит расходов. Фиксированная цена 9 900 ₽, готово за день, отчёт по 12 проверкам.",
+             desc="Ставим Hermes Agent или OpenClaw на ваш VPS, закрываем порты, подключаем Telegram и лимит расходов. Фиксированная цена 9 900 ₽, готово за день, отчёт по 14 проверкам.",
              og_desc="Установка под ключ с защитой. Данные остаются у вас.", locale="ru_RU", path="/", assets="assets/",
              ru_href="./", en_href="en/"),
   "en": dict(lang="en", title="OwnAgent: your AI agent, on your own server",
-             desc="We install Hermes Agent or OpenClaw on your VPS, lock the ports, connect Telegram and a spending cap. Fixed price $99, done in a day, report on 12 checks.",
+             desc="We install Hermes Agent or OpenClaw on your VPS, lock the ports, connect Telegram and a spending cap. Fixed price $99, done in a day, report on 14 checks.",
              og_desc="Turnkey, hardened install. Your data stays on your server.", locale="en_US", path="/en/", assets="../assets/",
              ru_href="../", en_href="./"),
 }
@@ -58,8 +58,8 @@ def service_jsonld(lang):
                          "sameAs": ["https://t.me/pasee2"]},
             "offers": [
               {"@type": "Offer", "name": "Personal (launch price, first 20 installs)", "price": "9900" if ru else "99", "priceCurrency": "RUB" if ru else "USD", "url": BASE_URL + META[lang]["path"] + "#price",
-               "description": "Hermes Agent or OpenClaw on your VPS, hardened, Telegram, spending cap, backups, monitoring, 12-check report, 14 days of support" if not ru else
-                              "Hermes Agent или OpenClaw на вашем VPS с защитой, Telegram, лимит расходов, бэкапы, мониторинг, отчёт по 12 проверкам, 14 дней поддержки"},
+               "description": "Hermes Agent or OpenClaw on your VPS, hardened, Telegram, spending cap, backups, monitoring, 14-check report, 14 days of support" if not ru else
+                              "Hermes Agent или OpenClaw на вашем VPS с защитой, Telegram, лимит расходов, бэкапы, мониторинг, отчёт по 14 проверкам, 14 дней поддержки"},
               {"@type": "Offer", "name": "Business", "price": "39000" if ru else "390", "priceCurrency": "RUB" if ru else "USD", "url": BASE_URL + META[lang]["path"] + "#price",
                "description": "Personal plus two integrations, express security audit, setup call, 30 days of support" if not ru else
                               "Personal плюс две интеграции, экспресс-аудит безопасности, созвон по настройке, 30 дней поддержки"}
@@ -131,7 +131,7 @@ Sitemap: {BASE_URL}/sitemap.xml
 
 (ROOT / "llms.txt").write_text(f"""# OwnAgent
 
-> Turnkey, hardened installation of a personal AI agent (Hermes Agent by Nous Research, or OpenClaw) on the client's own VPS. The agent and its data stay on the client's server. Fixed price, done within one working day, with a written report on 12 security and reliability checks.
+> Turnkey, hardened installation of a personal AI agent (Hermes Agent by Nous Research, or OpenClaw) on the client's own VPS. The agent and its data stay on the client's server. Fixed price, done within one working day, with a written report on 14 security and reliability checks.
 
 ## What is included (Personal, $99 one-time / 9 900 RUB; launch price for the first 20 installs, then $149 / 14 900 RUB)
 - Hermes Agent or OpenClaw, client's choice, on the client's Ubuntu 22.04/24.04 VPS at any provider
@@ -140,7 +140,8 @@ Sitemap: {BASE_URL}/sitemap.xml
 - Hardening: only SSH open from outside, agent panel on localhost, SSH keys only, root login disabled, fail2ban, unattended security updates, agent runs unprivileged under systemd
 - Daily memory backup with a tested restore; downtime alert to Telegram
 - Skills from an allowlist only, marketplace disabled
-- Report on 12 checks, one-page guide, 14 days of support, 14-day refund
+- Report on 14 checks with the external port scan and the agent's security audit attached, one-page guide, 14 days of support, 14-day refund, 30-day install guarantee
+- Agent version pinned without known CVEs, snapshot before updates with tested rollback; nothing depends on the provider's account after handover
 
 ## Business (from $390 one-time / from 39 000 RUB)
 Personal plus two integrations (Gmail, Google Calendar, Notion, Jira, Bitrix24, WhatsApp, Slack, Discord, n8n) with minimal permissions, an express security audit with a prioritized report, a setup call, 30 days of support. Optional support plan: $19/month (1 900 RUB).

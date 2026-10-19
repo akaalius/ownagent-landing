@@ -129,7 +129,7 @@
     .c-e { grid-column: span 2; }
     .c-f { grid-column: span 4; background: var(--bg-3); }
     .c-g { grid-column: span 2; }
-    .c-f .list { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 18px; font-size: 14.5px; color: var(--fg-2); margin-top: 8px; }
+    .c-f .list { display: grid; grid-template-columns: 1fr 1fr; gap: 7px 18px; font-size: 14px; color: var(--fg-2); margin-top: 8px; }
     .c-f .list span::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--ok); margin-right: 9px; vertical-align: middle; }
     @media (max-width: 900px) { .bento { grid-template-columns: 1fr 1fr; } .cell { grid-column: span 1 !important; } .c-f .list { grid-template-columns: 1fr; } }
     @media (max-width: 560px) { .bento { grid-template-columns: 1fr; } }
@@ -144,14 +144,16 @@
     @media (max-width: 767px) { .addons { grid-template-columns: 1fr; gap: 28px; } }
 
     /* Pricing */
-    .price { margin-top: 40px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 28px; align-items: start; }
+    .price { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: stretch; }
+    .price-biz { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-2)); }
     .price-card { background: var(--bg-2); border: 1px solid var(--line-2); border-radius: var(--r); padding: 32px; }
     .price .big { font-size: clamp(40px, 5vw, 56px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; margin-top: 10px; }
     .price .big small { font-size: 18px; font-weight: 500; color: var(--muted); letter-spacing: 0; margin-left: 8px; }
     .price ul { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 10px; color: var(--fg-2); font-size: 15.5px; }
     .price li { display: flex; gap: 10px; align-items: flex-start; }
     .price li i { color: var(--ok); margin-top: 3px; }
-    .price-side { padding: 8px 0; color: var(--fg-2); font-size: 15.5px; display: grid; gap: 18px; }
+    .price-side { margin-top: 28px; color: var(--fg-2); font-size: 15.5px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+    @media (max-width: 767px) { .price-side { grid-template-columns: 1fr; } }
     .price-side b { color: var(--fg); }
     @media (max-width: 900px) { .price { grid-template-columns: 1fr; } }
 
@@ -225,6 +227,7 @@
 <section class="hero">
   <div class="shell grid">
     <div>
+      <span class="eyebrow" data-i18n="hero.eyebrow">Для тех, кто уже пробовал OpenClaw или Hermes</span>
       <h1 data-i18n="hero.h1">Личный ИИ-агент на вашем сервере</h1>
       <p class="lead" data-i18n="hero.lead">Ставим Hermes или OpenClaw на ваш VPS, закрываем порты, подключаем Telegram и лимит расходов. Фиксированная цена, готово за день.</p>
       <div class="cta">
@@ -243,7 +246,7 @@
 <span class="ok">✓</span> OpenRouter подключён, <span class="a">лимит $30/мес</span>
 <span class="ok">✓</span> Telegram: @your_agent_bot отвечает
 <span class="ok">✓</span> бэкап памяти ежедневно, алерт при падении в Telegram
-<span class="c"># 11 проверок пройдено, отчёт отправлен владельцу</span></pre>
+<span class="c"># 12 проверок пройдено, отчёт отправлен владельцу</span></pre>
     </div>
   </div>
 </section>
@@ -289,7 +292,7 @@
         <div class="ic"><i class="ph ph-shield-check"></i></div>
         <div>
           <h3 data-i18n="how.s2h">Мы ставим и закрываем</h3>
-          <p data-i18n="how.s2p">Агент, Telegram, модель с лимитом расходов, закрытые порты, бэкапы, мониторинг. Вы получаете отчёт по 11 проверкам.</p>
+          <p data-i18n="how.s2p">Агент, Telegram, модель с лимитом расходов, закрытые порты, бэкапы, мониторинг. Вы получаете отчёт по 12 проверкам.</p>
           <div class="time mono" data-i18n="how.s2t">в тот же день</div>
         </div>
       </div>
@@ -314,11 +317,14 @@
       <div class="cell c-c"><i class="ph ph-telegram-logo"></i><div><h3 data-i18n="inc.c">Telegram-канал</h3><p data-i18n="inc.cp">Ваш бот, ваш токен.</p></div></div>
       <div class="cell c-d"><i class="ph ph-gauge"></i><div><h3 data-i18n="inc.d">Лимит расходов</h3><p data-i18n="inc.dp">Модель через OpenRouter с месячным потолком. Сюрпризов в счёте нет.</p></div></div>
       <div class="cell c-e"><i class="ph ph-archive"></i><div><h3 data-i18n="inc.e">Бэкап памяти</h3><p data-i18n="inc.ep">Ежедневно, с восстановлением.</p></div></div>
-      <div class="cell c-f"><i class="ph ph-list-checks"></i><div><h3 data-i18n="inc.f">Отчёт по 11 проверкам после установки</h3>
+      <div class="cell c-f"><i class="ph ph-list-checks"></i><div><h3 data-i18n="inc.f">Отчёт по 12 проверкам после установки</h3>
         <div class="list">
-          <span data-i18n="inc.f1">порты снаружи закрыты</span><span data-i18n="inc.f2">ключи не в логах</span>
-          <span data-i18n="inc.f3">скиллы только из белого списка</span><span data-i18n="inc.f4">лимит модели активен</span>
-          <span data-i18n="inc.f5">бэкап восстанавливается</span><span data-i18n="inc.f6">алерт при падении приходит</span>
+          <span data-i18n="inc.f1">снаружи открыт только SSH, проверено сканом извне</span><span data-i18n="inc.f2">панель агента слушает только localhost</span>
+          <span data-i18n="inc.f3">SSH только по ключу, вход root запрещён</span><span data-i18n="inc.f4">fail2ban активен</span>
+          <span data-i18n="inc.f5">обновления безопасности ставятся сами</span><span data-i18n="inc.f6">агент работает не от root, перезапускается сам</span>
+          <span data-i18n="inc.f7">ключи и токены не в логах и не в истории shell</span><span data-i18n="inc.f8">скиллы только из белого списка, маркетплейс выключен</span>
+          <span data-i18n="inc.f9">лимит расходов на модель активен и проверен</span><span data-i18n="inc.f10">бэкап памяти сделан и восстановлен на пробу</span>
+          <span data-i18n="inc.f11">алерт при падении дошёл в Telegram, проверено остановкой сервиса</span><span data-i18n="inc.f12">наш временный ключ доступа удалён</span>
         </div></div></div>
       <div class="cell c-g"><i class="ph ph-lifebuoy"></i><div><h3 data-i18n="inc.g">14 дней поддержки</h3><p data-i18n="inc.gp">И инструкция на одну страницу.</p></div></div>
     </div>
@@ -335,6 +341,7 @@
         <div class="row"><div><b>Gmail, Google Calendar</b><small data-i18n="add.i1">читать, отвечать, планировать, с минимальными правами</small></div><span data-i18n="add.from">от 1 дня</span></div>
         <div class="row"><div><b>Notion, Jira, Bitrix24</b><small data-i18n="add.i2">задачи и заметки из чата</small></div><span data-i18n="add.from">от 1 дня</span></div>
         <div class="row"><div><b>WhatsApp, Slack, Discord</b><small data-i18n="add.i3">второй и третий канал к тому же агенту</small></div><span data-i18n="add.from">от 1 дня</span></div>
+        <div class="row"><div><b>n8n</b><small data-i18n="add.i4">автоматизации рядом с агентом, на том же сервере</small></div><span data-i18n="add.from">от 1 дня</span></div>
       </div>
       <div class="group">
         <h3 data-i18n="add.g2">Безопасность и поддержка</h3>
@@ -351,7 +358,7 @@
     <h2 data-i18n="pr.h2">Цена</h2>
     <div class="price">
       <div class="price-card">
-        <div class="muted" data-i18n="pr.label">Установка под ключ</div>
+        <div class="muted" data-i18n="pr.label">Personal: установка под ключ</div>
         <div class="big"><span data-i18n="pr.amount">9 900 ₽</span><small data-i18n="pr.usd">или $99</small></div>
         <ul>
           <li><i class="ph ph-check"></i><span data-i18n="pr.l1">Всё из раздела «Что входит»</span></li>
@@ -361,11 +368,22 @@
         </ul>
         <div class="cta" style="margin-top:26px"><a class="btn btn-primary" href="#apply" data-track="price_cta" data-i18n="cta">Оставить заявку</a></div>
       </div>
-      <div class="price-side">
+      <div class="price-card price-biz">
+        <div class="muted" data-i18n="pr.blabel">Business: агент внутри ваших процессов</div>
+        <div class="big"><span data-i18n="pr.bamount">от 39 000 ₽</span><small data-i18n="pr.busd">или от $390</small></div>
+        <ul>
+          <li><i class="ph ph-check"></i><span data-i18n="pr.b1">Всё из Personal</span></li>
+          <li><i class="ph ph-check"></i><span data-i18n="pr.b2">Две интеграции на выбор с минимальными правами</span></li>
+          <li><i class="ph ph-check"></i><span data-i18n="pr.b3">Экспресс-аудит сервера и прав агента, отчёт с приоритетами</span></li>
+          <li><i class="ph ph-check"></i><span data-i18n="pr.b4">Созвон на настройку под ваши задачи, 30 дней поддержки</span></li>
+        </ul>
+        <div class="cta" style="margin-top:26px"><a class="btn btn-ghost" href="#apply" data-track="price_biz_cta" data-i18n="pr.bcta">Обсудить задачу</a></div>
+      </div>
+    </div>
+    <div class="price-side">
         <p><b data-i18n="pr.s1b">Поддержка и обновления:</b> <span data-i18n="pr.s1">1 900 ₽ или $19 в месяц, по желанию. Обновляем агента и систему, следим за мониторингом, отвечаем на вопросы.</span></p>
         <p><b data-i18n="pr.s2b">Что вы платите напрямую:</b> <span data-i18n="pr.s2">VPS своему провайдеру, обычно $5-10 в месяц, и токены модели через OpenRouter, обычно $10-30 в зависимости от нагрузки.</span></p>
         <p><b data-i18n="pr.s3b">Не подошло:</b> <span data-i18n="pr.s3">если за 14 дней агент вам не пригодился, вернём деньги за установку. Сервер остаётся вашим.</span></p>
-      </div>
     </div>
   </div>
 </section>
@@ -374,7 +392,7 @@
   <div class="shell">
     <h2 data-i18n="pp.h2">Что мы не делаем</h2>
     <div class="princ">
-      <div><i class="ph ph-key"></i><div><h3 data-i18n="pp.1h">Не храним ваши SSH-ключи</h3><p data-i18n="pp.1p">Установщик запускается с вашего сервера и подключается к нам, а не мы к нему. Доступ вы отзываете одной командой.</p></div></div>
+      <div><i class="ph ph-key"></i><div><h3 data-i18n="pp.1h">Не держим доступ дольше установки</h3><p data-i18n="pp.1p">На время работы вы добавляете наш временный ключ, после сдачи он удаляется, и это отдельный пункт в отчёте. Постоянного доступа к серверу у нас нет.</p></div></div>
       <div><i class="ph ph-eye-slash"></i><div><h3 data-i18n="pp.2h">Не видим переписку</h3><p data-i18n="pp.2p">Память агента, диалоги и ключи интеграций живут только на вашем сервере.</p></div></div>
       <div><i class="ph ph-hand-palm"></i><div><h3 data-i18n="pp.3h">Не даём агенту лишних прав</h3><p data-i18n="pp.3p">Каждая интеграция подключается с минимальным набором разрешений, и мы пишем, какие именно.</p></div></div>
       <div><i class="ph ph-wallet"></i><div><h3 data-i18n="pp.4h">Не оставляем расходы без потолка</h3><p data-i18n="pp.4p">Лимит на модель стоит по умолчанию. Агент, который сжёг $400 за ночь, это не про вас.</p></div></div>
@@ -387,7 +405,7 @@
     <h2 data-i18n="faq.h2">Вопросы</h2>
     <div class="faq">
       <details><summary data-i18n="faq.q1">Чем это отличается от хостинга OpenClaw за $9 в месяц?</summary><div class="a" data-i18n="faq.a1">Там агент стоит на чужом сервере и, как правило, открыт в интернет по умолчанию. У нас он на вашем сервере, за закрытыми портами, с лимитом расходов и бэкапами. Вы платите один раз за установку, а не каждый месяц за аренду.</div></details>
-      <details><summary data-i18n="faq.q2">Что такое Hermes и OpenClaw?</summary><div class="a" data-i18n="faq.a2">Открытые фреймворки персональных агентов. Это программа на вашем сервере, с которой вы общаетесь в Telegram: она помнит контекст, умеет работать с файлами, почтой, календарём и учится на ваших задачах. Модель (Claude, GPT, Gemini и другие) подключается через OpenRouter.</div></details>
+      <details><summary data-i18n="faq.q2">Что такое Hermes и OpenClaw?</summary><div class="a" data-i18n="faq.a2">Открытые фреймворки персональных агентов. Это программа на вашем сервере, с которой вы общаетесь в Telegram: она помнит контекст, умеет работать с файлами, почтой, календарём и учится на ваших задачах. Модель (Claude, GPT, Gemini и другие) подключается через OpenRouter. Нужен другой фреймворк, например ZeroClaw или PicoClaw для слабых серверов: обсудим.</div></details>
       <details><summary data-i18n="faq.q3">У меня нет VPS. Что делать?</summary><div class="a" data-i18n="faq.a3">Подскажем провайдера под вашу страну и бюджет, регистрация занимает пять минут. Сервер оформляется на вас, мы не посредник.</div></details>
       <details><summary data-i18n="faq.q4">Клиентам из России это доступно?</summary><div class="a" data-i18n="faq.a4">Да. Сервер берётся у зарубежного провайдера, модели подключаются через OpenRouter, оплата установки возможна в рублях.</div></details>
       <details><summary data-i18n="faq.q5">Что будет, если агент сломается?</summary><div class="a" data-i18n="faq.a5">Мониторинг пришлёт вам алерт в Telegram. В первые 14 дней чиним бесплатно, дальше по поддержке или разово.</div></details>
@@ -434,11 +452,11 @@
 (function () {
   var EN = {
     "nav.how": "How it works", "nav.included": "What's included", "nav.price": "Pricing", "nav.faq": "FAQ",
-    "cta": "Request setup", "hero.secondary": "How it works",
+    "cta": "Request setup", "hero.secondary": "How it works", "hero.eyebrow": "For people who already tried OpenClaw or Hermes",
     "hero.h1": "Your AI agent, on your own server",
     "hero.lead": "We install Hermes or OpenClaw on your VPS, lock the ports, connect Telegram and a spending cap. Fixed price, done in a day.",
     "term.title": "installer output, example",
-    "term.body": "<span class=\"c\"># client server, access via SSH tunnel</span>\n<span class=\"p\">$</span> ownagent install --agent hermes --channel telegram\n<span class=\"ok\">✓</span> user agent without root, sudo for updates only\n<span class=\"ok\">✓</span> ufw: only 22/tcp open outside, gateway on 127.0.0.1\n<span class=\"ok\">✓</span> fail2ban, unattended-upgrades enabled\n<span class=\"ok\">✓</span> Hermes Agent installed, systemd service active\n<span class=\"ok\">✓</span> OpenRouter connected, <span class=\"a\">cap $30/mo</span>\n<span class=\"ok\">✓</span> Telegram: @your_agent_bot replies\n<span class=\"ok\">✓</span> daily memory backup, downtime alert to Telegram\n<span class=\"c\"># 11 checks passed, report sent to owner</span>",
+    "term.body": "<span class=\"c\"># client server, access via SSH tunnel</span>\n<span class=\"p\">$</span> ownagent install --agent hermes --channel telegram\n<span class=\"ok\">✓</span> user agent without root, sudo for updates only\n<span class=\"ok\">✓</span> ufw: only 22/tcp open outside, gateway on 127.0.0.1\n<span class=\"ok\">✓</span> fail2ban, unattended-upgrades enabled\n<span class=\"ok\">✓</span> Hermes Agent installed, systemd service active\n<span class=\"ok\">✓</span> OpenRouter connected, <span class=\"a\">cap $30/mo</span>\n<span class=\"ok\">✓</span> Telegram: @your_agent_bot replies\n<span class=\"ok\">✓</span> daily memory backup, downtime alert to Telegram\n<span class=\"c\"># 12 checks passed, report sent to owner</span>",
     "why.h2": "The agent reads your mail and calendar. The question is not the price, it is who holds the keys",
     "why.lead": "One-click hosts run the agent on their server and expose it to the internet. In 2026 that looks like this:",
     "why.f1": "OpenClaw instances found exposed to the internet in February 2026, many with no password",
@@ -446,7 +464,7 @@
     "why.f3": "one-click remote code execution, and not everyone has patched",
     "how.eyebrow": "How it works", "how.h2": "Three steps, one working day",
     "how.s1h": "You provide a server", "how.s1p": "Any VPS from $5 a month, any provider. No server yet: we point you to one in five minutes.", "how.s1t": "10 minutes of your time",
-    "how.s2h": "We install and lock it down", "how.s2p": "Agent, Telegram, model with a spending cap, closed ports, backups, monitoring. You get a report on 11 checks.", "how.s2t": "same day",
+    "how.s2h": "We install and lock it down", "how.s2p": "Agent, Telegram, model with a spending cap, closed ports, backups, monitoring. You get a report on 12 checks.", "how.s2t": "same day",
     "how.s3h": "You message your agent", "how.s3p": "In Telegram, from your phone. It keeps context, learns your tasks and lives on your server.", "how.s3t": "from here on, without us",
     "inc.h2": "What the fixed price includes",
     "inc.a": "Hermes or OpenClaw, your choice", "inc.ap": "Both open source, both live on your box. We help you pick.",
@@ -454,26 +472,27 @@
     "inc.c": "Telegram channel", "inc.cp": "Your bot, your token.",
     "inc.d": "Spending cap", "inc.dp": "Model via OpenRouter with a monthly ceiling. No surprise bills.",
     "inc.e": "Memory backup", "inc.ep": "Daily, with tested restore.",
-    "inc.f": "Report on 11 checks after install",
-    "inc.f1": "no ports open outside", "inc.f2": "no keys in logs", "inc.f3": "skills from allowlist only", "inc.f4": "model cap active", "inc.f5": "backup restores", "inc.f6": "downtime alert arrives",
+    "inc.f": "Report on 12 checks after install",
+    "inc.f1": "only SSH open outside, verified by an external scan", "inc.f2": "agent panel listens on localhost only", "inc.f3": "SSH by key only, root login disabled", "inc.f4": "fail2ban active", "inc.f5": "security updates install themselves", "inc.f6": "agent runs unprivileged and restarts itself", "inc.f7": "no keys or tokens in logs or shell history", "inc.f8": "skills from allowlist only, marketplace off", "inc.f9": "model spending cap active and tested", "inc.f10": "memory backup made and test-restored", "inc.f11": "downtime alert reached Telegram, tested by stopping the service", "inc.f12": "our temporary access key removed",
     "inc.g": "14 days of support", "inc.gp": "Plus a one-page guide.",
     "add.h2": "Everything else on request, priced individually",
     "add.lead": "The base install is standard. Anything tied to your workflows is quoted after a short call.",
-    "add.g1": "Integrations", "add.i1": "read, reply, schedule, with minimal permissions", "add.i2": "tasks and notes from chat", "add.i3": "second and third channel to the same agent", "add.from": "from 1 day",
+    "add.g1": "Integrations", "add.i1": "read, reply, schedule, with minimal permissions", "add.i2": "tasks and notes from chat", "add.i3": "second and third channel to the same agent", "add.i4": "automations next to the agent, on the same server", "add.from": "from 1 day",
     "add.g2": "Security and support", "add.s1": "Security audit", "add.s1p": "server, agent, skills, integration permissions, prioritized report", "add.s2": "Custom skills", "add.s2p": "the agent learns your procedures and reports", "add.s3": "SLA support", "add.s3p": "updates, monitoring, one-hour response", "add.quote": "quoted", "add.monthly": "monthly",
-    "pr.h2": "Pricing", "pr.label": "Turnkey install", "pr.amount": "$99", "pr.usd": "one-time",
+    "pr.h2": "Pricing", "pr.label": "Personal: turnkey install", "pr.amount": "$99", "pr.usd": "one-time",
+    "pr.blabel": "Business: the agent inside your workflows", "pr.bamount": "from $390", "pr.busd": "one-time", "pr.b1": "Everything in Personal", "pr.b2": "Two integrations of your choice with minimal scopes", "pr.b3": "Express audit of the server and agent permissions, prioritized report", "pr.b4": "Setup call for your tasks, 30 days of support", "pr.bcta": "Discuss your case",
     "pr.l1": "Everything in \"What's included\"", "pr.l2": "Done within a working day", "pr.l3": "Check report and guide", "pr.l4": "14 days of support included",
     "pr.s1b": "Support and updates:", "pr.s1": "$19 a month, optional. We update the agent and the system, watch monitoring, answer questions.",
     "pr.s2b": "What you pay directly:", "pr.s2": "your VPS provider, usually $5-10 a month, and model tokens via OpenRouter, usually $10-30 depending on load.",
     "pr.s3b": "Not a fit:", "pr.s3": "if the agent has not been useful within 14 days, we refund the install. The server stays yours.",
     "pp.h2": "What we don't do",
-    "pp.1h": "We don't keep your SSH keys", "pp.1p": "The installer runs on your server and connects to us, not the other way round. You revoke access with one command.",
+    "pp.1h": "We don't keep access after the install", "pp.1p": "You add our temporary key for the job, it is removed at handover, and that removal is a line in the report. We hold no standing access to your server.",
     "pp.2h": "We don't see your conversations", "pp.2p": "Agent memory, dialogs and integration keys live only on your server.",
     "pp.3h": "We don't over-permission the agent", "pp.3p": "Each integration is connected with the minimal set of scopes, and we write down which ones.",
     "pp.4h": "We don't leave spending uncapped", "pp.4p": "The model cap is on by default. The agent that burned $400 overnight is not your story.",
     "faq.h2": "FAQ",
     "faq.q1": "How is this different from OpenClaw hosting at $9 a month?", "faq.a1": "There the agent sits on someone else's server and is usually exposed to the internet by default. Here it is on your server, behind closed ports, with a spending cap and backups. You pay once for the install, not monthly rent.",
-    "faq.q2": "What are Hermes and OpenClaw?", "faq.a2": "Open-source personal agent frameworks. A program on your server you talk to in Telegram: it keeps context, works with files, mail and calendar, and learns your tasks. The model (Claude, GPT, Gemini and others) connects through OpenRouter.",
+    "faq.q2": "What are Hermes and OpenClaw?", "faq.a2": "Open-source personal agent frameworks. A program on your server you talk to in Telegram: it keeps context, works with files, mail and calendar, and learns your tasks. The model (Claude, GPT, Gemini and others) connects through OpenRouter. Need a different framework, say ZeroClaw or PicoClaw for small hosts: ask us.",
     "faq.q3": "I don't have a VPS. What now?", "faq.a3": "We point you to a provider for your country and budget, signup takes five minutes. The server is in your name, we are not a middleman.",
     "faq.q4": "Which providers and countries do you support?", "faq.a4": "Any VPS provider in any country: Hetzner, DigitalOcean, Vultr, Contabo and others. The only requirement is Ubuntu 22.04 or 24.04 and SSH access for you.",
     "faq.q5": "What if the agent breaks?", "faq.a5": "Monitoring sends you a Telegram alert. In the first 14 days we fix it for free, after that under support or one-off.",

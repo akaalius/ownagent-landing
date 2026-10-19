@@ -520,7 +520,8 @@
   document.querySelectorAll("[data-set-lang]").forEach(function (b) { b.addEventListener("click", function () { setLang(b.getAttribute("data-set-lang")); }); });
   var q = new URLSearchParams(location.search).get("lang"), saved = null;
   try { saved = localStorage.getItem("lang"); } catch (e) {}
-  if (q === "en" || (!q && saved === "en")) setLang("en");
+  var browserRu = /^(ru|uk|be|kk)/i.test(navigator.language || "");
+  if (q === "en" || (!q && saved === "en") || (!q && !saved && !browserRu)) setLang("en");
 
   // CTA tracking hook: подключите счётчик и замените тело функции
   document.querySelectorAll("[data-track]").forEach(function (el) {

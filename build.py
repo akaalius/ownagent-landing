@@ -57,7 +57,7 @@ def service_jsonld(lang):
             "provider": {"@type": "Organization", "name": "AIIB Team", "email": "aka.alius@gmail.com", "url": BASE_URL + "/",
                          "sameAs": ["https://t.me/pasee2"]},
             "offers": [
-              {"@type": "Offer", "name": "Personal", "price": "9900" if ru else "99", "priceCurrency": "RUB" if ru else "USD", "url": BASE_URL + META[lang]["path"] + "#price",
+              {"@type": "Offer", "name": "Personal (launch price, first 20 installs)", "price": "9900" if ru else "99", "priceCurrency": "RUB" if ru else "USD", "url": BASE_URL + META[lang]["path"] + "#price",
                "description": "Hermes Agent or OpenClaw on your VPS, hardened, Telegram, spending cap, backups, monitoring, 12-check report, 14 days of support" if not ru else
                               "Hermes Agent или OpenClaw на вашем VPS с защитой, Telegram, лимит расходов, бэкапы, мониторинг, отчёт по 12 проверкам, 14 дней поддержки"},
               {"@type": "Offer", "name": "Business", "price": "39000" if ru else "390", "priceCurrency": "RUB" if ru else "USD", "url": BASE_URL + META[lang]["path"] + "#price",
@@ -133,7 +133,7 @@ Sitemap: {BASE_URL}/sitemap.xml
 
 > Turnkey, hardened installation of a personal AI agent (Hermes Agent by Nous Research, or OpenClaw) on the client's own VPS. The agent and its data stay on the client's server. Fixed price, done within one working day, with a written report on 12 security and reliability checks.
 
-## What is included (Personal, $99 one-time / 9 900 RUB)
+## What is included (Personal, $99 one-time / 9 900 RUB; launch price for the first 20 installs, then $149 / 14 900 RUB)
 - Hermes Agent or OpenClaw, client's choice, on the client's Ubuntu 22.04/24.04 VPS at any provider
 - Telegram channel with the client's own bot token
 - Model access via OpenRouter with a monthly spending cap

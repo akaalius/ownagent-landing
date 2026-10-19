@@ -123,5 +123,6 @@
  "ap.f3": "What the agent is for",
  "ap.f3ph": "",
  "ap.hint": "No newsletters. The contact is only used to reply.",
- "ft.by": "a project of the lab"
+ "ft.by": "a project of the lab",
+ "pr.launch": "Launch price for the first 20 installs, then $149"
 }

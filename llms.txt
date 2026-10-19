@@ -2,7 +2,7 @@
 
 > Turnkey, hardened installation of a personal AI agent (Hermes Agent by Nous Research, or OpenClaw) on the client's own VPS. The agent and its data stay on the client's server. Fixed price, done within one working day, with a written report on 12 security and reliability checks.
 
-## What is included (Personal, $99 one-time / 9 900 RUB)
+## What is included (Personal, $99 one-time / 9 900 RUB; launch price for the first 20 installs, then $149 / 14 900 RUB)
 - Hermes Agent or OpenClaw, client's choice, on the client's Ubuntu 22.04/24.04 VPS at any provider
 - Telegram channel with the client's own bot token
 - Model access via OpenRouter with a monthly spending cap

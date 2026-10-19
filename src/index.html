@@ -152,6 +152,7 @@
     .price-card { background: var(--bg-2); border: 1px solid var(--line-2); border-radius: var(--r); padding: 32px; }
     .price .big { font-size: clamp(40px, 5vw, 56px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; margin-top: 10px; }
     .price .big small { font-size: 18px; font-weight: 500; color: var(--muted); letter-spacing: 0; margin-left: 8px; }
+    .price .launch { margin-top: 10px; display: inline-block; font-size: 13.5px; color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); border-radius: var(--r); padding: 5px 10px; }
     .price ul { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 10px; color: var(--fg-2); font-size: 15.5px; }
     .price li { display: flex; gap: 10px; align-items: flex-start; }
     .price li i { color: var(--ok); margin-top: 3px; }
@@ -363,6 +364,7 @@
       <div class="price-card">
         <div class="muted" data-i18n="pr.label">Personal: установка под ключ</div>
         <div class="big"><span data-i18n="pr.amount">9 900 ₽</span><small data-i18n="pr.usd">разово</small></div>
+        <div class="launch" data-i18n="pr.launch">Цена запуска для первых 20 установок, дальше 14 900 ₽</div>
         <ul>
           <li><i class="ph ph-check"></i><span data-i18n="pr.l1">Всё из раздела «Что входит»</span></li>
           <li><i class="ph ph-check"></i><span data-i18n="pr.l2">Готово в течение рабочего дня</span></li>

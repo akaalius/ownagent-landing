@@ -193,9 +193,10 @@
     footer a { color: var(--fg-2); }
 
     /* Reveal */
-    .rv { opacity: 0; transform: translateY(14px); transition: opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1); }
-    .rv.in { opacity: 1; transform: none; }
-    @media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; transition: none; } .btn { transition: none; } }
+    @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    .hero .grid > * { animation: rise .7s cubic-bezier(.16,1,.3,1) both; }
+    .hero .grid > :last-child { animation-delay: .12s; }
+    @media (prefers-reduced-motion: reduce) { .hero .grid > * { animation: none; } .btn { transition: none; } }
   </style>
 </head>
 <body>
@@ -248,7 +249,7 @@
 </section>
 
 <section id="why">
-  <div class="shell rv">
+  <div class="shell>
     <h2 data-i18n="why.h2">Агент читает вашу почту и календарь. Вопрос не «где дешевле», а «у кого ключи»</h2>
     <p class="lead" style="margin-top:18px" data-i18n="why.lead">Хостинги в один клик ставят агента на свой сервер и открывают его в интернет. В 2026 году это выглядит так:</p>
     <div class="facts">
@@ -272,7 +273,7 @@
 </section>
 
 <section id="how">
-  <div class="shell rv">
+  <div class="shell>
     <span class="eyebrow" data-i18n="how.eyebrow">Как это работает</span>
     <h2 data-i18n="how.h2">Три шага, один рабочий день</h2>
     <div class="steps">
@@ -305,7 +306,7 @@
 </section>
 
 <section id="included">
-  <div class="shell rv">
+  <div class="shell>
     <h2 data-i18n="inc.h2">Что входит в фиксированную цену</h2>
     <div class="bento">
       <div class="cell c-a"><i class="ph ph-robot"></i><div><h3 data-i18n="inc.a">Hermes или OpenClaw на выбор</h3><p data-i18n="inc.ap">Оба open-source, оба живут у вас. Поможем выбрать под задачи.</p></div></div>
@@ -325,7 +326,7 @@
 </section>
 
 <section id="addons">
-  <div class="shell rv">
+  <div class="shell>
     <h2 data-i18n="add.h2">Дальше по запросу, цена индивидуально</h2>
     <p class="lead" style="margin-top:18px" data-i18n="add.lead">Базовая установка стандартная. Всё, что связано с вашими процессами, оцениваем после короткого созвона.</p>
     <div class="addons">
@@ -346,7 +347,7 @@
 </section>
 
 <section id="price">
-  <div class="shell rv">
+  <div class="shell>
     <h2 data-i18n="pr.h2">Цена</h2>
     <div class="price">
       <div class="price-card">
@@ -370,7 +371,7 @@
 </section>
 
 <section id="principles">
-  <div class="shell rv">
+  <div class="shell>
     <h2 data-i18n="pp.h2">Что мы не делаем</h2>
     <div class="princ">
       <div><i class="ph ph-key"></i><div><h3 data-i18n="pp.1h">Не храним ваши SSH-ключи</h3><p data-i18n="pp.1p">Установщик запускается с вашего сервера и подключается к нам, а не мы к нему. Доступ вы отзываете одной командой.</p></div></div>
@@ -382,7 +383,7 @@
 </section>
 
 <section id="faq">
-  <div class="shell rv">
+  <div class="shell>
     <h2 data-i18n="faq.h2">Вопросы</h2>
     <div class="faq">
       <details><summary data-i18n="faq.q1">Чем это отличается от хостинга OpenClaw за $9 в месяц?</summary><div class="a" data-i18n="faq.a1">Там агент стоит на чужом сервере и, как правило, открыт в интернет по умолчанию. У нас он на вашем сервере, за закрытыми портами, с лимитом расходов и бэкапами. Вы платите один раз за установку, а не каждый месяц за аренду.</div></details>
@@ -396,7 +397,7 @@
 </section>
 
 <section id="apply" class="apply">
-  <div class="shell grid rv">
+  <div class="shell grid">
     <div>
       <h2 data-i18n="ap.h2">Оставить заявку</h2>
       <p class="lead" style="margin-top:18px" data-i18n="ap.lead">Ответим в тот же день, уточним пару деталей и назовём дату установки.</p>

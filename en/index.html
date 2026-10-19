@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OwnAgent: your AI agent, on your own server</title>
+  <meta name="description" content="We install Hermes Agent or OpenClaw on your VPS, lock the ports, connect Telegram and a spending cap. Fixed price $99, done in a day, report on 12 checks.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="OwnAgent: your AI agent, on your own server">
+  <meta property="og:description" content="Turnkey, hardened install. Your data stays on your server.">
+  <meta property="og:url" content="https://akaalius.github.io/ownagent-landing/en/">
+  <meta property="og:locale" content="en_US">
+  <meta name="theme-color" content="#0f1113">
+  <link rel="canonical" href="https://akaalius.github.io/ownagent-landing/en/">
+  <link rel="alternate" hreflang="ru" href="https://akaalius.github.io/ownagent-landing/">
+  <link rel="alternate" hreflang="en" href="https://akaalius.github.io/ownagent-landing/en/">
+  <link rel="alternate" hreflang="x-default" href="https://akaalius.github.io/ownagent-landing/en/">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "OwnAgent", "serviceType": "AI agent deployment on client VPS", "description": "We install Hermes Agent or OpenClaw on your VPS, lock the ports, connect Telegram and a spending cap. Fixed price $99, done in a day, report on 12 checks.", "url": "https://akaalius.github.io/ownagent-landing/en/", "areaServed": "Worldwide", "provider": {"@type": "Organization", "name": "AIIB Team", "email": "aka.alius@gmail.com", "url": "https://akaalius.github.io/ownagent-landing/", "sameAs": ["https://t.me/pasee2"]}, "offers": [{"@type": "Offer", "name": "Personal", "price": "99", "priceCurrency": "USD", "url": "https://akaalius.github.io/ownagent-landing/en/#price", "description": "Hermes Agent or OpenClaw on your VPS, hardened, Telegram, spending cap, backups, monitoring, 12-check report, 14 days of support"}, {"@type": "Offer", "name": "Business", "price": "390", "priceCurrency": "USD", "url": "https://akaalius.github.io/ownagent-landing/en/#price", "description": "Personal plus two integrations, express security audit, setup call, 30 days of support"}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How is this different from OpenClaw hosting at $9 a month?", "acceptedAnswer": {"@type": "Answer", "text": "There the agent sits on someone else's server and is usually exposed to the internet by default. Here it is on your server, behind closed ports, with a spending cap and backups. You pay once for the install, not monthly rent."}}, {"@type": "Question", "name": "What are Hermes and OpenClaw?", "acceptedAnswer": {"@type": "Answer", "text": "Open-source personal agent frameworks. A program on your server you talk to in Telegram: it keeps context, works with files, mail and calendar, and learns your tasks. The model (Claude, GPT, Gemini and others) connects through OpenRouter. Need a different framework, say ZeroClaw or PicoClaw for small hosts: ask us."}}, {"@type": "Question", "name": "I don't have a VPS. What now?", "acceptedAnswer": {"@type": "Answer", "text": "We point you to a provider for your country and budget, signup takes five minutes. The server is in your name, we are not a middleman."}}, {"@type": "Question", "name": "Which providers and countries do you support?", "acceptedAnswer": {"@type": "Answer", "text": "Any VPS provider in any country: Hetzner, DigitalOcean, Vultr, Contabo and others. The only requirement is Ubuntu 22.04 or 24.04 and SSH access for you."}}, {"@type": "Question", "name": "What if the agent breaks?", "acceptedAnswer": {"@type": "Answer", "text": "Monitoring sends you a Telegram alert. In the first 14 days we fix it for free, after that under support or one-off."}}, {"@type": "Question", "name": "Are you agents too?", "acceptedAnswer": {"@type": "Answer", "text": "The install is done by our automated pipeline and the result is checked by a human. That is why the price is fixed and the lead time is one day."}}]}</script>
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- MVP: шрифты с Google Fonts. Для прода self-host. -->
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+  <style>
+    :root {
+      --bg: #0f1113; --bg-2: #15181b; --bg-3: #1b1f23;
+      --fg: #e9ebe6; --fg-2: #c3c7c0; --muted: #8f968f;
+      --line: rgba(255,255,255,.09); --line-2: rgba(255,255,255,.16);
+      --accent: #e8a33d; --accent-2: #f2b955; --accent-ink: #1a1206;
+      --ok: #7cc77a;
+      --r: 10px; --shell: 1120px;
+      color-scheme: dark;
+    }
+    @media (prefers-color-scheme: light) {
+      :root:not([data-theme="dark"]) {
+        --bg: #f6f6f3; --bg-2: #ffffff; --bg-3: #eeeeea;
+        --fg: #15171a; --fg-2: #33373c; --muted: #5f656b;
+        --line: rgba(0,0,0,.1); --line-2: rgba(0,0,0,.18);
+        --accent: #9a5e0c; --accent-2: #7a4a09; --accent-ink: #fffaf0;
+        --ok: #2f8a4c;
+        color-scheme: light;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body {
+      margin: 0; background: var(--bg); color: var(--fg);
+      font-family: "Golos Text", system-ui, -apple-system, sans-serif;
+      font-size: 17px; line-height: 1.55; -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea, select { font: inherit; color: inherit; }
+    .mono { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .shell { max-width: var(--shell); margin: 0 auto; padding: 0 24px; }
+    h1, h2, h3 { margin: 0; letter-spacing: -0.02em; line-height: 1.1; font-weight: 700; }
+    h1 { font-size: clamp(38px, 5vw, 58px); letter-spacing: -0.03em; }
+    h2 { font-size: clamp(28px, 3.6vw, 40px); }
+    h3 { font-size: 19px; letter-spacing: -0.01em; }
+    p { margin: 0; }
+    .lead { font-size: 19px; color: var(--fg-2); max-width: 56ch; }
+    .muted { color: var(--muted); }
+    .eyebrow { display: inline-block; font-size: 12px; text-transform: uppercase; letter-spacing: .16em; color: var(--accent); font-weight: 600; margin-bottom: 14px; }
+    section { padding: 88px 0; border-top: 1px solid var(--line); }
+    @media (max-width: 767px) { section { padding: 64px 0; } }
+
+    /* Nav */
+    .nav { position: sticky; top: 0; z-index: 20; height: 68px; display: flex; align-items: center;
+      background: color-mix(in srgb, var(--bg) 84%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    .nav .shell { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -0.01em; }
+    .brand img { width: 26px; height: 26px; }
+    .nav-links { display: flex; gap: 26px; font-size: 15px; color: var(--fg-2); }
+    .nav-links a:hover { color: var(--fg); }
+    .nav-right { display: flex; align-items: center; gap: 14px; }
+    .lang { display: flex; border: 1px solid var(--line-2); border-radius: var(--r); overflow: hidden; font-size: 13px; }
+    .lang a { padding: 6px 10px; color: var(--muted); }
+    .lang a[aria-current="page"] { background: var(--bg-3); color: var(--fg); }
+    @media (max-width: 900px) { .nav-links { display: none; } }
+    @media (max-width: 560px) { .nav .lang { display: none; } .nav .btn-sm { padding: 9px 12px; font-size: 14px; } .brand { font-size: 15px; } }
+    footer .lang { margin-left: 12px; vertical-align: middle; display: inline-flex; }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 20px; border-radius: var(--r); border: 1px solid transparent;
+      font-weight: 600; font-size: 16px; white-space: nowrap; cursor: pointer; transition: transform .15s ease, background .2s ease, border-color .2s ease; }
+    .btn:active { transform: translateY(1px) scale(.99); }
+    .btn-primary { background: var(--accent); color: var(--accent-ink); }
+    .btn-primary:hover { background: var(--accent-2); }
+    .btn-ghost { background: transparent; border-color: var(--line-2); color: var(--fg); }
+    .btn-ghost:hover { border-color: var(--fg-2); }
+    .btn-sm { padding: 9px 14px; font-size: 14px; }
+
+    /* Hero */
+    .hero { padding: 72px 0 80px; border-top: 0; }
+    .hero .grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: center; }
+    .hero .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+    .hero .lead { margin-top: 22px; }
+    @media (max-width: 900px) { .hero .grid { grid-template-columns: 1fr; gap: 36px; } .hero { padding: 48px 0 64px; } }
+
+    /* Terminal: реальный вывод установщика, не макет интерфейса */
+    .term { background: var(--bg-2); border: 1px solid var(--line-2); border-radius: var(--r); overflow: hidden; box-shadow: 0 30px 80px -40px rgba(0,0,0,.6); }
+    .term-head { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--line); font-size: 12px; color: var(--muted); }
+    .term pre { margin: 0; padding: 18px 18px 20px; font-size: 13px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; color: var(--fg-2); }
+    .term .c { color: var(--muted); } .term .ok { color: var(--ok); } .term .a { color: var(--accent); } .term .p { color: var(--fg); }
+
+    /* Facts */
+    .facts { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; border-top: 1px solid var(--line-2); margin-top: 40px; }
+    .fact { padding: 28px 28px 28px 0; border-right: 1px solid var(--line); }
+    .fact + .fact { padding-left: 28px; }
+    .fact:last-child { border-right: 0; }
+    .fact .n { font-size: clamp(34px, 4vw, 48px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+    .fact .t { margin-top: 10px; color: var(--fg-2); font-size: 15px; }
+    .fact .s { margin-top: 8px; font-size: 12px; }
+    .fact .s a { color: var(--muted); border-bottom: 1px dotted var(--muted); }
+    @media (max-width: 767px) { .facts { grid-template-columns: 1fr; } .fact { border-right: 0; border-bottom: 1px solid var(--line); padding: 22px 0; } .fact + .fact { padding-left: 0; } .fact:last-child { border-bottom: 0; } }
+
+    /* Steps: вертикальная линия */
+    .steps { margin-top: 44px; display: grid; grid-template-columns: 1fr; gap: 0; max-width: 760px; }
+    .step { display: grid; grid-template-columns: 56px 1fr; gap: 20px; padding: 26px 0; border-top: 1px solid var(--line); }
+    .step:first-child { border-top: 0; }
+    .step .ic { width: 48px; height: 48px; border-radius: var(--r); background: var(--bg-3); display: grid; place-items: center; color: var(--accent); font-size: 22px; }
+    .step p { margin-top: 6px; color: var(--fg-2); max-width: 60ch; }
+    .step .time { margin-top: 10px; font-size: 13px; color: var(--muted); }
+
+    /* Bento */
+    .bento { margin-top: 44px; display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: minmax(150px, auto); gap: 14px; }
+    .cell { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--r); padding: 22px; display: flex; flex-direction: column; justify-content: space-between; gap: 18px; }
+    .cell i { font-size: 24px; color: var(--accent); }
+    .cell h3 { font-size: 17px; }
+    .cell p { font-size: 14.5px; color: var(--fg-2); margin-top: 6px; }
+    .c-a { grid-column: span 3; }
+    .c-b { grid-column: span 3; background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 22%, var(--bg-2)), var(--bg-2) 70%); }
+    .c-c { grid-column: span 2; }
+    .c-d { grid-column: span 2; }
+    .c-e { grid-column: span 2; }
+    .c-f { grid-column: span 4; background: var(--bg-3); }
+    .c-g { grid-column: span 2; }
+    .c-f .list { display: grid; grid-template-columns: 1fr 1fr; gap: 7px 18px; font-size: 14px; color: var(--fg-2); margin-top: 8px; }
+    .c-f .list span::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--ok); margin-right: 9px; vertical-align: middle; }
+    @media (max-width: 900px) { .bento { grid-template-columns: 1fr 1fr; } .cell { grid-column: span 1 !important; } .c-f .list { grid-template-columns: 1fr; } }
+    @media (max-width: 560px) { .bento { grid-template-columns: 1fr; } }
+
+    /* Add-ons: две колонки */
+    .addons { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    .addons .group h3 { padding-bottom: 12px; border-bottom: 1px solid var(--line-2); }
+    .addons .row { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .addons .row b { font-weight: 600; }
+    .addons .row span { color: var(--muted); font-size: 14px; white-space: nowrap; }
+    .addons .row small { display: block; color: var(--muted); font-size: 14px; margin-top: 3px; }
+    @media (max-width: 767px) { .addons { grid-template-columns: 1fr; gap: 28px; } }
+
+    /* Pricing */
+    .price { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: stretch; }
+    .price-biz { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-2)); }
+    .price-card { background: var(--bg-2); border: 1px solid var(--line-2); border-radius: var(--r); padding: 32px; }
+    .price .big { font-size: clamp(40px, 5vw, 56px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; margin-top: 10px; }
+    .price .big small { font-size: 18px; font-weight: 500; color: var(--muted); letter-spacing: 0; margin-left: 8px; }
+    .price ul { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 10px; color: var(--fg-2); font-size: 15.5px; }
+    .price li { display: flex; gap: 10px; align-items: flex-start; }
+    .price li i { color: var(--ok); margin-top: 3px; }
+    .price-side { margin-top: 28px; color: var(--fg-2); font-size: 15.5px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+    @media (max-width: 767px) { .price-side { grid-template-columns: 1fr; } }
+    .price-side b { color: var(--fg); }
+    @media (max-width: 900px) { .price { grid-template-columns: 1fr; } }
+
+    /* Principles */
+    .princ { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px 48px; }
+    .princ> div { display: grid; grid-template-columns: 36px 1fr; gap: 14px; }
+    .princ i { font-size: 24px; color: var(--accent); margin-top: 2px; }
+    .princ p { color: var(--fg-2); margin-top: 4px; font-size: 15.5px; }
+    @media (max-width: 767px) { .princ { grid-template-columns: 1fr; } }
+
+    /* FAQ */
+    .faq { margin-top: 36px; max-width: 800px; }
+    .faq details { border-top: 1px solid var(--line); padding: 4px 0; }
+    .faq details:last-child { border-bottom: 1px solid var(--line); }
+    .faq summary { cursor: pointer; list-style: none; padding: 18px 0; font-weight: 600; font-size: 17px; display: flex; justify-content: space-between; gap: 20px; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: "+"; color: var(--muted); font-weight: 400; font-size: 22px; line-height: 1; }
+    .faq details[open] summary::after { content: "−"; }
+    .faq .a { padding: 0 0 20px; color: var(--fg-2); max-width: 64ch; }
+
+    /* Form */
+    .apply { background: var(--bg-2); }
+    .apply .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+    form { display: grid; gap: 16px; }
+    label { display: grid; gap: 6px; font-size: 14px; color: var(--fg-2); font-weight: 500; }
+    input, select, textarea { width: 100%; background: var(--bg); border: 1px solid var(--line-2); border-radius: var(--r); padding: 12px 14px; font-size: 16px; color: var(--fg); }
+    input::placeholder, textarea::placeholder { color: var(--muted); }
+    input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+    .hint { font-size: 13px; color: var(--muted); }
+    .form-msg { display: none; padding: 14px 16px; border-radius: var(--r); font-size: 15px; }
+    .form-msg.ok { display: block; background: color-mix(in srgb, var(--ok) 16%, var(--bg)); color: var(--fg); }
+    .form-msg.err { display: block; background: color-mix(in srgb, #e5484d 16%, var(--bg)); color: var(--fg); }
+    .alt { margin-top: 26px; font-size: 15px; color: var(--fg-2); }
+    .alt a { color: var(--accent); border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); }
+    @media (max-width: 900px) { .apply .grid { grid-template-columns: 1fr; gap: 32px; } }
+
+    footer { padding: 36px 0 44px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+    footer .shell { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    footer a { color: var(--fg-2); }
+
+    /* Reveal */
+    @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    .hero .grid> * { animation: rise .7s cubic-bezier(.16,1,.3,1) both; }
+    .hero .grid> :last-child { animation-delay: .12s; }
+    @media (prefers-reduced-motion: reduce) { .hero .grid> * { animation: none; } .btn { transition: none; } }
+  </style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="shell">
+    <a class="brand" href="#top"><img src="../assets/favicon.svg" alt=""> OwnAgent</a>
+    <nav class="nav-links">
+      <a href="#how" data-i18n="nav.how">How it works</a>
+      <a href="#included" data-i18n="nav.included">What's included</a>
+      <a href="#price" data-i18n="nav.price">Pricing</a>
+      <a href="#faq" data-i18n="nav.faq">FAQ</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Language">
+        <a href="../" data-lang-link="ru">RU</a>
+        <a href="./" data-lang-link="en" aria-current="page">EN</a>
+      </div>
+      <a class="btn btn-primary btn-sm" href="#apply" data-track="nav_cta" data-i18n="cta">Request setup</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="shell grid">
+    <div>
+      <span class="eyebrow" data-i18n="hero.eyebrow">For people who already tried OpenClaw or Hermes</span>
+      <h1 data-i18n="hero.h1">Your AI agent, on your own server</h1>
+      <p class="lead" data-i18n="hero.lead">We install Hermes or OpenClaw on your VPS, lock the ports, connect Telegram and a spending cap. Fixed price, done in a day.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#apply" data-track="hero_cta" data-i18n="cta">Request setup</a>
+        <a class="btn btn-ghost" href="#how" data-i18n="hero.secondary">How it works</a>
+      </div>
+    </div>
+    <div class="term" aria-label="Installer output, example">
+      <div class="term-head mono"><span data-i18n="term.title">installer output, example</span><span>ubuntu 24.04</span></div>
+<pre class="mono" data-i18n="term.body"><span class="c"># client server, access via SSH tunnel</span>
+<span class="p">$</span> ownagent install --agent hermes --channel telegram
+<span class="ok">✓</span> user agent without root, sudo for updates only
+<span class="ok">✓</span> ufw: only 22/tcp open outside, gateway on 127.0.0.1
+<span class="ok">✓</span> fail2ban, unattended-upgrades enabled
+<span class="ok">✓</span> Hermes Agent installed, systemd service active
+<span class="ok">✓</span> OpenRouter connected, <span class="a">cap $30/mo</span>
+<span class="ok">✓</span> Telegram: @your_agent_bot replies
+<span class="ok">✓</span> daily memory backup, downtime alert to Telegram
+<span class="c"># 12 checks passed, report sent to owner</span></pre>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="shell">
+    <h2 data-i18n="why.h2">The agent reads your mail and calendar. The question is not the price, it is who holds the keys</h2>
+    <p class="lead" style="margin-top:18px" data-i18n="why.lead">One-click hosts run the agent on their server and expose it to the internet. In 2026 that looks like this:</p>
+    <div class="facts">
+      <div class="fact">
+        <div class="n mono">40 000+</div>
+        <div class="t" data-i18n="why.f1">OpenClaw instances found exposed to the internet in February 2026, many with no password</div>
+        <div class="s"><a href="https://blog.rankiteo.com/ope1770630718-openclaw-vulnerability-february-2026/" target="_blank" rel="noopener">SecurityScorecard, Shodan</a></div>
+      </div>
+      <div class="fact">
+        <div class="n mono">800+</div>
+        <div class="t" data-i18n="why.f2">malicious skills in the marketplace that steal tokens and passwords</div>
+        <div class="s"><a href="https://clawdocs.org/security/known-vulnerabilities" target="_blank" rel="noopener">clawdocs.org/security</a></div>
+      </div>
+      <div class="fact">
+        <div class="n mono">CVE-2026-25253</div>
+        <div class="t" data-i18n="why.f3">one-click remote code execution, and not everyone has patched</div>
+        <div class="s"><a href="https://clawdocs.org/security/known-vulnerabilities" target="_blank" rel="noopener">CVSS 8.8</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="shell">
+    <span class="eyebrow" data-i18n="how.eyebrow">How it works</span>
+    <h2 data-i18n="how.h2">Three steps, one working day</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="ic"><i class="ph ph-hard-drives"></i></div>
+        <div>
+          <h3 data-i18n="how.s1h">You provide a server</h3>
+          <p data-i18n="how.s1p">Any VPS from $5 a month, any provider. No server yet: we point you to one in five minutes.</p>
+          <div class="time mono" data-i18n="how.s1t">10 minutes of your time</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="ic"><i class="ph ph-shield-check"></i></div>
+        <div>
+          <h3 data-i18n="how.s2h">We install and lock it down</h3>
+          <p data-i18n="how.s2p">Agent, Telegram, model with a spending cap, closed ports, backups, monitoring. You get a report on 12 checks.</p>
+          <div class="time mono" data-i18n="how.s2t">same day</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="ic"><i class="ph ph-chat-circle-text"></i></div>
+        <div>
+          <h3 data-i18n="how.s3h">You message your agent</h3>
+          <p data-i18n="how.s3p">In Telegram, from your phone. It keeps context, learns your tasks and lives on your server.</p>
+          <div class="time mono" data-i18n="how.s3t">from here on, without us</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="included">
+  <div class="shell">
+    <h2 data-i18n="inc.h2">What the fixed price includes</h2>
+    <div class="bento">
+      <div class="cell c-a"><i class="ph ph-robot"></i><div><h3 data-i18n="inc.a">Hermes or OpenClaw, your choice</h3><p data-i18n="inc.ap">Both open source, both live on your box. We help you pick.</p></div></div>
+      <div class="cell c-b"><i class="ph ph-lock-key"></i><div><h3 data-i18n="inc.b">Closed perimeter</h3><p data-i18n="inc.bp">Only SSH from outside. The agent panel is reachable through a tunnel, not from the internet. fail2ban and auto-updates.</p></div></div>
+      <div class="cell c-c"><i class="ph ph-telegram-logo"></i><div><h3 data-i18n="inc.c">Telegram channel</h3><p data-i18n="inc.cp">Your bot, your token.</p></div></div>
+      <div class="cell c-d"><i class="ph ph-gauge"></i><div><h3 data-i18n="inc.d">Spending cap</h3><p data-i18n="inc.dp">Model via OpenRouter with a monthly ceiling. No surprise bills.</p></div></div>
+      <div class="cell c-e"><i class="ph ph-archive"></i><div><h3 data-i18n="inc.e">Memory backup</h3><p data-i18n="inc.ep">Daily, with tested restore.</p></div></div>
+      <div class="cell c-f"><i class="ph ph-list-checks"></i><div><h3 data-i18n="inc.f">Report on 12 checks after install</h3>
+        <div class="list">
+          <span data-i18n="inc.f1">only SSH open outside, verified by an external scan</span><span data-i18n="inc.f2">agent panel listens on localhost only</span>
+          <span data-i18n="inc.f3">SSH by key only, root login disabled</span><span data-i18n="inc.f4">fail2ban active</span>
+          <span data-i18n="inc.f5">security updates install themselves</span><span data-i18n="inc.f6">agent runs unprivileged and restarts itself</span>
+          <span data-i18n="inc.f7">no keys or tokens in logs or shell history</span><span data-i18n="inc.f8">skills from allowlist only, marketplace off</span>
+          <span data-i18n="inc.f9">model spending cap active and tested</span><span data-i18n="inc.f10">memory backup made and test-restored</span>
+          <span data-i18n="inc.f11">downtime alert reached Telegram, tested by stopping the service</span><span data-i18n="inc.f12">our temporary access key removed</span>
+        </div></div></div>
+      <div class="cell c-g"><i class="ph ph-lifebuoy"></i><div><h3 data-i18n="inc.g">14 days of support</h3><p data-i18n="inc.gp">Plus a one-page guide.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="addons">
+  <div class="shell">
+    <h2 data-i18n="add.h2">Everything else on request, priced individually</h2>
+    <p class="lead" style="margin-top:18px" data-i18n="add.lead">The base install is standard. Anything tied to your workflows is quoted after a short call.</p>
+    <div class="addons">
+      <div class="group">
+        <h3 data-i18n="add.g1">Integrations</h3>
+        <div class="row"><div><b>Gmail, Google Calendar</b><small data-i18n="add.i1">read, reply, schedule, with minimal permissions</small></div><span data-i18n="add.from">from 1 day</span></div>
+        <div class="row"><div><b>Notion, Jira, Bitrix24</b><small data-i18n="add.i2">tasks and notes from chat</small></div><span data-i18n="add.from">from 1 day</span></div>
+        <div class="row"><div><b>WhatsApp, Slack, Discord</b><small data-i18n="add.i3">second and third channel to the same agent</small></div><span data-i18n="add.from">from 1 day</span></div>
+        <div class="row"><div><b>n8n</b><small data-i18n="add.i4">automations next to the agent, on the same server</small></div><span data-i18n="add.from">from 1 day</span></div>
+      </div>
+      <div class="group">
+        <h3 data-i18n="add.g2">Security and support</h3>
+        <div class="row"><div><b data-i18n="add.s1">Security audit</b><small data-i18n="add.s1p">server, agent, skills, integration permissions, prioritized report</small></div><span data-i18n="add.quote">quoted</span></div>
+        <div class="row"><div><b data-i18n="add.s2">Custom skills</b><small data-i18n="add.s2p">the agent learns your procedures and reports</small></div><span data-i18n="add.quote">quoted</span></div>
+        <div class="row"><div><b data-i18n="add.s3">SLA support</b><small data-i18n="add.s3p">updates, monitoring, one-hour response</small></div><span data-i18n="add.monthly">monthly</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="price">
+  <div class="shell">
+    <h2 data-i18n="pr.h2">Pricing</h2>
+    <div class="price">
+      <div class="price-card">
+        <div class="muted" data-i18n="pr.label">Personal: turnkey install</div>
+        <div class="big"><span data-i18n="pr.amount">$99</span><small data-i18n="pr.usd">one-time</small></div>
+        <ul>
+          <li><i class="ph ph-check"></i><span data-i18n="pr.l1">Everything in "What's included"</span></li>
+          <li><i class="ph ph-check"></i><span data-i18n="pr.l2">Done within a working day</span></li>
+          <li><i class="ph ph-check"></i><span data-i18n="pr.l3">Check report and guide</span></li>
+          <li><i class="ph ph-check"></i><span data-i18n="pr.l4">14 days of support included</span></li>
+        </ul>
+        <div class="cta" style="margin-top:26px"><a class="btn btn-primary" href="#apply" data-track="price_cta" data-i18n="cta">Request setup</a></div>
+      </div>
+      <div class="price-card price-biz">
+        <div class="muted" data-i18n="pr.blabel">Business: the agent inside your workflows</div>
+        <div class="big"><span data-i18n="pr.bamount">from $390</span><small data-i18n="pr.busd">one-time</small></div>
+        <ul>
+          <li><i class="ph ph-check"></i><span data-i18n="pr.b1">Everything in Personal</span></li>
+          <li><i class="ph ph-check"></i><span data-i18n="pr.b2">Two integrations of your choice with minimal scopes</span></li>
+          <li><i class="ph ph-check"></i><span data-i18n="pr.b3">Express audit of the server and agent permissions, prioritized report</span></li>
+          <li><i class="ph ph-check"></i><span data-i18n="pr.b4">Setup call for your tasks, 30 days of support</span></li>
+        </ul>
+        <div class="cta" style="margin-top:26px"><a class="btn btn-ghost" href="#apply" data-track="price_biz_cta" data-i18n="pr.bcta">Discuss your case</a></div>
+      </div>
+    </div>
+    <div class="price-side">
+        <p><b data-i18n="pr.s1b">Support and updates:</b> <span data-i18n="pr.s1">$19 a month, optional. We update the agent and the system, watch monitoring, answer questions.</span></p>
+        <p><b data-i18n="pr.s2b">What you pay directly:</b> <span data-i18n="pr.s2">your VPS provider, usually $5-10 a month, and model tokens via OpenRouter, usually $10-30 depending on load.</span></p>
+        <p><b data-i18n="pr.s3b">Not a fit:</b> <span data-i18n="pr.s3">if the agent has not been useful within 14 days, we refund the install. The server stays yours.</span></p>
+    </div>
+  </div>
+</section>
+
+<section id="principles">
+  <div class="shell">
+    <h2 data-i18n="pp.h2">What we don't do</h2>
+    <div class="princ">
+      <div><i class="ph ph-key"></i><div><h3 data-i18n="pp.1h">We don't keep access after the install</h3><p data-i18n="pp.1p">You add our temporary key for the job, it is removed at handover, and that removal is a line in the report. We hold no standing access to your server.</p></div></div>
+      <div><i class="ph ph-eye-slash"></i><div><h3 data-i18n="pp.2h">We don't see your conversations</h3><p data-i18n="pp.2p">Agent memory, dialogs and integration keys live only on your server.</p></div></div>
+      <div><i class="ph ph-hand-palm"></i><div><h3 data-i18n="pp.3h">We don't over-permission the agent</h3><p data-i18n="pp.3p">Each integration is connected with the minimal set of scopes, and we write down which ones.</p></div></div>
+      <div><i class="ph ph-wallet"></i><div><h3 data-i18n="pp.4h">We don't leave spending uncapped</h3><p data-i18n="pp.4p">The model cap is on by default. The agent that burned $400 overnight is not your story.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="shell">
+    <h2 data-i18n="faq.h2">FAQ</h2>
+    <div class="faq">
+      <details><summary data-i18n="faq.q1">How is this different from OpenClaw hosting at $9 a month?</summary><div class="a" data-i18n="faq.a1">There the agent sits on someone else's server and is usually exposed to the internet by default. Here it is on your server, behind closed ports, with a spending cap and backups. You pay once for the install, not monthly rent.</div></details>
+      <details><summary data-i18n="faq.q2">What are Hermes and OpenClaw?</summary><div class="a" data-i18n="faq.a2">Open-source personal agent frameworks. A program on your server you talk to in Telegram: it keeps context, works with files, mail and calendar, and learns your tasks. The model (Claude, GPT, Gemini and others) connects through OpenRouter. Need a different framework, say ZeroClaw or PicoClaw for small hosts: ask us.</div></details>
+      <details><summary data-i18n="faq.q3">I don't have a VPS. What now?</summary><div class="a" data-i18n="faq.a3">We point you to a provider for your country and budget, signup takes five minutes. The server is in your name, we are not a middleman.</div></details>
+      <details><summary data-i18n="faq.q4">Which providers and countries do you support?</summary><div class="a" data-i18n="faq.a4">Any VPS provider in any country: Hetzner, DigitalOcean, Vultr, Contabo and others. The only requirement is Ubuntu 22.04 or 24.04 and SSH access for you.</div></details>
+      <details><summary data-i18n="faq.q5">What if the agent breaks?</summary><div class="a" data-i18n="faq.a5">Monitoring sends you a Telegram alert. In the first 14 days we fix it for free, after that under support or one-off.</div></details>
+      <details><summary data-i18n="faq.q6">Are you agents too?</summary><div class="a" data-i18n="faq.a6">The install is done by our automated pipeline and the result is checked by a human. That is why the price is fixed and the lead time is one day.</div></details>
+    </div>
+  </div>
+</section>
+
+<section id="apply" class="apply">
+  <div class="shell grid">
+    <div>
+      <h2 data-i18n="ap.h2">Request setup</h2>
+      <p class="lead" style="margin-top:18px" data-i18n="ap.lead">We reply the same day, confirm a couple of details and give you an install date.</p>
+      <p class="alt" data-i18n="ap.alt">Prefer messaging: write on <a href="https://t.me/pasee2" target="_blank" rel="noopener" data-track="tg_link">Telegram</a>.</p>
+    </div>
+    <!-- Форма отправляется в Formspree. Замените REPLACE_ME на id формы из formspree.io -->
+    <form id="lead" action="https://formspree.io/f/REPLACE_ME" method="POST" novalidate>
+      <label><span data-i18n="ap.f1">How to reach you</span><input name="contact" type="text" required placeholder="@telegram or email" autocomplete="off"></label>
+      <label><span data-i18n="ap.f2">Server</span>
+        <select name="server">
+          <option value="have" data-i18n="ap.f2a">I have a VPS</option>
+          <option value="need" data-i18n="ap.f2b">Need help choosing</option>
+        </select></label>
+      <label><span data-i18n="ap.f3">What the agent is for</span><textarea name="goal" rows="3" placeholder="" data-i18n-ph="ap.f3ph"></textarea></label>
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+      <div class="form-msg" id="form-msg" role="status" aria-live="polite"></div>
+      <button class="btn btn-primary" type="submit" id="submit" data-i18n="cta">Request setup</button>
+      <div class="hint" data-i18n="ap.hint">No newsletters. The contact is only used to reply.</div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="shell">
+    <div>OwnAgent, <span data-i18n="ft.by">a project of the lab</span> AIIB Team</div>
+    <div><a href="mailto:aka.alius@gmail.com">aka.alius@gmail.com</a> · <a href="https://t.me/pasee2" target="_blank" rel="noopener">t.me/pasee2</a><span class="lang" role="group" aria-label="Language"><a href="../" data-lang-link="ru">RU</a><a href="./" data-lang-link="en" aria-current="page">EN</a></span></div>
+  </div>
+</footer>
+
+<!-- TODO: счётчик (Яндекс Метрика или GoatCounter). Клики по CTA помечены data-track. -->
+<script>
+(function () {
+  // Язык: RU на корне, EN в /en/. Выбор запоминаем, при первом заходе смотрим на язык браузера.
+  var here = document.documentElement.lang, saved = null;
+  try { saved = localStorage.getItem("lang"); } catch (e) {}
+  document.querySelectorAll("[data-lang-link]").forEach(function (a) {
+    a.addEventListener("click", function () { try { localStorage.setItem("lang", a.getAttribute("data-lang-link")); } catch (e) {} });
+  });
+  var q = new URLSearchParams(location.search).get("lang");
+  if (!q && here === "ru") {
+    var browserRu = /^(ru|uk|be|kk)/i.test(navigator.language || "");
+    if (saved === "en" || (!saved && !browserRu)) location.replace(document.querySelector('[data-lang-link="en"]').getAttribute("href") + location.hash);
+  } else if (!q && here === "en" && saved === "ru") {
+    location.replace(document.querySelector('[data-lang-link="ru"]').getAttribute("href") + location.hash);
+  }
+
+  // CTA tracking hook: подключите счётчик и замените тело функции
+  document.querySelectorAll("[data-track]").forEach(function (el) {
+    el.addEventListener("click", function () { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: "cta/" + el.getAttribute("data-track"), event: true }); });
+  });
+
+  // Форма: состояния отправки, успеха и ошибки
+  var form = document.getElementById("lead"), msg = document.getElementById("form-msg"), btn = document.getElementById("submit");
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var lang = document.documentElement.lang;
+    var contact = form.contact.value.trim();
+    msg.className = "form-msg";
+    if (!contact) { msg.className = "form-msg err"; msg.textContent = lang === "en" ? "Add a Telegram handle or email so we can reply." : "Укажите Telegram или email, чтобы мы могли ответить."; form.contact.focus(); return; }
+    if (form.action.indexOf("REPLACE_ME")> -1) { msg.className = "form-msg err"; msg.textContent = lang === "en" ? "Form endpoint is not configured yet. Write on Telegram: t.me/pasee2" : "Форма ещё не подключена. Напишите в Telegram: t.me/pasee2"; return; }
+    btn.disabled = true; var old = btn.textContent; btn.textContent = lang === "en" ? "Sending..." : "Отправляем...";
+    fetch(form.action, { method: "POST", body: new FormData(form), headers: { "Accept": "application/json" } })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); msg.className = "form-msg ok"; msg.textContent = lang === "en" ? "Got it. We will reply today." : "Заявка принята. Ответим сегодня."; form.reset(); if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: "lead/sent", event: true }); })
+      .catch(function () { msg.className = "form-msg err"; msg.textContent = lang === "en" ? "Could not send. Write on Telegram: t.me/pasee2" : "Не отправилось. Напишите в Telegram: t.me/pasee2"; })
+      .then(function () { btn.disabled = false; btn.textContent = old; });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# ИИ-краулеры разрешены явно: страница рассчитана на ответы в ChatGPT, Perplexity, Claude, Gemini, Нейро
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: YandexBot
+Allow: /
+
+Sitemap: https://akaalius.github.io/ownagent-landing/sitemap.xml

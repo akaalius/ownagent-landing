@@ -1,0 +1,27 @@
+# OwnAgent
+
+> Turnkey, hardened installation of a personal AI agent (Hermes Agent by Nous Research, or OpenClaw) on the client's own VPS. The agent and its data stay on the client's server. Fixed price, done within one working day, with a written report on 12 security and reliability checks.
+
+## What is included (Personal, $99 one-time / 9 900 RUB)
+- Hermes Agent or OpenClaw, client's choice, on the client's Ubuntu 22.04/24.04 VPS at any provider
+- Telegram channel with the client's own bot token
+- Model access via OpenRouter with a monthly spending cap
+- Hardening: only SSH open from outside, agent panel on localhost, SSH keys only, root login disabled, fail2ban, unattended security updates, agent runs unprivileged under systemd
+- Daily memory backup with a tested restore; downtime alert to Telegram
+- Skills from an allowlist only, marketplace disabled
+- Report on 12 checks, one-page guide, 14 days of support, 14-day refund
+
+## Business (from $390 one-time / from 39 000 RUB)
+Personal plus two integrations (Gmail, Google Calendar, Notion, Jira, Bitrix24, WhatsApp, Slack, Discord, n8n) with minimal permissions, an express security audit with a prioritized report, a setup call, 30 days of support. Optional support plan: $19/month (1 900 RUB).
+
+## Why not one-click hosting
+One-click hosts run the agent on their servers and often expose it to the internet. In early 2026 scanners found tens of thousands of exposed OpenClaw instances, 800+ malicious skills in the marketplace and CVE-2026-25253 (one-click RCE). OwnAgent installs on the client's server behind closed ports and holds no standing access after handover.
+
+## Pages
+- English: https://akaalius.github.io/ownagent-landing/en/
+- Russian: https://akaalius.github.io/ownagent-landing/
+
+## Contact
+- Telegram: https://t.me/pasee2
+- Email: aka.alius@gmail.com
+- Provider: AIIB Team

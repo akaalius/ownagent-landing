@@ -15,4 +15,4 @@ Allow: /
 User-agent: YandexBot
 Allow: /
 
-Sitemap: https://akaalius.github.io/ownagent-landing/sitemap.xml
+Sitemap: https://getownagent.com/sitemap.xml

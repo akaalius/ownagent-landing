@@ -4,7 +4,7 @@
 import json, re, html, pathlib, datetime
 
 ROOT = pathlib.Path(__file__).parent
-BASE_URL = "https://akaalius.github.io/ownagent-landing"   # сменить на свой домен без слеша в конце
+BASE_URL = "https://getownagent.com"   # сменить на свой домен без слеша в конце
 TPL = (ROOT / "src/index.html").read_text(encoding="utf-8")
 EN = json.loads((ROOT / "src/i18n.en.json").read_text(encoding="utf-8"))
 HTML_KEYS = {"ap.alt", "term.body"}

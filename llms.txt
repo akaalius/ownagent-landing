@@ -19,8 +19,8 @@ Personal plus two integrations (Gmail, Google Calendar, Notion, Jira, Bitrix24, 
 One-click hosts run the agent on their servers and often expose it to the internet. In February 2026 SecurityScorecard found 40,214 exposed OpenClaw instances (63% vulnerable), Snyk found 534 marketplace skills with critical findings and 76 confirmed malicious, and CVE-2026-25253 (one-click RCE) was followed by CVE-2026-33579 in March. OwnAgent installs on the client's server behind closed ports and holds no standing access after handover.
 
 ## Pages
-- English: https://akaalius.github.io/ownagent-landing/en/
-- Russian: https://akaalius.github.io/ownagent-landing/
+- English: https://getownagent.com/en/
+- Russian: https://getownagent.com/
 
 ## Contact
 - Telegram: https://t.me/pasee2

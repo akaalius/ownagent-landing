@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>OwnAgent: your AI agent, on your own server</title>
-  <meta name="description" content="We install Hermes Agent or OpenClaw on your VPS, lock the ports, connect Telegram and a spending cap. Fixed price $99, done in a day, report on 14 checks.">
+  <title>OwnAgent: your AI agent in Telegram, on your own server</title>
+  <meta name="description" content="Your personal AI agent (Hermes or OpenClaw) in Telegram, on your own server. We install, configure and lock it down, no terminal needed. $99, done in a day, report on 14 checks.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="OwnAgent: your AI agent, on your own server">
+  <meta property="og:title" content="OwnAgent: your AI agent in Telegram, on your own server">
   <meta property="og:description" content="Turnkey, hardened install. Your data stays on your server.">
   <meta property="og:url" content="https://getownagent.com/en/">
   <meta property="og:locale" content="en_US">
@@ -15,7 +15,7 @@
   <link rel="alternate" hreflang="ru" href="https://getownagent.com/">
   <link rel="alternate" hreflang="en" href="https://getownagent.com/en/">
   <link rel="alternate" hreflang="x-default" href="https://getownagent.com/en/">
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "OwnAgent", "serviceType": "AI agent deployment on client VPS", "description": "We install Hermes Agent or OpenClaw on your VPS, lock the ports, connect Telegram and a spending cap. Fixed price $99, done in a day, report on 14 checks.", "url": "https://getownagent.com/en/", "areaServed": "Worldwide", "provider": {"@type": "Organization", "name": "OwnAgent", "email": "aka.alius@gmail.com", "url": "https://getownagent.com/", "sameAs": ["https://t.me/pasee2"]}, "offers": [{"@type": "Offer", "name": "Personal (launch price, first 20 installs)", "price": "99", "priceCurrency": "USD", "url": "https://getownagent.com/en/#price", "description": "Hermes Agent or OpenClaw on your VPS, hardened, Telegram, spending cap, backups, monitoring, 14-check report, 14 days of support"}, {"@type": "Offer", "name": "Business", "price": "390", "priceCurrency": "USD", "url": "https://getownagent.com/en/#price", "description": "Personal plus two integrations, express security audit, setup call, 30 days of support"}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "OwnAgent", "serviceType": "AI agent deployment on client VPS", "description": "Your personal AI agent (Hermes or OpenClaw) in Telegram, on your own server. We install, configure and lock it down, no terminal needed. $99, done in a day, report on 14 checks.", "url": "https://getownagent.com/en/", "areaServed": "Worldwide", "provider": {"@type": "Organization", "name": "OwnAgent", "email": "aka.alius@gmail.com", "url": "https://getownagent.com/", "sameAs": ["https://t.me/pasee2"]}, "offers": [{"@type": "Offer", "name": "Personal (launch price, first 20 installs)", "price": "99", "priceCurrency": "USD", "url": "https://getownagent.com/en/#price", "description": "Hermes Agent or OpenClaw on your VPS, hardened, Telegram, spending cap, backups, monitoring, 14-check report, 14 days of support"}, {"@type": "Offer", "name": "Business", "price": "390", "priceCurrency": "USD", "url": "https://getownagent.com/en/#price", "description": "Personal plus two integrations, express security audit, setup call, 30 days of support"}]}</script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How is this different from OpenClaw hosting at $9 a month?", "acceptedAnswer": {"@type": "Answer", "text": "There the agent sits on someone else's server and is usually exposed to the internet by default. Here it is on your server, behind closed ports, with a spending cap and backups. You pay once for the install, not monthly rent that doubles after the promo period: Hostinger $5.99 to $11.99, xCloud $9.99 to $19.99, and KiloClaw went from $9 to $55 and shut down."}}, {"@type": "Question", "name": "What are Hermes and OpenClaw?", "acceptedAnswer": {"@type": "Answer", "text": "Open-source personal agent frameworks. A program on your server you talk to in Telegram: it keeps context, works with files, mail and calendar, and learns your tasks. The model (Claude, GPT, Gemini and others) connects through OpenRouter. Need a different framework, say ZeroClaw or PicoClaw for small hosts: ask us."}}, {"@type": "Question", "name": "I don't have a VPS. What now?", "acceptedAnswer": {"@type": "Answer", "text": "We point you to a provider for your country and budget, signup takes five minutes. The server is in your name, we are not a middleman."}}, {"@type": "Question", "name": "Which providers and countries do you support?", "acceptedAnswer": {"@type": "Answer", "text": "Any VPS provider in any country: Hetzner, DigitalOcean, Vultr, Contabo and others. The only requirement is Ubuntu 22.04 or 24.04 and SSH access for you."}}, {"@type": "Question", "name": "What if the agent breaks?", "acceptedAnswer": {"@type": "Answer", "text": "Monitoring sends you a Telegram alert. 30-day install guarantee: if any check stops working for reasons other than your own changes, we fix it for free. After that under support or one-off."}}, {"@type": "Question", "name": "Are you agents too?", "acceptedAnswer": {"@type": "Answer", "text": "The install is done by our automated pipeline and the result is checked by a human. That is why the price is fixed and the lead time is one day."}}]}</script>
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,7 +56,7 @@
     .mono { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
     .shell { max-width: var(--shell); margin: 0 auto; padding: 0 24px; }
     h1, h2, h3 { margin: 0; letter-spacing: -0.02em; line-height: 1.1; font-weight: 700; }
-    h1 { font-size: clamp(38px, 5vw, 58px); letter-spacing: -0.03em; }
+    h1 { font-size: clamp(36px, 4.4vw, 50px); letter-spacing: -0.03em; }
     h2 { font-size: clamp(28px, 3.6vw, 40px); }
     h3 { font-size: 19px; letter-spacing: -0.01em; }
     p { margin: 0; }
@@ -137,9 +137,12 @@
     .c-e { grid-column: span 2; }
     .c-f { grid-column: span 4; background: var(--bg-3); }
     .c-g { grid-column: span 2; }
-    .c-f .list { display: grid; grid-template-columns: 1fr 1fr; gap: 7px 18px; font-size: 14px; color: var(--fg-2); margin-top: 8px; }
+    .c-f .list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 22px; font-size: 14px; color: var(--fg-2); margin-top: 8px; }
     .c-f p { margin-top: 12px; }
-    .c-f .list span::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--ok); margin-right: 9px; vertical-align: middle; }
+    .c-f .list span { padding-left: 15px; position: relative; }
+    .c-f .list span::before { content: ""; position: absolute; left: 0; top: 7px; width: 6px; height: 6px; border-radius: 50%; background: var(--ok); }
+    .c-f .list b { font-weight: 600; color: var(--fg); }
+    .c-f .list i { display: block; font-style: normal; color: var(--muted); font-size: 13.5px; margin-top: 2px; }
     @media (max-width: 900px) { .bento { grid-template-columns: 1fr 1fr; } .cell { grid-column: span 1 !important; } .c-f .list { grid-template-columns: 1fr; } }
     @media (max-width: 560px) { .bento { grid-template-columns: 1fr; } }
 
@@ -238,8 +241,8 @@
   <div class="shell grid">
     <div>
       <span class="eyebrow" data-i18n="hero.eyebrow">For people who already tried OpenClaw or Hermes</span>
-      <h1 data-i18n="hero.h1">Your AI agent, on your own server</h1>
-      <p class="lead" data-i18n="hero.lead">We install Hermes or OpenClaw on your VPS, lock the ports, connect Telegram and a spending cap. Fixed price, done in a day.</p>
+      <h1 data-i18n="hero.h1">Your AI agent in Telegram, on your own server</h1>
+      <p class="lead" data-i18n="hero.lead">We install Hermes or OpenClaw and lock it down. No terminal needed: a $5 server, ten minutes of your time, done in a day.</p>
       <div class="cta">
         <a class="btn btn-primary" href="#apply" data-track="hero_cta" data-i18n="cta">Request setup</a>
         <a class="btn btn-ghost" href="#how" data-i18n="hero.secondary">How it works</a>
@@ -294,7 +297,7 @@
         <div class="ic"><i class="ph ph-hard-drives"></i></div>
         <div>
           <h3 data-i18n="how.s1h">You provide a server</h3>
-          <p data-i18n="how.s1p">Any VPS at any provider: from $5 a month for Hermes, from $7 for OpenClaw with a browser. No server yet: we point you to one in five minutes.</p>
+          <p data-i18n="how.s1p">Any VPS at any provider: from $5 a month for Hermes, from $7 for OpenClaw with a browser. No server yet: we show you where to get one in five minutes and which three buttons to click. No terminal required.</p>
           <div class="time mono" data-i18n="how.s1t">10 minutes of your time</div>
         </div>
       </div>
@@ -302,7 +305,7 @@
         <div class="ic"><i class="ph ph-shield-check"></i></div>
         <div>
           <h3 data-i18n="how.s2h">We install and lock it down</h3>
-          <p data-i18n="how.s2p">Agent, Telegram, model with a spending cap, closed ports, backups, monitoring. You get a report on 14 checks.</p>
+          <p data-i18n="how.s2p">Agent, Telegram, model with a spending cap, hardening, backups, monitoring. You get a plain-language report on 14 checks: what is locked, what was tested, and how to verify it yourself.</p>
           <div class="time mono" data-i18n="how.s2t">same day</div>
         </div>
       </div>
@@ -323,19 +326,19 @@
     <h2 data-i18n="inc.h2">What the fixed price includes</h2>
     <div class="bento">
       <div class="cell c-a"><i class="ph ph-robot"></i><div><h3 data-i18n="inc.a">Hermes or OpenClaw, your choice</h3><p data-i18n="inc.ap">Both open source, both live on your box. We help you pick.</p></div></div>
-      <div class="cell c-b"><i class="ph ph-lock-key"></i><div><h3 data-i18n="inc.b">Closed perimeter</h3><p data-i18n="inc.bp">Only SSH from outside. The agent panel is reachable through a tunnel, not from the internet. fail2ban and auto-updates.</p></div></div>
+      <div class="cell c-b"><i class="ph ph-lock-key"></i><div><h3 data-i18n="inc.b">Closed perimeter</h3><p data-i18n="inc.bp">The agent is invisible from the internet. Only you reach its panel, through a secure tunnel. Password guessing is blocked, system updates install themselves.</p></div></div>
       <div class="cell c-c"><i class="ph ph-telegram-logo"></i><div><h3 data-i18n="inc.c">Telegram channel</h3><p data-i18n="inc.cp">Your bot, your token.</p></div></div>
       <div class="cell c-d"><i class="ph ph-gauge"></i><div><h3 data-i18n="inc.d">Spending cap</h3><p data-i18n="inc.dp">Model via OpenRouter with a monthly ceiling. No surprise bills.</p></div></div>
       <div class="cell c-e"><i class="ph ph-archive"></i><div><h3 data-i18n="inc.e">Memory backup</h3><p data-i18n="inc.ep">Daily, with tested restore.</p></div></div>
       <div class="cell c-f"><i class="ph ph-list-checks"></i><div><h3 data-i18n="inc.f">Report on 14 checks after install</h3>
         <div class="list">
-          <span data-i18n="inc.f1">only SSH open outside, verified by an external scan</span><span data-i18n="inc.f2">agent panel listens on localhost only</span>
-          <span data-i18n="inc.f3">SSH by key only, root login disabled</span><span data-i18n="inc.f4">fail2ban active</span>
-          <span data-i18n="inc.f5">security updates install themselves</span><span data-i18n="inc.f6">agent runs unprivileged and restarts itself</span>
-          <span data-i18n="inc.f7">no keys or tokens in logs or shell history</span><span data-i18n="inc.f8">skills from allowlist only, marketplace off</span>
-          <span data-i18n="inc.f9">model spending cap active and tested</span><span data-i18n="inc.f10">memory backup made and test-restored</span>
-          <span data-i18n="inc.f11">downtime alert reached Telegram, tested by stopping the service</span><span data-i18n="inc.f12">our temporary access key removed</span>
-          <span data-i18n="inc.f13">agent version without known CVEs and pinned, auto-updates for the system only</span><span data-i18n="inc.f14">snapshot taken before agent updates, rollback tested</span>
+          <span data-i18n="inc.f1"><b>only SSH open outside, verified by an external scan</b><i>the agent is invisible from the internet, no scanner will find it</i></span><span data-i18n="inc.f2"><b>agent panel listens on localhost only</b><i>only you reach the panel, through a secure tunnel</i></span>
+          <span data-i18n="inc.f3"><b>SSH by key only, root login disabled</b><i>nobody can guess their way into your server</i></span><span data-i18n="inc.f4"><b>fail2ban active</b><i>password guessing gets blocked automatically</i></span>
+          <span data-i18n="inc.f5"><b>security updates install themselves</b><i>system holes get closed without you</i></span><span data-i18n="inc.f6"><b>agent runs unprivileged and restarts itself</b><i>an agent crash cannot break the server, and it comes back on its own</i></span>
+          <span data-i18n="inc.f7"><b>no keys or tokens in logs or shell history</b><i>your passwords and keys are never stored in plain sight</i></span><span data-i18n="inc.f8"><b>skills from allowlist only, marketplace off</b><i>a malicious marketplace skill cannot reach you</i></span>
+          <span data-i18n="inc.f9"><b>model spending cap active and tested</b><i>the model bill never exceeds the ceiling you set</i></span><span data-i18n="inc.f10"><b>memory backup made and test-restored</b><i>the agent's memory cannot be lost, restore already verified</i></span>
+          <span data-i18n="inc.f11"><b>downtime alert reached Telegram, tested by stopping the service</b><i>if the agent goes down, you are the first to know</i></span><span data-i18n="inc.f12"><b>our temporary access key removed</b><i>after handover we have no access to your server</i></span>
+          <span data-i18n="inc.f13"><b>agent version without known CVEs and pinned, auto-updates for the system only</b><i>the agent will not update itself onto a broken release</i></span><span data-i18n="inc.f14"><b>snapshot taken before agent updates, rollback tested</b><i>any update can be rolled back in five minutes</i></span>
         </div>
         <p data-i18n="inc.fp">The report comes with the output of an external port scan and the agent's built-in security audit, so you can re-check every line yourself.</p></div></div>
       <div class="cell c-g"><i class="ph ph-lifebuoy"></i><div><h3 data-i18n="inc.g">14 days of support</h3><p data-i18n="inc.gp">Plus a one-page guide.</p></div></div>
@@ -386,7 +389,7 @@
         <div class="big"><span data-i18n="pr.bamount">from $390</span><small data-i18n="pr.busd">one-time</small></div>
         <ul>
           <li><i class="ph ph-check"></i><span data-i18n="pr.b1">Everything in Personal</span></li>
-          <li><i class="ph ph-check"></i><span data-i18n="pr.b2">Two integrations of your choice with minimal scopes</span></li>
+          <li><i class="ph ph-check"></i><span data-i18n="pr.b2">The agent reads your mail and calendar and keeps tasks in Notion, Jira or your CRM: two integrations of your choice, with access only to what you allow</span></li>
           <li><i class="ph ph-check"></i><span data-i18n="pr.b3">Express audit of the server and agent permissions, prioritized report</span></li>
           <li><i class="ph ph-check"></i><span data-i18n="pr.b4">Setup call for your tasks, 30 days of support</span></li>
         </ul>

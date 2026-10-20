@@ -9,15 +9,15 @@ GA_ID = "G-VWBSFKVFRQ"   # Google Analytics 4 Measurement ID вида G-XXXXXXXX
 CLARITY_ID = "z0j86ikxxd"   # Microsoft Clarity project id; пусто = выключено
 TPL = (ROOT / "src/index.html").read_text(encoding="utf-8")
 EN = json.loads((ROOT / "src/i18n.en.json").read_text(encoding="utf-8"))
-HTML_KEYS = {"ap.alt", "term.body"}
+HTML_KEYS = {"ap.alt", "term.body"} | {"inc.f%d" % i for i in range(1, 15)}
 
 META = {
-  "ru": dict(lang="ru", title="OwnAgent: личный ИИ-агент на вашем сервере",
-             desc="Ставим Hermes Agent или OpenClaw на ваш VPS, закрываем порты, подключаем Telegram и лимит расходов. Фиксированная цена 9 900 ₽, готово за день, отчёт по 14 проверкам.",
+  "ru": dict(lang="ru", title="OwnAgent: личный ИИ-агент в Telegram, на вашем сервере",
+             desc="Личный ИИ-агент Hermes или OpenClaw в Telegram на вашем сервере. Ставим, настраиваем и закрываем от чужих, терминал не нужен. 9 900 ₽, готово за день, отчёт по 14 проверкам.",
              og_desc="Установка под ключ с защитой. Данные остаются у вас.", locale="ru_RU", path="/", assets="assets/",
              ru_href="./", en_href="en/"),
-  "en": dict(lang="en", title="OwnAgent: your AI agent, on your own server",
-             desc="We install Hermes Agent or OpenClaw on your VPS, lock the ports, connect Telegram and a spending cap. Fixed price $99, done in a day, report on 14 checks.",
+  "en": dict(lang="en", title="OwnAgent: your AI agent in Telegram, on your own server",
+             desc="Your personal AI agent (Hermes or OpenClaw) in Telegram, on your own server. We install, configure and lock it down, no terminal needed. $99, done in a day, report on 14 checks.",
              og_desc="Turnkey, hardened install. Your data stays on your server.", locale="en_US", path="/en/", assets="../assets/",
              ru_href="../", en_href="./"),
 }

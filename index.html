@@ -61,6 +61,7 @@
       font-size: 17px; line-height: 1.55; -webkit-font-smoothing: antialiased;
     }
     a { color: inherit; text-decoration: none; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
     button, input, textarea, select { font: inherit; color: inherit; }
     .mono { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
     .shell { max-width: var(--shell); margin: 0 auto; padding: 0 24px; }
@@ -85,7 +86,7 @@
     .nav-links a:hover { color: var(--fg); }
     .nav-right { display: flex; align-items: center; gap: 14px; }
     .lang { display: flex; border: 1px solid var(--line-2); border-radius: var(--r); overflow: hidden; font-size: 13px; }
-    .lang a { padding: 6px 10px; color: var(--muted); }
+    .lang a { min-width: 44px; min-height: 44px; padding: 0 10px; display: inline-flex; align-items: center; justify-content: center; color: var(--muted); }
     .lang a[aria-current="page"] { background: var(--bg-3); color: var(--fg); }
     @media (max-width: 900px) { .nav-links { display: none; } }
     @media (max-width: 560px) { .nav .lang { display: none; } .nav .btn-sm { padding: 9px 12px; font-size: 14px; } .brand { font-size: 15px; } }
@@ -132,6 +133,17 @@
     .step .ic { width: 48px; height: 48px; border-radius: var(--r); background: var(--bg-3); display: grid; place-items: center; color: var(--accent); font-size: 22px; }
     .step p { margin-top: 6px; color: var(--fg-2); max-width: 60ch; }
     .step .time { margin-top: 10px; font-size: 13px; color: var(--muted); }
+
+    /* Сценарии: что агент делает */
+    .cases { margin-top: 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .case { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--r); padding: 22px; display: grid; gap: 12px; align-content: start; }
+    .case i { font-size: 24px; color: var(--accent); }
+    .case h3 { font-size: 17px; }
+    .case p { font-size: 14.5px; color: var(--fg-2); }
+    .case .tag { font-size: 12.5px; color: var(--muted); }
+    .cases-note { margin-top: 20px; font-size: 14.5px; color: var(--muted); max-width: 70ch; }
+    @media (max-width: 900px) { .cases { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .cases { grid-template-columns: 1fr; } }
 
     /* Bento */
     .bento { margin-top: 44px; display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: minmax(150px, auto); gap: 14px; }
@@ -214,7 +226,7 @@
 
     footer { padding: 36px 0 44px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
     footer .shell { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-    footer a { color: var(--fg-2); }
+    footer a { color: var(--fg-2); display: inline-flex; align-items: center; min-height: 44px; }
 
     /* Reveal */
     @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
@@ -230,8 +242,8 @@
     <a class="brand" href="#top"><img src="assets/favicon.svg" alt=""> OwnAgent</a>
     <nav class="nav-links">
       <a href="#how" data-i18n="nav.how">Как это работает</a>
-      <a href="#included" data-i18n="nav.included">Что входит</a>
       <a href="#price" data-i18n="nav.price">Цена</a>
+      <a href="#included" data-i18n="nav.included">Что входит</a>
       <a href="#faq" data-i18n="nav.faq">Вопросы</a>
     </nav>
     <div class="nav-right">
@@ -253,7 +265,7 @@
       <h1 data-i18n="hero.h1">ИИ‑агент в Telegram на вашем сервере</h1>
       <p class="lead" data-i18n="hero.lead">Ставим Hermes или OpenClaw и закрываем от чужих. Терминал не нужен: сервер от 500 ₽, десять минут вашего времени, готово за день.</p>
       <div class="cta">
-        <a class="btn btn-primary" href="#apply" data-track="hero_cta" data-i18n="cta">Оставить заявку</a>
+        <a class="btn btn-primary" href="#apply" data-track="hero_cta" data-i18n="cta.price">Оставить заявку · 9 900 ₽</a>
         <a class="btn btn-ghost" href="#how" data-i18n="hero.secondary">Как это работает</a>
       </div>
     </div>
@@ -275,8 +287,8 @@
 
 <section id="why">
   <div class="shell">
-    <h2 data-i18n="why.h2">Агент читает вашу почту и календарь. Вопрос не «где дешевле», а «у кого ключи»</h2>
-    <p class="lead" style="margin-top:18px" data-i18n="why.lead">Хостинги в один клик ставят агента на свой сервер и открывают его в интернет. В 2026 году это выглядит так:</p>
+    <h2 data-i18n="why.h2">Вопрос не «где дешевле», а «у кого ключи»</h2>
+    <p class="lead" style="margin-top:18px" data-i18n="why.lead">Агент читает вашу почту и календарь. Хостинги в один клик ставят агента на свой сервер и открывают его в интернет. В 2026 году это выглядит так:</p>
     <div class="facts">
       <div class="fact">
         <div class="n mono">40 000+</div>
@@ -294,6 +306,22 @@
         <div class="s"><a href="https://clawdocs.org/security/known-vulnerabilities" target="_blank" rel="noopener">CVSS 8.8</a></div>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="cases">
+  <div class="shell">
+    <span class="eyebrow" data-i18n="cs.eyebrow">Что агент будет делать</span>
+    <h2 data-i18n="cs.h2">Пишете в Telegram, как помощнику</h2>
+    <div class="cases">
+      <div class="case"><i class="ph ph-envelope-simple"></i><h3 data-i18n="cs.1h">Сводка по почте утром</h3><p data-i18n="cs.1p">В восемь утра присылает: что срочно, что ждёт вашего ответа, что можно не читать. Черновик ответа по просьбе.</p><span class="tag mono" data-i18n="cs.mail">с интеграцией почты</span></div>
+      <div class="case"><i class="ph ph-calendar-check"></i><h3 data-i18n="cs.2h">Встречи без сюрпризов</h3><p data-i18n="cs.2p">Перед встречей присылает напоминание и то, о чём вы договорились с этим человеком в прошлый раз.</p><span class="tag mono" data-i18n="cs.cal">с интеграцией календаря</span></div>
+      <div class="case"><i class="ph ph-microphone"></i><h3 data-i18n="cs.3h">Задачи голосом</h3><p data-i18n="cs.3p">Надиктовали голосовое по дороге: агент разберёт его на задачи и напомнит в нужный день.</p><span class="tag mono" data-i18n="cs.base">в базовой установке</span></div>
+      <div class="case"><i class="ph ph-files"></i><h3 data-i18n="cs.4h">Поиск по вашим документам</h3><p data-i18n="cs.4p">Пришлите договоры и прайсы в чат. Потом спросите «какой срок оплаты у поставщика», и он найдёт пункт.</p><span class="tag mono" data-i18n="cs.base">в базовой установке</span></div>
+      <div class="case"><i class="ph ph-magnifying-glass"></i><h3 data-i18n="cs.5h">Справка за вас</h3><p data-i18n="cs.5p">Сравнить три сервиса, проверить компанию по открытым источникам, собрать короткую выжимку со ссылками.</p><span class="tag mono" data-i18n="cs.base">в базовой установке</span></div>
+      <div class="case"><i class="ph ph-clock-clockwise"></i><h3 data-i18n="cs.6h">Регулярные дела по расписанию</h3><p data-i18n="cs.6p">Каждый понедельник сводка по задачам, раз в день проверка нужных сайтов и новостей: пишет, только когда что-то изменилось.</p><span class="tag mono" data-i18n="cs.base">в базовой установке</span></div>
+    </div>
+    <p class="cases-note" data-i18n="cs.note">Почта, календарь и задачи в Notion, Jira или CRM подключаются в тарифе Business или отдельно, с доступом только к тому, что вы разрешили.</p>
   </div>
 </section>
 
@@ -326,6 +354,43 @@
           <div class="time mono" data-i18n="how.s3t">дальше без нас</div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="price">
+  <div class="shell">
+    <h2 data-i18n="pr.h2">Цена</h2>
+    <div class="price">
+      <div class="price-card">
+        <div class="muted" data-i18n="pr.label">Personal: установка под ключ</div>
+        <div class="big"><span data-i18n="pr.amount">9 900 ₽</span><small data-i18n="pr.usd">разово</small></div>
+        <div class="launch" data-i18n="pr.launch">Цена запуска для первых 20 установок, дальше 14 900 ₽</div>
+        <ul>
+          <li><i class="ph ph-check"></i><span data-i18n="pr.l1">Всё из раздела «Что входит»</span></li>
+          <li><i class="ph ph-check"></i><span data-i18n="pr.l2">Готово в течение рабочего дня</span></li>
+          <li><i class="ph ph-check"></i><span data-i18n="pr.l3">Отчёт по проверкам и инструкция</span></li>
+          <li><i class="ph ph-check"></i><span data-i18n="pr.l4">14 дней поддержки включены</span></li>
+        </ul>
+        <div class="cta" style="margin-top:26px"><a class="btn btn-primary" href="#apply" data-track="price_cta" data-plan="personal" data-i18n="cta">Оставить заявку</a></div>
+      </div>
+      <div class="price-card price-biz">
+        <div class="muted" data-i18n="pr.blabel">Business: агент внутри ваших процессов</div>
+        <div class="big"><span data-i18n="pr.bamount">от 39 000 ₽</span><small data-i18n="pr.busd">разово</small></div>
+        <ul>
+          <li><i class="ph ph-check"></i><span data-i18n="pr.b1">Всё из Personal</span></li>
+          <li><i class="ph ph-check"></i><span data-i18n="pr.b2">Агент читает вашу почту и календарь, ведёт задачи в Notion, Jira или CRM: две интеграции на выбор, доступ только к тому, что вы разрешили</span></li>
+          <li><i class="ph ph-check"></i><span data-i18n="pr.b3">Экспресс-аудит сервера и прав агента, отчёт с приоритетами</span></li>
+          <li><i class="ph ph-check"></i><span data-i18n="pr.b4">Созвон на настройку под ваши задачи, 30 дней поддержки</span></li>
+        </ul>
+        <div class="cta" style="margin-top:26px"><a class="btn btn-ghost" href="#apply" data-track="price_biz_cta" data-plan="business" data-i18n="pr.bcta">Обсудить задачу</a></div>
+      </div>
+    </div>
+    <div class="price-side">
+        <p><b data-i18n="pr.s1b">Поддержка и обновления:</b> <span data-i18n="pr.s1">1 900 ₽ в месяц, по желанию. Обновляем агента и систему, следим за мониторингом, отвечаем на вопросы.</span></p>
+        <p><b data-i18n="pr.s2b">Что вы платите напрямую:</b> <span data-i18n="pr.s2">VPS своему провайдеру, обычно 500-1 000 ₽ в месяц, и токены модели через OpenRouter, обычно 1 000-3 000 ₽ в зависимости от нагрузки.</span></p>
+        <p><b data-i18n="pr.s3b">Не подошло:</b> <span data-i18n="pr.s3">если за 14 дней агент вам не пригодился, вернём деньги за установку. Сервер остаётся вашим.</span></p>
+      <p><b data-i18n="pr.s4b">Гарантия 30 дней:</b> <span data-i18n="pr.s4">если что-то из 14 проверок перестало работать не из-за ваших правок, чиним бесплатно.</span></p>
     </div>
   </div>
 </section>
@@ -377,43 +442,6 @@
   </div>
 </section>
 
-<section id="price">
-  <div class="shell">
-    <h2 data-i18n="pr.h2">Цена</h2>
-    <div class="price">
-      <div class="price-card">
-        <div class="muted" data-i18n="pr.label">Personal: установка под ключ</div>
-        <div class="big"><span data-i18n="pr.amount">9 900 ₽</span><small data-i18n="pr.usd">разово</small></div>
-        <div class="launch" data-i18n="pr.launch">Цена запуска для первых 20 установок, дальше 14 900 ₽</div>
-        <ul>
-          <li><i class="ph ph-check"></i><span data-i18n="pr.l1">Всё из раздела «Что входит»</span></li>
-          <li><i class="ph ph-check"></i><span data-i18n="pr.l2">Готово в течение рабочего дня</span></li>
-          <li><i class="ph ph-check"></i><span data-i18n="pr.l3">Отчёт по проверкам и инструкция</span></li>
-          <li><i class="ph ph-check"></i><span data-i18n="pr.l4">14 дней поддержки включены</span></li>
-        </ul>
-        <div class="cta" style="margin-top:26px"><a class="btn btn-primary" href="#apply" data-track="price_cta" data-i18n="cta">Оставить заявку</a></div>
-      </div>
-      <div class="price-card price-biz">
-        <div class="muted" data-i18n="pr.blabel">Business: агент внутри ваших процессов</div>
-        <div class="big"><span data-i18n="pr.bamount">от 39 000 ₽</span><small data-i18n="pr.busd">разово</small></div>
-        <ul>
-          <li><i class="ph ph-check"></i><span data-i18n="pr.b1">Всё из Personal</span></li>
-          <li><i class="ph ph-check"></i><span data-i18n="pr.b2">Агент читает вашу почту и календарь, ведёт задачи в Notion, Jira или CRM: две интеграции на выбор, доступ только к тому, что вы разрешили</span></li>
-          <li><i class="ph ph-check"></i><span data-i18n="pr.b3">Экспресс-аудит сервера и прав агента, отчёт с приоритетами</span></li>
-          <li><i class="ph ph-check"></i><span data-i18n="pr.b4">Созвон на настройку под ваши задачи, 30 дней поддержки</span></li>
-        </ul>
-        <div class="cta" style="margin-top:26px"><a class="btn btn-ghost" href="#apply" data-track="price_biz_cta" data-i18n="pr.bcta">Обсудить задачу</a></div>
-      </div>
-    </div>
-    <div class="price-side">
-        <p><b data-i18n="pr.s1b">Поддержка и обновления:</b> <span data-i18n="pr.s1">1 900 ₽ в месяц, по желанию. Обновляем агента и систему, следим за мониторингом, отвечаем на вопросы.</span></p>
-        <p><b data-i18n="pr.s2b">Что вы платите напрямую:</b> <span data-i18n="pr.s2">VPS своему провайдеру, обычно 500-1 000 ₽ в месяц, и токены модели через OpenRouter, обычно 1 000-3 000 ₽ в зависимости от нагрузки.</span></p>
-        <p><b data-i18n="pr.s3b">Не подошло:</b> <span data-i18n="pr.s3">если за 14 дней агент вам не пригодился, вернём деньги за установку. Сервер остаётся вашим.</span></p>
-      <p><b data-i18n="pr.s4b">Гарантия 30 дней:</b> <span data-i18n="pr.s4">если что-то из 14 проверок перестало работать не из-за ваших правок, чиним бесплатно.</span></p>
-    </div>
-  </div>
-</section>
-
 <section id="principles">
   <div class="shell">
     <h2 data-i18n="pp.h2">Что мы не делаем</h2>
@@ -452,6 +480,12 @@
     <!-- Форма отправляется в Formspree (форма xoejzygw) -->
     <form id="lead" action="https://formspree.io/f/xoejzygw" method="POST" novalidate>
       <label><span data-i18n="ap.f1">Как с вами связаться</span><input name="contact" type="text" required placeholder="@telegram или email" autocomplete="off"></label>
+      <label><span data-i18n="ap.fp">Тариф</span>
+        <select name="plan">
+          <option value="personal" data-i18n="ap.fpa">Personal, 9 900 ₽</option>
+          <option value="business" data-i18n="ap.fpb">Business, от 39 000 ₽</option>
+          <option value="undecided" selected data-i18n="ap.fpc">Пока не знаю</option>
+        </select></label>
       <label><span data-i18n="ap.f2">Сервер</span>
         <select name="server">
           <option value="have" data-i18n="ap.f2a">Есть VPS</option>
@@ -506,6 +540,10 @@
   }
   document.querySelectorAll("[data-track]").forEach(function (el) {
     el.addEventListener("click", function () { track("cta_click", el.getAttribute("data-track")); });
+  });
+  // Кнопки в карточках цены выбирают тариф в форме
+  document.querySelectorAll("[data-plan]").forEach(function (el) {
+    el.addEventListener("click", function () { document.getElementById("lead").plan.value = el.getAttribute("data-plan"); });
   });
 
   // Форма: состояния отправки, успеха и ошибки

@@ -6,7 +6,7 @@
  "cta": "Request setup",
  "hero.secondary": "How it works",
  "hero.eyebrow": "For people who already tried OpenClaw or Hermes",
- "hero.h1": "Your AI agent in Telegram, on your own server",
+ "hero.h1": "AI agent in Telegram, on your own server",
  "hero.lead": "We install Hermes or OpenClaw and lock it down. No terminal needed: a $5 server, ten minutes of your time, done in a day.",
  "term.title": "installer output, example",
  "term.body": "<span class=\"c\"># client server, access via SSH tunnel</span>\n<span class=\"p\">$</span> ownagent install --agent hermes --channel telegram\n<span class=\"ok\">✓</span> user agent without root, sudo for updates only\n<span class=\"ok\">✓</span> ufw: only 22/tcp open outside, gateway on 127.0.0.1\n<span class=\"ok\">✓</span> fail2ban, unattended-upgrades enabled\n<span class=\"ok\">✓</span> Hermes Agent installed, systemd service active\n<span class=\"ok\">✓</span> OpenRouter connected, <span class=\"a\">cap $30/mo</span>\n<span class=\"ok\">✓</span> Telegram: @your_agent_bot replies\n<span class=\"ok\">✓</span> daily memory backup, downtime alert to Telegram\n<span class=\"c\"># 14 checks passed, report sent to owner</span>",

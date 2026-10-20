@@ -86,7 +86,7 @@ def build(lang):
     ])
     page = (page.replace("__HEAD_SEO__", head).replace("__ASSETS__", m["assets"]).replace("__LANG__", m["lang"])
                 .replace("__TITLE__", m["title"]).replace("__OG_TITLE__", m["title"]).replace("__META_DESC__", m["desc"])
-                .replace("__OG_DESC__", m["og_desc"]).replace("__CANONICAL__", canonical).replace("__OG_LOCALE__", m["locale"])
+                .replace("__OG_DESC__", m["og_desc"]).replace("__OG_IMAGE__", BASE_URL + "/assets/og-" + lang + ".png").replace("__CANONICAL__", canonical).replace("__OG_LOCALE__", m["locale"])
                 .replace("__RU_HREF__", m["ru_href"]).replace("__EN_HREF__", m["en_href"])
                 .replace("__RU_CUR__", 'aria-current="page"' if lang == "ru" else "").replace("__EN_CUR__", 'aria-current="page"' if lang == "en" else ""))
     analytics = ""

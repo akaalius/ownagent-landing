@@ -155,5 +155,6 @@
  "cs.mail": "with mail integration",
  "cs.cal": "with calendar integration",
  "cs.base": "in the base install",
- "cs.note": "Mail, calendar and tasks in Notion, Jira or your CRM are connected in the Business plan or separately, with access only to what you allow."
+ "cs.note": "Mail, calendar and tasks in Notion, Jira or your CRM are connected in the Business plan or separately, with access only to what you allow.",
+ "ap.next": "We reply on Telegram the same day → clarify the task (a 15-minute call if you like) → invoice → install → report on 14 checks"
 }

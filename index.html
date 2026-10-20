@@ -217,6 +217,7 @@
     input::placeholder, textarea::placeholder { color: var(--muted); }
     input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
     .hint { font-size: 13px; color: var(--muted); }
+    .next-steps { font-size: 14px; color: var(--fg-2); line-height: 1.5; }
     .form-msg { display: none; padding: 14px 16px; border-radius: var(--r); font-size: 15px; }
     .form-msg.ok { display: block; background: color-mix(in srgb, var(--ok) 16%, var(--bg)); color: var(--fg); }
     .form-msg.err { display: block; background: color-mix(in srgb, #e5484d 16%, var(--bg)); color: var(--fg); }
@@ -495,6 +496,7 @@
       <input type="hidden" name="_subject" value="Заявка OwnAgent с getownagent.com">
       <input type="hidden" name="page" value="ru">
       <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+      <p class="next-steps" data-i18n="ap.next">Ответим в Telegram в тот же день → уточним задачу (можно созвониться на 15 минут) → счёт → установка → отчёт по 14 проверкам</p>
       <div class="form-msg" id="form-msg" role="status" aria-live="polite"></div>
       <button class="btn btn-primary" type="submit" id="submit" data-i18n="cta">Оставить заявку</button>
       <div class="hint" data-i18n="ap.hint">Без рассылок. Контакт нужен только для ответа.</div>

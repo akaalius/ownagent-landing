@@ -6,6 +6,7 @@ import json, re, html, pathlib, datetime
 ROOT = pathlib.Path(__file__).parent
 BASE_URL = "https://getownagent.com"   # сменить на свой домен без слеша в конце
 GA_ID = "G-VWBSFKVFRQ"   # Google Analytics 4 Measurement ID вида G-XXXXXXXXXX; пусто = без счётчика
+CLARITY_ID = "z0j86ikxxd"   # Microsoft Clarity project id; пусто = выключено
 TPL = (ROOT / "src/index.html").read_text(encoding="utf-8")
 EN = json.loads((ROOT / "src/i18n.en.json").read_text(encoding="utf-8"))
 HTML_KEYS = {"ap.alt", "term.body"}
@@ -92,6 +93,10 @@ def build(lang):
     if GA_ID:
         analytics = ('<script async src="https://www.googletagmanager.com/gtag/js?id=%s"></script>\n'
                      '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","%s");</script>') % (GA_ID, GA_ID)
+    if CLARITY_ID:
+        analytics += ('\n<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};'
+                      't=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})'
+                      '(window, document, "clarity", "script", "%s");</script>') % CLARITY_ID
     page = page.replace("__ANALYTICS__", analytics)
     page = page.replace(' >', '>')
     assert "__" not in re.sub(r"__(?:proto)", "", page.replace("--", "")), "unfilled placeholder"

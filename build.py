@@ -5,7 +5,7 @@ import json, re, html, pathlib, datetime
 
 ROOT = pathlib.Path(__file__).parent
 BASE_URL = "https://getownagent.com"   # сменить на свой домен без слеша в конце
-GA_ID = ""   # Google Analytics 4 Measurement ID вида G-XXXXXXXXXX; пусто = без счётчика
+GA_ID = "G-VWBSFKVFRQ"   # Google Analytics 4 Measurement ID вида G-XXXXXXXXXX; пусто = без счётчика
 TPL = (ROOT / "src/index.html").read_text(encoding="utf-8")
 EN = json.loads((ROOT / "src/i18n.en.json").read_text(encoding="utf-8"))
 HTML_KEYS = {"ap.alt", "term.body"}

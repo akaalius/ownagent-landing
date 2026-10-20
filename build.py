@@ -55,7 +55,7 @@ def service_jsonld(lang):
     return {"@context": "https://schema.org", "@type": "Service",
             "name": "OwnAgent", "serviceType": "AI agent deployment on client VPS" if not ru else "Развёртывание ИИ-агента на VPS клиента",
             "description": META[lang]["desc"], "url": BASE_URL + META[lang]["path"], "areaServed": "Worldwide",
-            "provider": {"@type": "Organization", "name": "AIIB Team", "email": "aka.alius@gmail.com", "url": BASE_URL + "/",
+            "provider": {"@type": "Organization", "name": "OwnAgent", "email": "aka.alius@gmail.com", "url": BASE_URL + "/",
                          "sameAs": ["https://t.me/pasee2"]},
             "offers": [
               {"@type": "Offer", "name": "Personal (launch price, first 20 installs)", "price": "9900" if ru else "99", "priceCurrency": "RUB" if ru else "USD", "url": BASE_URL + META[lang]["path"] + "#price",
@@ -162,6 +162,5 @@ One-click hosts run the agent on their servers and often expose it to the intern
 ## Contact
 - Telegram: https://t.me/pasee2
 - Email: aka.alius@gmail.com
-- Provider: AIIB Team
 """, encoding="utf-8")
 print("robots.txt, sitemap.xml, llms.txt written")

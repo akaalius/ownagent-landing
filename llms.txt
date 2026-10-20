@@ -25,4 +25,3 @@ One-click hosts run the agent on their servers and often expose it to the intern
 ## Contact
 - Telegram: https://t.me/pasee2
 - Email: aka.alius@gmail.com
-- Provider: AIIB Team

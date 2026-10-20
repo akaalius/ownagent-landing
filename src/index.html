@@ -492,6 +492,7 @@ __ANALYTICS__
   // События для аналитики: клики по CTA и отправка заявки
   function track(name, label) {
     if (typeof window.gtag === "function") window.gtag("event", name, { cta: label, page_lang: document.documentElement.lang });
+    if (typeof window.ym === "function") window.ym(113690948, "reachGoal", name, { cta: label, page_lang: document.documentElement.lang });
     if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: name + "/" + label, event: true });
   }
   document.querySelectorAll("[data-track]").forEach(function (el) {

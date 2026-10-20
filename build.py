@@ -7,6 +7,7 @@ ROOT = pathlib.Path(__file__).parent
 BASE_URL = "https://getownagent.com"   # сменить на свой домен без слеша в конце
 GA_ID = "G-VWBSFKVFRQ"   # Google Analytics 4 Measurement ID вида G-XXXXXXXXXX; пусто = без счётчика
 CLARITY_ID = "z0j86ikxxd"   # Microsoft Clarity project id; пусто = выключено
+METRIKA_ID = "113690948"   # Яндекс Метрика, номер счётчика; пусто = выключено
 TPL = (ROOT / "src/index.html").read_text(encoding="utf-8")
 EN = json.loads((ROOT / "src/i18n.en.json").read_text(encoding="utf-8"))
 HTML_KEYS = {"ap.alt", "term.body"} | {"inc.f%d" % i for i in range(1, 15)}
@@ -97,6 +98,13 @@ def build(lang):
         analytics += ('\n<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};'
                       't=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})'
                       '(window, document, "clarity", "script", "%s");</script>') % CLARITY_ID
+    if METRIKA_ID:
+        analytics += ('\n<script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();'
+                      'for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}'
+                      'k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})'
+                      '(window,document,"script","https://mc.yandex.ru/metrika/tag.js?id=%s","ym");'
+                      'ym(%s,"init",{ssr:true,webvisor:true,clickmap:true,referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});</script>'
+                      '\n<noscript><div><img src="https://mc.yandex.ru/watch/%s" style="position:absolute;left:-9999px" alt=""></div></noscript>') % ((METRIKA_ID,) * 3)
     page = page.replace("__ANALYTICS__", analytics)
     page = page.replace(' >', '>')
     assert "__" not in re.sub(r"__(?:proto)", "", page.replace("--", "")), "unfilled placeholder"

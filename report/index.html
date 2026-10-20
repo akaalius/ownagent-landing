@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Пример отчёта OwnAgent: 14 проверок после установки</title>
+  <meta name="description" content="Пример формата отчёта OwnAgent: 14 проверок безопасности и надёжности и артефакт по каждой. Значения условные.">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Пример отчёта OwnAgent: 14 проверок после установки">
+  <meta property="og:description" content="Пример формата отчёта OwnAgent: 14 проверок безопасности и надёжности и артефакт по каждой. Значения условные.">
+  <meta property="og:url" content="https://getownagent.com/report/">
+  <meta property="og:image" content="https://getownagent.com/assets/og-ru.png">
+  <meta name="theme-color" content="#0f1113">
+  <link rel="canonical" href="https://getownagent.com/report/">
+  <link rel="alternate" hreflang="ru" href="https://getownagent.com/report/">
+  <link rel="alternate" hreflang="en" href="https://getownagent.com/en/report/">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1113; --bg-2: #15181b; --bg-3: #1b1f23;
+      --fg: #e9ebe6; --fg-2: #c3c7c0; --muted: #8f968f;
+      --line: rgba(255,255,255,.09); --line-2: rgba(255,255,255,.16);
+      --accent: #e8a33d; --accent-ink: #1a1206; --ok: #7cc77a;
+      --r: 10px;
+      color-scheme: dark;
+    }
+    @media (prefers-color-scheme: light) {
+      :root:not([data-theme="dark"]) {
+        --bg: #f6f6f3; --bg-2: #ffffff; --bg-3: #eeeeea;
+        --fg: #15171a; --fg-2: #33373c; --muted: #5f656b;
+        --line: rgba(0,0,0,.1); --line-2: rgba(0,0,0,.18);
+        --accent: #9a5e0c; --accent-ink: #fffaf0; --ok: #2f8a4c;
+        color-scheme: light;
+      }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--fg); font-family: "Golos Text", system-ui, -apple-system, sans-serif;
+      font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+    .mono { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .shell { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+    h1, h2 { margin: 0; letter-spacing: -0.02em; line-height: 1.15; }
+    h1 { font-size: clamp(28px, 3.6vw, 38px); }
+    h2 { font-size: 22px; }
+    p { margin: 0; }
+
+    .nav { height: 64px; display: flex; align-items: center; border-bottom: 1px solid var(--line); }
+    .nav .shell { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+    .brand img { width: 24px; height: 24px; }
+    .lang { display: flex; border: 1px solid var(--line-2); border-radius: var(--r); overflow: hidden; font-size: 13px; }
+    .lang a { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; color: var(--muted); }
+    .lang a[aria-current="page"] { background: var(--bg-3); color: var(--fg); }
+
+    .sample { margin: 32px 0 0; padding: 18px 20px; border-radius: var(--r); border: 1px dashed var(--accent);
+      background: color-mix(in srgb, var(--accent) 12%, var(--bg)); font-size: clamp(18px, 2.4vw, 22px); font-weight: 700; color: var(--fg); }
+    header.top { padding: 28px 0 8px; }
+    header.top p { margin-top: 12px; color: var(--fg-2); max-width: 66ch; }
+
+    .meta { margin-top: 28px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
+    .meta div { padding: 14px 16px; border-right: 1px solid var(--line); }
+    .meta div:last-child { border-right: 0; }
+    .meta span { display: block; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; }
+    .meta b { font-weight: 500; font-size: 14.5px; }
+    @media (max-width: 767px) { .meta { grid-template-columns: 1fr 1fr; } .meta div:nth-child(2) { border-right: 0; } .meta div:nth-child(-n+2) { border-bottom: 1px solid var(--line); } }
+
+    .checks { margin-top: 44px; }
+    .checks-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+    .tag { font-size: 13px; color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); border-radius: var(--r); padding: 4px 10px; }
+    .rows { margin-top: 18px; border-top: 1px solid var(--line-2); }
+    .row { display: grid; grid-template-columns: 36px 1fr 1.25fr 90px; gap: 18px; padding: 16px 0; border-bottom: 1px solid var(--line); align-items: start; }
+    .row.head { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; padding: 10px 0; }
+    .n { color: var(--muted); font-size: 14px; }
+    .what b { display: block; font-weight: 600; }
+    .what small { display: block; margin-top: 4px; color: var(--muted); font-size: 14px; }
+    .art { font-size: 14px; color: var(--fg-2); }
+    .art pre { margin: 8px 0 0; padding: 10px 12px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; font-size: 12.5px; line-height: 1.5; white-space: pre-wrap; word-break: break-word; color: var(--fg-2); }
+    .st { color: var(--ok); font-size: 14px; font-weight: 600; }
+    @media (max-width: 767px) {
+      .row { grid-template-columns: 28px 1fr; gap: 6px 12px; }
+      .row.head { display: none; }
+      .row .art, .row .st { grid-column: 2; }
+    }
+
+    .att { margin-top: 44px; display: grid; gap: 10px; color: var(--fg-2); max-width: 70ch; }
+    .att h2 { color: var(--fg); margin-bottom: 4px; }
+    .back { margin: 44px 0 56px; display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; min-height: 44px; padding: 12px 18px; border-radius: var(--r); font-weight: 600; }
+    .btn-primary { background: var(--accent); color: var(--accent-ink); }
+    .btn-ghost { border: 1px solid var(--line-2); }
+    footer { padding: 28px 0 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+    footer a { color: var(--fg-2); display: inline-flex; align-items: center; min-height: 44px; }
+  </style>
+</head>
+<body>
+<div class="nav">
+  <div class="shell">
+    <a class="brand" href="../"><img src="../assets/favicon.svg" alt="OwnAgent"> OwnAgent</a>
+    <div class="lang" role="group" aria-label="Language">
+      <a href="./" aria-current="page">RU</a><a href="../en/report/">EN</a>
+    </div>
+  </div>
+</div>
+
+<main class="shell">
+  <div class="sample" role="note" data-i18n="rp.sample">Это пример формата отчёта, значения условные</div>
+  <header class="top">
+    <h1 data-i18n="rp.h1">Отчёт об установке: 14 проверок</h1>
+    <p data-i18n="rp.lead">Такой отчёт вы получаете после установки. По каждой проверке: что проверили, как, и какой артефакт приложен, чтобы вы могли перепроверить сами.</p>
+  </header>
+
+  <div class="meta">
+    <div><span data-i18n="rp.m1">Сервер</span><b class="mono">203.0.113.10, Ubuntu 24.04</b></div>
+    <div><span data-i18n="rp.m2">Агент</span><b data-i18n="rp.m2v">Hermes Agent, версия закреплена</b></div>
+    <div><span data-i18n="rp.m3">Канал</span><b class="mono">@your_agent_bot</b></div>
+    <div><span data-i18n="rp.m4">Дата сдачи</span><b class="mono" data-i18n="rp.m4v">ДД.ММ.ГГГГ</b></div>
+  </div>
+
+  <section class="checks">
+    <div class="checks-head">
+      <h2 data-i18n="rp.h2">Проверки</h2>
+      <span class="tag" data-i18n="rp.tag">пример формата, значения условные</span>
+    </div>
+    <div class="rows">
+      <div class="row head"><span>#</span><span data-i18n="rp.c1">Проверка</span><span data-i18n="rp.c2">Артефакт в отчёте</span><span data-i18n="rp.c3">Итог</span></div>
+
+      <div class="row"><span class="n mono">01</span><div class="what" data-i18n="rp.1"><b>Снаружи открыт только SSH</b><small>скан портов с внешнего сервера</small></div>
+        <div class="art" data-i18n="rp.1a"><span>Вывод внешнего скана портов</span><pre class="mono">PORT     STATE     SERVICE
+22/tcp   open      ssh
+(остальные порты: filtered)</pre></div><span class="st" data-i18n="rp.ok">✓ пройдено</span></div>
+
+      <div class="row"><span class="n mono">02</span><div class="what" data-i18n="rp.2"><b>Панель агента слушает только localhost</b><small>список слушающих портов на сервере</small></div>
+        <div class="art" data-i18n="rp.2a"><span>Вывод списка слушающих сокетов</span><pre class="mono">LISTEN 127.0.0.1:&lt;порт&gt;  agent-gateway
+LISTEN 0.0.0.0:22         sshd</pre></div><span class="st" data-i18n="rp.ok">✓ пройдено</span></div>
+
+      <div class="row"><span class="n mono">03</span><div class="what" data-i18n="rp.3"><b>SSH только по ключу, вход root запрещён</b><small>действующая конфигурация sshd</small></div>
+        <div class="art"><span data-i18n="rp.3a">Выдержка из конфигурации SSH</span><pre class="mono">passwordauthentication no
+permitrootlogin no</pre></div><span class="st" data-i18n="rp.ok">✓ пройдено</span></div>
+
+      <div class="row"><span class="n mono">04</span><div class="what" data-i18n="rp.4"><b>fail2ban активен</b><small>статус защиты SSH от перебора</small></div>
+        <div class="art"><span data-i18n="rp.4a">Статус fail2ban для SSH</span><pre class="mono">Jail: sshd   Status: active
+Currently banned: &lt;N&gt;</pre></div><span class="st" data-i18n="rp.ok">✓ пройдено</span></div>
+
+      <div class="row"><span class="n mono">05</span><div class="what" data-i18n="rp.5"><b>Обновления безопасности ставятся сами</b><small>настройка и журнал автообновлений</small></div>
+        <div class="art" data-i18n="rp.5a">Настройка unattended-upgrades и запись последнего запуска</div><span class="st" data-i18n="rp.ok">✓ пройдено</span></div>
+
+      <div class="row"><span class="n mono">06</span><div class="what" data-i18n="rp.6"><b>Агент работает не от root, перезапускается сам</b><small>остановили процесс и проверили, что он поднялся</small></div>
+        <div class="art"><span data-i18n="rp.6a">Параметры сервиса и журнал перезапуска</span><pre class="mono">User=agent
+Restart=always</pre></div><span class="st" data-i18n="rp.ok">✓ пройдено</span></div>
+
+      <div class="row"><span class="n mono">07</span><div class="what" data-i18n="rp.7"><b>Ключи и токены не в логах и не в истории shell</b><small>поиск по логам и истории команд</small></div>
+        <div class="art" data-i18n="rp.7a">Результат поиска по шаблонам ключей: совпадений нет</div><span class="st" data-i18n="rp.ok">✓ пройдено</span></div>
+
+      <div class="row"><span class="n mono">08</span><div class="what" data-i18n="rp.8"><b>Скиллы только из белого списка, маркетплейс выключен</b><small>список установленных скиллов</small></div>
+        <div class="art" data-i18n="rp.8a">Список установленных скиллов и настройка, которая выключает маркетплейс</div><span class="st" data-i18n="rp.ok">✓ пройдено</span></div>
+
+      <div class="row"><span class="n mono">09</span><div class="what" data-i18n="rp.9"><b>Лимит расходов на модель активен и проверен</b><small>настройка ключа OpenRouter</small></div>
+        <div class="art" data-i18n="rp.9a">Лимит ключа в OpenRouter: &lt;сумма&gt; в месяц</div><span class="st" data-i18n="rp.ok">✓ пройдено</span></div>
+
+      <div class="row"><span class="n mono">10</span><div class="what" data-i18n="rp.10"><b>Бэкап памяти сделан и восстановлен на пробу</b><small>пробное восстановление в отдельную папку</small></div>
+        <div class="art" data-i18n="rp.10a">Имя и дата архива, журнал пробного восстановления</div><span class="st" data-i18n="rp.ok">✓ пройдено</span></div>
+
+      <div class="row"><span class="n mono">11</span><div class="what" data-i18n="rp.11"><b>Алерт при падении дошёл в Telegram</b><small>проверено остановкой сервиса</small></div>
+        <div class="art" data-i18n="rp.11a">Время остановки сервиса и время сообщения-алерта в Telegram</div><span class="st" data-i18n="rp.ok">✓ пройдено</span></div>
+
+      <div class="row"><span class="n mono">12</span><div class="what" data-i18n="rp.12"><b>Наш временный ключ доступа удалён</b><small>ключи на сервере после сдачи</small></div>
+        <div class="art" data-i18n="rp.12a">Отпечатки ключей, которые остались на сервере: только ваши</div><span class="st" data-i18n="rp.ok">✓ пройдено</span></div>
+
+      <div class="row"><span class="n mono">13</span><div class="what" data-i18n="rp.13"><b>Версия агента без известных CVE и закреплена</b><small>автообновления только для системы</small></div>
+        <div class="art" data-i18n="rp.13a">Установленная версия агента, сверка с известными уязвимостями на дату сдачи, запрет автообновления агента</div><span class="st" data-i18n="rp.ok">✓ пройдено</span></div>
+
+      <div class="row"><span class="n mono">14</span><div class="what" data-i18n="rp.14"><b>Снапшот перед обновлением агента сделан, откат проверен</b><small>пробный откат на снапшот</small></div>
+        <div class="art" data-i18n="rp.14a">Идентификатор снапшота и журнал пробного отката</div><span class="st" data-i18n="rp.ok">✓ пройдено</span></div>
+    </div>
+  </section>
+
+  <section class="att">
+    <h2 data-i18n="rp.ah">Приложения к отчёту</h2>
+    <p data-i18n="rp.a1">Полный вывод внешнего скана портов и встроенного аудита безопасности агента.</p>
+    <p data-i18n="rp.a2">Инструкция на одну страницу.</p>
+  </section>
+
+  <div class="back">
+    <a class="btn btn-primary" href="../#apply" data-i18n="rp.cta">Оставить заявку</a>
+    <a class="btn btn-ghost" href="../#included" data-i18n="rp.back">Что входит в установку</a>
+  </div>
+</main>
+
+<footer>
+  <div class="shell">© 2026 OwnAgent · <a href="https://t.me/pasee2" target="_blank" rel="noopener">t.me/pasee2</a></div>
+</footer>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VWBSFKVFRQ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-VWBSFKVFRQ");</script>
+<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "z0j86ikxxd");</script>
+<script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js?id=113690948","ym");ym(113690948,"init",{ssr:true,webvisor:true,clickmap:true,referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/113690948" style="position:absolute;left:-9999px" alt=""></div></noscript>
+</body>
+</html>

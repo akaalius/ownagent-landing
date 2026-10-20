@@ -10,6 +10,8 @@ CLARITY_ID = "z0j86ikxxd"   # Microsoft Clarity project id; пусто = вык�
 METRIKA_ID = "113690948"   # Яндекс Метрика, номер счётчика; пусто = выключено
 TPL = (ROOT / "src/index.html").read_text(encoding="utf-8")
 EN = json.loads((ROOT / "src/i18n.en.json").read_text(encoding="utf-8"))
+REPORT_TPL = (ROOT / "src/report.html").read_text(encoding="utf-8")
+REPORT_EN = json.loads((ROOT / "src/i18n.report.en.json").read_text(encoding="utf-8"))
 HTML_KEYS = {"ap.alt", "term.body"} | {"inc.f%d" % i for i in range(1, 15)}
 
 META = {
@@ -68,6 +70,24 @@ def service_jsonld(lang):
                               "Personal плюс две интеграции, экспресс-аудит безопасности, созвон по настройке, 30 дней поддержки"}
             ]}
 
+def analytics_html():
+    analytics = ""
+    if GA_ID:
+        analytics = ('<script async src="https://www.googletagmanager.com/gtag/js?id=%s"></script>\n'
+                     '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","%s");</script>') % (GA_ID, GA_ID)
+    if CLARITY_ID:
+        analytics += ('\n<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};'
+                      't=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})'
+                      '(window, document, "clarity", "script", "%s");</script>') % CLARITY_ID
+    if METRIKA_ID:
+        analytics += ('\n<script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();'
+                      'for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}'
+                      'k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})'
+                      '(window,document,"script","https://mc.yandex.ru/metrika/tag.js?id=%s","ym");'
+                      'ym(%s,"init",{ssr:true,webvisor:true,clickmap:true,referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});</script>'
+                      '\n<noscript><div><img src="https://mc.yandex.ru/watch/%s" style="position:absolute;left:-9999px" alt=""></div></noscript>') % ((METRIKA_ID,) * 3)
+    return analytics
+
 def build(lang):
     m = META[lang]; page = TPL
     if lang == "en":
@@ -90,21 +110,7 @@ def build(lang):
                 .replace("__OG_DESC__", m["og_desc"]).replace("__OG_IMAGE__", BASE_URL + "/assets/og-" + lang + ".png").replace("__CANONICAL__", canonical).replace("__OG_LOCALE__", m["locale"])
                 .replace("__RU_HREF__", m["ru_href"]).replace("__EN_HREF__", m["en_href"])
                 .replace("__RU_CUR__", 'aria-current="page"' if lang == "ru" else "").replace("__EN_CUR__", 'aria-current="page"' if lang == "en" else ""))
-    analytics = ""
-    if GA_ID:
-        analytics = ('<script async src="https://www.googletagmanager.com/gtag/js?id=%s"></script>\n'
-                     '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","%s");</script>') % (GA_ID, GA_ID)
-    if CLARITY_ID:
-        analytics += ('\n<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};'
-                      't=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})'
-                      '(window, document, "clarity", "script", "%s");</script>') % CLARITY_ID
-    if METRIKA_ID:
-        analytics += ('\n<script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();'
-                      'for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}'
-                      'k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})'
-                      '(window,document,"script","https://mc.yandex.ru/metrika/tag.js?id=%s","ym");'
-                      'ym(%s,"init",{ssr:true,webvisor:true,clickmap:true,referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});</script>'
-                      '\n<noscript><div><img src="https://mc.yandex.ru/watch/%s" style="position:absolute;left:-9999px" alt=""></div></noscript>') % ((METRIKA_ID,) * 3)
+    analytics = analytics_html()
     page = page.replace("__ANALYTICS__", analytics)
     page = page.replace(' >', '>')
     assert "__" not in re.sub(r"__(?:proto)", "", page.replace("--", "")), "unfilled placeholder"
@@ -113,8 +119,42 @@ def build(lang):
     out.write_text(page, encoding="utf-8")
     return out
 
+REPORT_META = {
+  "ru": dict(title="Пример отчёта OwnAgent: 14 проверок после установки",
+             desc="Пример формата отчёта OwnAgent: 14 проверок безопасности и надёжности и артефакт по каждой. Значения условные.",
+             path="/report/", assets="../assets/", ru_href="./", en_href="../en/report/"),
+  "en": dict(title="OwnAgent sample report: 14 checks after install",
+             desc="Sample OwnAgent report format: 14 security and reliability checks with the artifact for each. Placeholder values.",
+             path="/en/report/", assets="../../assets/", ru_href="../../report/", en_href="./"),
+}
+
+def build_report(lang):
+    m = REPORT_META[lang]; page = REPORT_TPL
+    if lang == "en":
+        for k, v in REPORT_EN.items():
+            page = replace_i18n(page, k, v)
+    canonical = BASE_URL + m["path"]
+    head = "\n  ".join([
+        f'<link rel="canonical" href="{canonical}">',
+        f'<link rel="alternate" hreflang="ru" href="{BASE_URL}/report/">',
+        f'<link rel="alternate" hreflang="en" href="{BASE_URL}/en/report/">',
+    ])
+    page = (page.replace("__HEAD_SEO__", head).replace("__ASSETS__", m["assets"]).replace("__LANG__", lang)
+                .replace("__TITLE__", m["title"]).replace("__META_DESC__", m["desc"]).replace("__CANONICAL__", canonical)
+                .replace("__OG_IMAGE__", BASE_URL + "/assets/og-" + lang + ".png")
+                .replace("__RU_HREF__", m["ru_href"]).replace("__EN_HREF__", m["en_href"])
+                .replace("__RU_CUR__", 'aria-current="page"' if lang == "ru" else "").replace("__EN_CUR__", 'aria-current="page"' if lang == "en" else "")
+                .replace("__ANALYTICS__", analytics_html()))
+    page = page.replace(' >', '>')
+    assert "__" not in page.replace("--", ""), "unfilled placeholder"
+    out = ROOT / m["path"].strip("/") / "index.html"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(page, encoding="utf-8")
+    return out
+
 for lang in ("ru", "en"):
     print("built", build(lang))
+    print("built", build_report(lang))
 
 today = datetime.date.today().isoformat()
 (ROOT / "robots.txt").write_text(f"""User-agent: *
@@ -145,6 +185,12 @@ Sitemap: {BASE_URL}/sitemap.xml
   <url><loc>{BASE_URL}/en/</loc><lastmod>{today}</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="{BASE_URL}/"/>
     <xhtml:link rel="alternate" hreflang="en" href="{BASE_URL}/en/"/></url>
+  <url><loc>{BASE_URL}/report/</loc><lastmod>{today}</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="{BASE_URL}/report/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="{BASE_URL}/en/report/"/></url>
+  <url><loc>{BASE_URL}/en/report/</loc><lastmod>{today}</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="{BASE_URL}/report/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="{BASE_URL}/en/report/"/></url>
 </urlset>
 """, encoding="utf-8")
 
@@ -171,6 +217,7 @@ One-click hosts run the agent on their servers and often expose it to the intern
 ## Pages
 - English: {BASE_URL}/en/
 - Russian: {BASE_URL}/
+- Sample report format (14 checks, placeholder values): {BASE_URL}/en/report/
 
 ## Contact
 - Telegram: https://t.me/pasee2

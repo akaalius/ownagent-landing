@@ -155,6 +155,7 @@
     .c-g { grid-column: span 2; }
     .c-f .list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 22px; font-size: 14px; color: var(--fg-2); margin-top: 8px; }
     .c-f p { margin-top: 12px; }
+    .c-f .more, .princ a { color: var(--accent); border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); }
     .c-f .list span { padding-left: 15px; position: relative; }
     .c-f .list span::before { content: ""; position: absolute; left: 0; top: 7px; width: 6px; height: 6px; border-radius: 50%; background: var(--ok); }
     .c-f .list b { font-weight: 600; color: var(--fg); }
@@ -410,7 +411,8 @@
           <span data-i18n="inc.f11"><b>алерт при падении дошёл в Telegram, проверено остановкой сервиса</b><i>если агент упадёт, вы узнаете первым</i></span><span data-i18n="inc.f12"><b>наш временный ключ доступа удалён</b><i>после сдачи у нас нет доступа к вашему серверу</i></span>
           <span data-i18n="inc.f13"><b>версия агента без известных CVE и закреплена, автообновления только для системы</b><i>агент не обновится сам на сломанную версию</i></span><span data-i18n="inc.f14"><b>снапшот перед обновлением агента сделан, откат проверен</b><i>любое обновление можно откатить за пять минут</i></span>
         </div>
-        <p data-i18n="inc.fp">К отчёту прилагаем вывод внешнего скана портов и встроенного аудита безопасности агента, чтобы вы могли перепроверить каждый пункт сами.</p></div></div>
+        <p data-i18n="inc.fp">К отчёту прилагаем вывод внешнего скана портов и встроенного аудита безопасности агента, чтобы вы могли перепроверить каждый пункт сами.</p>
+        <p><a class="more" href="report/" data-track="report_link" data-i18n="inc.report">Посмотреть пример отчёта →</a></p></div></div>
       <div class="cell c-g"><i class="ph ph-lifebuoy"></i><div><h3 data-i18n="inc.g">14 дней поддержки</h3><p data-i18n="inc.gp">И инструкция на одну страницу.</p></div></div>
     </div>
   </div>
@@ -462,6 +464,19 @@
       <details><summary data-i18n="faq.q4">Клиентам из России это доступно?</summary><div class="a" data-i18n="faq.a4">Да. Сервер берётся у зарубежного провайдера, модели подключаются через OpenRouter, оплата установки возможна в рублях.</div></details>
       <details><summary data-i18n="faq.q5">Что будет, если агент сломается?</summary><div class="a" data-i18n="faq.a5">Мониторинг пришлёт вам алерт в Telegram. 30 дней гарантии на установку: если что-то из проверок перестало работать не из-за ваших правок, чиним бесплатно. Дальше по поддержке или разово.</div></details>
       <details><summary data-i18n="faq.q6">Вы сами тоже агенты?</summary><div class="a" data-i18n="faq.a6">Установку делает наш автоматизированный конвейер, результат проверяет человек. Поэтому цена фиксированная, а срок один день.</div></details>
+    </div>
+  </div>
+</section>
+
+<section id="trust">
+  <div class="shell">
+    <h2 data-i18n="tr.h2">Почему нам можно доверить сервер</h2>
+    <div class="princ">
+      <div><i class="ph ph-key"></i><div><h3 data-i18n="tr.1h">Доступ только на время установки</h3><p data-i18n="tr.1p">Вы добавляете наш временный ключ, при сдаче он удаляется. Это отдельный пункт отчёта, его можно проверить самому.</p></div></div>
+      <div><i class="ph ph-hard-drives"></i><div><h3 data-i18n="tr.2h">Всё остаётся на вашем сервере</h3><p data-i18n="tr.2p">Сервер оформлен на вас. Агент, память, переписка и ключи интеграций живут только там.</p></div></div>
+      <div><i class="ph ph-list-checks"></i><div><h3 data-i18n="tr.3h">Отчёт, который можно перепроверить</h3><p data-i18n="tr.3p">14 проверок, к ним вывод внешнего скана портов и встроенного аудита агента. <a href="report/" data-track="report_link_trust">Посмотреть пример отчёта</a></p></div></div>
+      <div><i class="ph ph-arrow-u-up-left"></i><div><h3 data-i18n="tr.4h">Деньги назад и гарантия</h3><p data-i18n="tr.4p">Если за 14 дней агент не пригодился, вернём деньги за установку. 30 дней бесплатно чиним всё из 14 проверок, что перестало работать не из-за ваших правок.</p></div></div>
+      <div><i class="ph ph-telegram-logo"></i><div><h3 data-i18n="tr.5h">На связи в Telegram</h3><p data-i18n="tr.5p">До заявки и во время поддержки пишете нам в <a href="https://t.me/pasee2" target="_blank" rel="noopener" data-track="tg_link_trust">Telegram</a>. На заявку отвечаем в тот же день.</p></div></div>
     </div>
   </div>
 </section>

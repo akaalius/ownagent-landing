@@ -156,5 +156,17 @@
  "cs.cal": "with calendar integration",
  "cs.base": "in the base install",
  "cs.note": "Mail, calendar and tasks in Notion, Jira or your CRM are connected in the Business plan or separately, with access only to what you allow.",
- "ap.next": "We reply on Telegram the same day → clarify the task (a 15-minute call if you like) → invoice → install → report on 14 checks"
+ "ap.next": "We reply on Telegram the same day → clarify the task (a 15-minute call if you like) → invoice → install → report on 14 checks",
+ "inc.report": "See a sample report →",
+ "tr.h2": "Why you can trust us with your server",
+ "tr.1h": "Access only for the install",
+ "tr.1p": "You add our temporary key, and it is removed at handover. That removal is a line in the report you can verify yourself.",
+ "tr.2h": "Everything stays on your server",
+ "tr.2p": "The server is in your name. The agent, its memory, your conversations and integration keys live only there.",
+ "tr.3h": "A report you can re-check",
+ "tr.3p": "14 checks, with the external port scan output and the agent's built-in security audit attached. <a href=\"report/\" data-track=\"report_link_trust\">See a sample report</a>",
+ "tr.4h": "Refund and guarantee",
+ "tr.4p": "If the agent has not been useful within 14 days, we refund the install. For 30 days we fix for free any of the 14 checks that stops working for reasons other than your own changes.",
+ "tr.5h": "Reachable on Telegram",
+ "tr.5p": "Before you apply and during support, you write to us on <a href=\"https://t.me/pasee2\" target=\"_blank\" rel=\"noopener\" data-track=\"tg_link_trust\">Telegram</a>. We reply to requests the same day."
 }

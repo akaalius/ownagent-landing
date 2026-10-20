@@ -6,4 +6,10 @@
   <url><loc>https://getownagent.com/en/</loc><lastmod>2026-10-20</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://getownagent.com/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://getownagent.com/en/"/></url>
+  <url><loc>https://getownagent.com/report/</loc><lastmod>2026-10-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://getownagent.com/report/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://getownagent.com/en/report/"/></url>
+  <url><loc>https://getownagent.com/en/report/</loc><lastmod>2026-10-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://getownagent.com/report/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://getownagent.com/en/report/"/></url>
 </urlset>

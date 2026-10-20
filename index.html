@@ -437,8 +437,8 @@
       <p class="lead" style="margin-top:18px" data-i18n="ap.lead">Ответим в тот же день, уточним пару деталей и назовём дату установки.</p>
       <p class="alt" data-i18n="ap.alt">Удобнее в мессенджере: напишите в <a href="https://t.me/pasee2" target="_blank" rel="noopener" data-track="tg_link">Telegram</a>.</p>
     </div>
-    <!-- Форма отправляется в Formspree. Замените REPLACE_ME на id формы из formspree.io -->
-    <form id="lead" action="https://formspree.io/f/REPLACE_ME" method="POST" novalidate>
+    <!-- Форма отправляется в Formspree (форма xoejzygw) -->
+    <form id="lead" action="https://formspree.io/f/xoejzygw" method="POST" novalidate>
       <label><span data-i18n="ap.f1">Как с вами связаться</span><input name="contact" type="text" required placeholder="@telegram или email" autocomplete="off"></label>
       <label><span data-i18n="ap.f2">Сервер</span>
         <select name="server">
@@ -446,6 +446,8 @@
           <option value="need" data-i18n="ap.f2b">Нужна помощь с выбором</option>
         </select></label>
       <label><span data-i18n="ap.f3">Для чего нужен агент</span><textarea name="goal" rows="3" placeholder="" data-i18n-ph="ap.f3ph"></textarea></label>
+      <input type="hidden" name="_subject" value="Заявка OwnAgent с getownagent.com">
+      <input type="hidden" name="page" value="ru">
       <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
       <div class="form-msg" id="form-msg" role="status" aria-live="polite"></div>
       <button class="btn btn-primary" type="submit" id="submit" data-i18n="cta">Оставить заявку</button>

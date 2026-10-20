@@ -13,7 +13,7 @@
 
 ## Перед запуском
 - `BASE_URL` в `build.py`: сменить на свой домен, пересобрать (canonical, hreflang, sitemap, llms.txt).
-- Форма: заменить `REPLACE_ME` в `src/index.html` на id формы Formspree (formspree.io, бесплатно до 50 заявок в месяц), пересобрать.
+- Форма: Formspree, форма `xoejzygw`, уведомления на почту владельца; бесплатно до 50 заявок в месяц.
 - Счётчик: вставить код Яндекс Метрики или GoatCounter перед `</body>` в шаблоне; клики по CTA уже помечены `data-track`.
 - После публикации: добавить сайт в Google Search Console и Яндекс Вебмастер, отправить `sitemap.xml`.
 

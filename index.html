@@ -218,6 +218,9 @@
     input::placeholder, textarea::placeholder { color: var(--muted); }
     input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
     .hint { font-size: 13px; color: var(--muted); }
+    .consent { display: flex; align-items: flex-start; gap: 10px; font-weight: 400; font-size: 14px; color: var(--fg-2); cursor: pointer; }
+    .consent input { width: 20px; height: 20px; flex: none; margin: 1px 0 0; padding: 0; accent-color: var(--accent); }
+    .consent a { color: var(--accent); border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); }
     .next-steps { font-size: 14px; color: var(--fg-2); line-height: 1.5; }
     .form-msg { display: none; padding: 14px 16px; border-radius: var(--r); font-size: 15px; }
     .form-msg.ok { display: block; background: color-mix(in srgb, var(--ok) 16%, var(--bg)); color: var(--fg); }
@@ -512,6 +515,7 @@
       <input type="hidden" name="page" value="ru">
       <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
       <p class="next-steps" data-i18n="ap.next">Ответим в Telegram в тот же день → уточним задачу (можно созвониться на 15 минут) → счёт → установка → отчёт по 14 проверкам</p>
+      <label class="consent"><input type="checkbox" name="consent" value="yes"><span data-i18n="ap.consent">Отправляя заявку, вы соглашаетесь с обработкой персональных данных по <a href="privacy/" target="_blank" rel="noopener">политике конфиденциальности</a></span></label>
       <div class="form-msg" id="form-msg" role="status" aria-live="polite"></div>
       <button class="btn btn-primary" type="submit" id="submit" data-i18n="cta">Оставить заявку</button>
       <div class="hint" data-i18n="ap.hint">Без рассылок. Контакт нужен только для ответа.</div>
@@ -524,7 +528,7 @@
 <footer>
   <div class="shell">
     <div>© 2026 OwnAgent</div>
-    <div><a href="mailto:aka.alius@gmail.com">aka.alius@gmail.com</a> · <a href="https://t.me/pasee2" target="_blank" rel="noopener">t.me/pasee2</a><span class="lang" role="group" aria-label="Language"><a href="./" data-lang-link="ru" aria-current="page">RU</a><a href="en/" data-lang-link="en">EN</a></span></div>
+    <div><a href="mailto:aka.alius@gmail.com">aka.alius@gmail.com</a> · <a href="https://t.me/pasee2" target="_blank" rel="noopener">t.me/pasee2</a> · <a href="privacy/" data-i18n="ft.privacy">Политика конфиденциальности</a><span class="lang" role="group" aria-label="Language"><a href="./" data-lang-link="ru" aria-current="page">RU</a><a href="en/" data-lang-link="en">EN</a></span></div>
   </div>
 </footer>
 
@@ -571,6 +575,7 @@
     var contact = form.contact.value.trim();
     msg.className = "form-msg";
     if (!contact) { msg.className = "form-msg err"; msg.textContent = lang === "en" ? "Add a Telegram handle or email so we can reply." : "Укажите Telegram или email, чтобы мы могли ответить."; form.contact.focus(); return; }
+    if (!form.consent.checked) { msg.className = "form-msg err"; msg.textContent = lang === "en" ? "Please confirm consent to data processing, we cannot accept the request without it." : "Отметьте согласие на обработку данных, без него мы не можем принять заявку."; form.consent.focus(); return; }
     if (form.action.indexOf("REPLACE_ME")> -1) { msg.className = "form-msg err"; msg.textContent = lang === "en" ? "Form endpoint is not configured yet. Write on Telegram: t.me/pasee2" : "Форма ещё не подключена. Напишите в Telegram: t.me/pasee2"; return; }
     btn.disabled = true; var old = btn.textContent; btn.textContent = lang === "en" ? "Sending..." : "Отправляем...";
     fetch(form.action, { method: "POST", body: new FormData(form), headers: { "Accept": "application/json" } })

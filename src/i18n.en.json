@@ -168,5 +168,7 @@
  "tr.4h": "Refund and guarantee",
  "tr.4p": "If the agent has not been useful within 14 days, we refund the install. For 30 days we fix for free any of the 14 checks that stops working for reasons other than your own changes.",
  "tr.5h": "Reachable on Telegram",
- "tr.5p": "Before you apply and during support, you write to us on <a href=\"https://t.me/pasee2\" target=\"_blank\" rel=\"noopener\" data-track=\"tg_link_trust\">Telegram</a>. We reply to requests the same day."
+ "tr.5p": "Before you apply and during support, you write to us on <a href=\"https://t.me/pasee2\" target=\"_blank\" rel=\"noopener\" data-track=\"tg_link_trust\">Telegram</a>. We reply to requests the same day.",
+ "ap.consent": "By sending the request, you agree to the processing of personal data under the <a href=\"privacy/\" target=\"_blank\" rel=\"noopener\">privacy policy</a>",
+ "ft.privacy": "Privacy policy"
 }

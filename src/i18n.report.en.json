@@ -46,5 +46,6 @@
  "rp.a1": "Full output of the external port scan and the agent's built-in security audit.",
  "rp.a2": "A one-page guide.",
  "rp.cta": "Request setup",
- "rp.back": "What the install includes"
+ "rp.back": "What the install includes",
+ "ft.privacy": "Privacy policy"
 }

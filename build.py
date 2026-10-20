@@ -10,8 +10,6 @@ CLARITY_ID = "z0j86ikxxd"   # Microsoft Clarity project id; пусто = вык�
 METRIKA_ID = "113690948"   # Яндекс Метрика, номер счётчика; пусто = выключено
 TPL = (ROOT / "src/index.html").read_text(encoding="utf-8")
 EN = json.loads((ROOT / "src/i18n.en.json").read_text(encoding="utf-8"))
-REPORT_TPL = (ROOT / "src/report.html").read_text(encoding="utf-8")
-REPORT_EN = json.loads((ROOT / "src/i18n.report.en.json").read_text(encoding="utf-8"))
 HTML_KEYS = {"ap.alt", "term.body"} | {"inc.f%d" % i for i in range(1, 15)}
 
 META = {
@@ -119,42 +117,52 @@ def build(lang):
     out.write_text(page, encoding="utf-8")
     return out
 
-REPORT_META = {
-  "ru": dict(title="Пример отчёта OwnAgent: 14 проверок после установки",
-             desc="Пример формата отчёта OwnAgent: 14 проверок безопасности и надёжности и артефакт по каждой. Значения условные.",
-             path="/report/", assets="../assets/", ru_href="./", en_href="../en/report/"),
-  "en": dict(title="OwnAgent sample report: 14 checks after install",
-             desc="Sample OwnAgent report format: 14 security and reliability checks with the artifact for each. Placeholder values.",
-             path="/en/report/", assets="../../assets/", ru_href="../../report/", en_href="./"),
+# Подстраницы: шаблон src/<name>.html, перевод src/i18n.<name>.en.json, адреса /<name>/ и /en/<name>/
+SUBPAGES = {
+  "report": {
+    "ru": dict(title="Пример отчёта OwnAgent: 14 проверок после установки",
+               desc="Пример формата отчёта OwnAgent: 14 проверок безопасности и надёжности и артефакт по каждой. Значения условные."),
+    "en": dict(title="OwnAgent sample report: 14 checks after install",
+               desc="Sample OwnAgent report format: 14 security and reliability checks with the artifact for each. Placeholder values."),
+  },
+  "privacy": {
+    "ru": dict(title="Политика конфиденциальности OwnAgent",
+               desc="Какие данные получает сайт getownagent.com, зачем, где они обрабатываются, сколько хранятся и как их удалить."),
+    "en": dict(title="OwnAgent privacy policy",
+               desc="What data getownagent.com receives, why, where it is processed, how long it is kept and how to have it deleted."),
+  },
 }
 
-def build_report(lang):
-    m = REPORT_META[lang]; page = REPORT_TPL
+def build_subpage(name, lang):
+    m = SUBPAGES[name][lang]
+    page = (ROOT / f"src/{name}.html").read_text(encoding="utf-8")
     if lang == "en":
-        for k, v in REPORT_EN.items():
+        for k, v in json.loads((ROOT / f"src/i18n.{name}.en.json").read_text(encoding="utf-8")).items():
             page = replace_i18n(page, k, v)
-    canonical = BASE_URL + m["path"]
+    path = f"/{name}/" if lang == "ru" else f"/en/{name}/"
+    canonical = BASE_URL + path
     head = "\n  ".join([
         f'<link rel="canonical" href="{canonical}">',
-        f'<link rel="alternate" hreflang="ru" href="{BASE_URL}/report/">',
-        f'<link rel="alternate" hreflang="en" href="{BASE_URL}/en/report/">',
+        f'<link rel="alternate" hreflang="ru" href="{BASE_URL}/{name}/">',
+        f'<link rel="alternate" hreflang="en" href="{BASE_URL}/en/{name}/">',
     ])
-    page = (page.replace("__HEAD_SEO__", head).replace("__ASSETS__", m["assets"]).replace("__LANG__", lang)
+    page = (page.replace("__HEAD_SEO__", head).replace("__ASSETS__", "../assets/" if lang == "ru" else "../../assets/").replace("__LANG__", lang)
                 .replace("__TITLE__", m["title"]).replace("__META_DESC__", m["desc"]).replace("__CANONICAL__", canonical)
                 .replace("__OG_IMAGE__", BASE_URL + "/assets/og-" + lang + ".png")
-                .replace("__RU_HREF__", m["ru_href"]).replace("__EN_HREF__", m["en_href"])
+                .replace("__RU_HREF__", "./" if lang == "ru" else f"../../{name}/").replace("__EN_HREF__", f"../en/{name}/" if lang == "ru" else "./")
                 .replace("__RU_CUR__", 'aria-current="page"' if lang == "ru" else "").replace("__EN_CUR__", 'aria-current="page"' if lang == "en" else "")
                 .replace("__ANALYTICS__", analytics_html()))
     page = page.replace(' >', '>')
     assert "__" not in page.replace("--", ""), "unfilled placeholder"
-    out = ROOT / m["path"].strip("/") / "index.html"
+    out = ROOT / path.strip("/") / "index.html"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(page, encoding="utf-8")
     return out
 
 for lang in ("ru", "en"):
     print("built", build(lang))
-    print("built", build_report(lang))
+    for name in SUBPAGES:
+        print("built", build_subpage(name, lang))
 
 today = datetime.date.today().isoformat()
 (ROOT / "robots.txt").write_text(f"""User-agent: *
@@ -177,6 +185,11 @@ Allow: /
 Sitemap: {BASE_URL}/sitemap.xml
 """, encoding="utf-8")
 
+SUB_URLS = "".join(
+    f"""  <url><loc>{BASE_URL}{pre}/{name}/</loc><lastmod>{today}</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="{BASE_URL}/{name}/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="{BASE_URL}/en/{name}/"/></url>
+""" for name in SUBPAGES for pre in ("", "/en"))
 (ROOT / "sitemap.xml").write_text(f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url><loc>{BASE_URL}/</loc><lastmod>{today}</lastmod>
@@ -185,13 +198,7 @@ Sitemap: {BASE_URL}/sitemap.xml
   <url><loc>{BASE_URL}/en/</loc><lastmod>{today}</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="{BASE_URL}/"/>
     <xhtml:link rel="alternate" hreflang="en" href="{BASE_URL}/en/"/></url>
-  <url><loc>{BASE_URL}/report/</loc><lastmod>{today}</lastmod>
-    <xhtml:link rel="alternate" hreflang="ru" href="{BASE_URL}/report/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="{BASE_URL}/en/report/"/></url>
-  <url><loc>{BASE_URL}/en/report/</loc><lastmod>{today}</lastmod>
-    <xhtml:link rel="alternate" hreflang="ru" href="{BASE_URL}/report/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="{BASE_URL}/en/report/"/></url>
-</urlset>
+{SUB_URLS}</urlset>
 """, encoding="utf-8")
 
 (ROOT / "llms.txt").write_text(f"""# OwnAgent
@@ -218,6 +225,7 @@ One-click hosts run the agent on their servers and often expose it to the intern
 - English: {BASE_URL}/en/
 - Russian: {BASE_URL}/
 - Sample report format (14 checks, placeholder values): {BASE_URL}/en/report/
+- Privacy policy: {BASE_URL}/en/privacy/
 
 ## Contact
 - Telegram: https://t.me/pasee2

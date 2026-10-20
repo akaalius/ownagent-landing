@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="__LANG__">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>__TITLE__</title>
+  <meta name="description" content="__META_DESC__">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="__TITLE__">
+  <meta property="og:description" content="__META_DESC__">
+  <meta property="og:url" content="__CANONICAL__">
+  <meta property="og:image" content="__OG_IMAGE__">
+  <meta name="theme-color" content="#0f1113">
+  __HEAD_SEO__
+  <link rel="icon" type="image/svg+xml" href="__ASSETS__favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1113; --bg-2: #15181b; --bg-3: #1b1f23;
+      --fg: #e9ebe6; --fg-2: #c3c7c0; --muted: #8f968f;
+      --line: rgba(255,255,255,.09); --line-2: rgba(255,255,255,.16);
+      --accent: #e8a33d; --accent-ink: #1a1206;
+      --r: 10px;
+      color-scheme: dark;
+    }
+    @media (prefers-color-scheme: light) {
+      :root:not([data-theme="dark"]) {
+        --bg: #f6f6f3; --bg-2: #ffffff; --bg-3: #eeeeea;
+        --fg: #15171a; --fg-2: #33373c; --muted: #5f656b;
+        --line: rgba(0,0,0,.1); --line-2: rgba(0,0,0,.18);
+        --accent: #9a5e0c; --accent-ink: #fffaf0;
+        color-scheme: light;
+      }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--fg); font-family: "Golos Text", system-ui, -apple-system, sans-serif;
+      font-size: 16.5px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+    .mono { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .92em; }
+    .shell { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+    .nav { height: 64px; display: flex; align-items: center; border-bottom: 1px solid var(--line); }
+    .nav .shell { width: 100%; max-width: 1040px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+    .brand img { width: 24px; height: 24px; }
+    .lang { display: flex; border: 1px solid var(--line-2); border-radius: var(--r); overflow: hidden; font-size: 13px; }
+    .lang a { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; color: var(--muted); }
+    .lang a[aria-current="page"] { background: var(--bg-3); color: var(--fg); }
+
+    h1, h2 { margin: 0; letter-spacing: -0.02em; line-height: 1.2; }
+    h1 { font-size: clamp(28px, 3.6vw, 38px); margin-top: 40px; }
+    h2 { font-size: 20px; margin-bottom: 10px; }
+    p { margin: 0 0 10px; }
+    .lead { color: var(--fg-2); margin-top: 14px; }
+    main section { padding: 26px 0 16px; border-bottom: 1px solid var(--line); color: var(--fg-2); }
+    main section:last-of-type { border-bottom: 0; }
+    main section b { color: var(--fg); font-weight: 600; }
+    ul { margin: 0 0 12px; padding-left: 20px; }
+    li { margin: 4px 0; }
+    main a { color: var(--accent); border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); }
+    .back { margin: 32px 0 56px; }
+    .btn { display: inline-flex; align-items: center; min-height: 44px; padding: 12px 18px; border-radius: var(--r); font-weight: 600; background: var(--accent); color: var(--accent-ink); border: 0; }
+    footer { padding: 28px 0 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+    footer .shell { max-width: 1040px; }
+    footer a { color: var(--fg-2); display: inline-flex; align-items: center; min-height: 44px; }
+  </style>
+</head>
+<body>
+<div class="nav">
+  <div class="shell">
+    <a class="brand" href="../"><img src="__ASSETS__favicon.svg" alt="OwnAgent"> OwnAgent</a>
+    <div class="lang" role="group" aria-label="Language">
+      <a href="__RU_HREF__" __RU_CUR__>RU</a><a href="__EN_HREF__" __EN_CUR__>EN</a>
+    </div>
+  </div>
+</div>
+
+<main class="shell">
+  <h1 data-i18n="pv.h1">Политика конфиденциальности</h1>
+  <p class="lead" data-i18n="pv.lead">Редакция от 20.10.2026. Простым языком: какие данные мы получаем на сайте getownagent.com, зачем, где они обрабатываются и как их удалить.</p>
+
+  <section data-i18n="pv.s1">
+    <h2>1. Кто обрабатывает данные</h2>
+    <p>Оператор: владелец сайта getownagent.com (сервис OwnAgent). По любому вопросу о ваших данных пишите на <a href="mailto:aka.alius@gmail.com">aka.alius@gmail.com</a> или в Telegram <a href="https://t.me/pasee2" target="_blank" rel="noopener">@pasee2</a>.</p>
+  </section>
+
+  <section data-i18n="pv.s2">
+    <h2>2. Какие данные мы получаем</h2>
+    <p><b>Из формы заявки:</b></p>
+    <ul>
+      <li><span class="mono">contact</span>: ваш Telegram или e-mail, чтобы ответить;</li>
+      <li><span class="mono">plan</span>: выбранный тариф;</li>
+      <li><span class="mono">server</span>: есть ли у вас сервер;</li>
+      <li><span class="mono">goal</span>: для чего нужен агент, если вы это написали;</li>
+      <li><span class="mono">page</span>: язык страницы, с которой отправлена заявка;</li>
+      <li><span class="mono">consent</span>: отметка о согласии с этой политикой.</li>
+    </ul>
+    <p>Паспортные данные, адрес и данные карт мы на сайте не собираем. Пожалуйста, не пишите в форму пароли и ключи доступа.</p>
+    <p><b>Технические данные аналитики:</b> IP-адрес, тип устройства и браузера, откуда вы пришли на сайт, какие страницы смотрели и что на них делали (клики, прокрутка, движения курсора), идентификаторы в cookie.</p>
+    <p><b>Если вы пишете нам в Telegram или на e-mail,</b> мы получаем то, что вы отправили сами, и данные профиля, которые там видны.</p>
+  </section>
+
+  <section data-i18n="pv.s3">
+    <h2>3. Зачем</h2>
+    <ul>
+      <li>ответить на заявку, обсудить задачу и оказать услугу установки;</li>
+      <li>понимать, как люди пользуются сайтом и откуда приходят, чтобы улучшать сайт и оценивать рекламу.</li>
+    </ul>
+    <p>Данные из заявок мы не продаём.</p>
+    <p>Основание для обработки заявки: ваше согласие, которое вы даёте отметкой в форме. Счётчики аналитики начинают работать при открытии сайта; как их отключить, написано в разделе 7.</p>
+  </section>
+
+  <section data-i18n="pv.s4">
+    <h2>4. Где обрабатываются данные</h2>
+    <ul>
+      <li><b>Formspree</b> (США): принимает форму и пересылает заявку нам на почту. Сохраняет у себя заявку и технические данные отправки, например IP-адрес и время.</li>
+      <li><b>Gmail</b> (Google, США) и <b>Telegram</b>: сюда приходят заявки и ваши сообщения.</li>
+      <li><b>Google Analytics 4</b> (Google, США): статистика посещений.</li>
+      <li><b>Microsoft Clarity</b> (Microsoft, США): карты кликов и записи сеансов.</li>
+      <li><b>Яндекс Метрика с Вебвизором</b> (Яндекс, Россия): статистика посещений и записи сеансов.</li>
+      <li><b>GitHub Pages</b> (GitHub, США): хостинг сайта, получает IP-адрес и технические данные запросов.</li>
+      <li><b>Google Fonts</b> и <b>unpkg.com</b>: отсюда загружаются шрифты и иконки, этим сервисам виден ваш IP-адрес.</li>
+    </ul>
+    <p><b>Трансграничная передача.</b> Большинство этих сервисов находятся за пределами России, в основном в США, поэтому данные передаются за рубеж. Отправляя заявку с отметкой согласия, вы соглашаетесь и с этим.</p>
+  </section>
+
+  <section data-i18n="pv.s5">
+    <h2>5. Сколько храним</h2>
+    <p><b>Заявки</b> храним, пока обсуждаем и оказываем услугу, и ещё разумный срок после этого, чтобы отвечать на вопросы по установке. Если договора так и не было, удаляем заявку не позже чем через 1 год после её получения.</p>
+    <p><b>Данные аналитики</b> хранятся по срокам самих сервисов, они указаны в их политиках конфиденциальности.</p>
+  </section>
+
+  <section data-i18n="pv.s6">
+    <h2>6. Ваши права</h2>
+    <p>Вы можете узнать, какие ваши данные у нас есть, попросить их исправить или удалить и отозвать согласие. Напишите на <a href="mailto:aka.alius@gmail.com">aka.alius@gmail.com</a>, лучше с того контакта, который указывали в заявке, чтобы мы поняли, что это вы. После отзыва согласия удаляем вашу заявку.</p>
+    <p>Если считаете, что мы нарушаем ваши права, можете обратиться в Роскомнадзор.</p>
+  </section>
+
+  <section data-i18n="pv.s7">
+    <h2>7. Cookie и как их отключить</h2>
+    <p>Сам сайт хранит в вашем браузере только выбор языка (в localStorage). Счётчики аналитики ставят свои cookie:</p>
+    <ul>
+      <li>Google Analytics: <span class="mono">_ga</span>, <span class="mono">_ga_*</span>;</li>
+      <li>Microsoft Clarity: <span class="mono">_clck</span>, <span class="mono">_clsk</span> и другие;</li>
+      <li>Яндекс Метрика: <span class="mono">_ym_uid</span>, <span class="mono">_ym_d</span> и другие с префиксом <span class="mono">_ym</span>.</li>
+    </ul>
+    <p>Как отключить: удалите и запретите cookie для getownagent.com в настройках браузера (раздел о конфиденциальности в Chrome, Safari или Firefox), откройте сайт в режиме инкогнито или включите блокировщик трекеров. Для Google Analytics есть официальное <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">расширение для отказа</a>, для Яндекс Метрики есть <a href="https://yandex.ru/support/metrica/general/opt-out.html" target="_blank" rel="noopener">блокировщик</a>.</p>
+  </section>
+
+  <section data-i18n="pv.s8">
+    <h2>8. Изменения</h2>
+    <p>Если политика изменится, мы обновим её на этой странице и поменяем дату редакции вверху.</p>
+  </section>
+
+  <div class="back"><a class="btn" href="../" data-i18n="pv.back">Вернуться на сайт</a></div>
+</main>
+
+<footer>
+  <div class="shell">© 2026 OwnAgent · <a href="https://t.me/pasee2" target="_blank" rel="noopener">t.me/pasee2</a></div>
+</footer>
+__ANALYTICS__
+</body>
+</html>

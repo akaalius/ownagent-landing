@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OwnAgent privacy policy</title>
+  <meta name="description" content="What data getownagent.com receives, why, where it is processed, how long it is kept and how to have it deleted.">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="OwnAgent privacy policy">
+  <meta property="og:description" content="What data getownagent.com receives, why, where it is processed, how long it is kept and how to have it deleted.">
+  <meta property="og:url" content="https://getownagent.com/en/privacy/">
+  <meta property="og:image" content="https://getownagent.com/assets/og-en.png">
+  <meta name="theme-color" content="#0f1113">
+  <link rel="canonical" href="https://getownagent.com/en/privacy/">
+  <link rel="alternate" hreflang="ru" href="https://getownagent.com/privacy/">
+  <link rel="alternate" hreflang="en" href="https://getownagent.com/en/privacy/">
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1113; --bg-2: #15181b; --bg-3: #1b1f23;
+      --fg: #e9ebe6; --fg-2: #c3c7c0; --muted: #8f968f;
+      --line: rgba(255,255,255,.09); --line-2: rgba(255,255,255,.16);
+      --accent: #e8a33d; --accent-ink: #1a1206;
+      --r: 10px;
+      color-scheme: dark;
+    }
+    @media (prefers-color-scheme: light) {
+      :root:not([data-theme="dark"]) {
+        --bg: #f6f6f3; --bg-2: #ffffff; --bg-3: #eeeeea;
+        --fg: #15171a; --fg-2: #33373c; --muted: #5f656b;
+        --line: rgba(0,0,0,.1); --line-2: rgba(0,0,0,.18);
+        --accent: #9a5e0c; --accent-ink: #fffaf0;
+        color-scheme: light;
+      }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--fg); font-family: "Golos Text", system-ui, -apple-system, sans-serif;
+      font-size: 16.5px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+    .mono { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .92em; }
+    .shell { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+    .nav { height: 64px; display: flex; align-items: center; border-bottom: 1px solid var(--line); }
+    .nav .shell { width: 100%; max-width: 1040px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+    .brand img { width: 24px; height: 24px; }
+    .lang { display: flex; border: 1px solid var(--line-2); border-radius: var(--r); overflow: hidden; font-size: 13px; }
+    .lang a { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; color: var(--muted); }
+    .lang a[aria-current="page"] { background: var(--bg-3); color: var(--fg); }
+
+    h1, h2 { margin: 0; letter-spacing: -0.02em; line-height: 1.2; }
+    h1 { font-size: clamp(28px, 3.6vw, 38px); margin-top: 40px; }
+    h2 { font-size: 20px; margin-bottom: 10px; }
+    p { margin: 0 0 10px; }
+    .lead { color: var(--fg-2); margin-top: 14px; }
+    main section { padding: 26px 0 16px; border-bottom: 1px solid var(--line); color: var(--fg-2); }
+    main section:last-of-type { border-bottom: 0; }
+    main section b { color: var(--fg); font-weight: 600; }
+    ul { margin: 0 0 12px; padding-left: 20px; }
+    li { margin: 4px 0; }
+    main a { color: var(--accent); border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); }
+    .back { margin: 32px 0 56px; }
+    .btn { display: inline-flex; align-items: center; min-height: 44px; padding: 12px 18px; border-radius: var(--r); font-weight: 600; background: var(--accent); color: var(--accent-ink); border: 0; }
+    footer { padding: 28px 0 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+    footer .shell { max-width: 1040px; }
+    footer a { color: var(--fg-2); display: inline-flex; align-items: center; min-height: 44px; }
+  </style>
+</head>
+<body>
+<div class="nav">
+  <div class="shell">
+    <a class="brand" href="../"><img src="../../assets/favicon.svg" alt="OwnAgent"> OwnAgent</a>
+    <div class="lang" role="group" aria-label="Language">
+      <a href="../../privacy/">RU</a><a href="./" aria-current="page">EN</a>
+    </div>
+  </div>
+</div>
+
+<main class="shell">
+  <h1 data-i18n="pv.h1">Privacy policy</h1>
+  <p class="lead" data-i18n="pv.lead">Version of 20.10.2026. In plain language: what data we receive on getownagent.com, why, where it is processed and how to have it deleted.</p>
+
+  <section data-i18n="pv.s1">
+    <h2>1. Who processes the data</h2>
+    <p>Operator: the owner of getownagent.com (the OwnAgent service). For any question about your data, write to <a href="mailto:aka.alius@gmail.com">aka.alius@gmail.com</a> or on Telegram <a href="https://t.me/pasee2" target="_blank" rel="noopener">@pasee2</a>.</p>
+  </section>
+
+  <section data-i18n="pv.s2">
+    <h2>2. What data we receive</h2>
+    <p><b>From the request form:</b></p>
+    <ul>
+      <li><span class="mono">contact</span>: your Telegram handle or e-mail, so we can reply;</li>
+      <li><span class="mono">plan</span>: the plan you picked;</li>
+      <li><span class="mono">server</span>: whether you already have a server;</li>
+      <li><span class="mono">goal</span>: what the agent is for, if you wrote it;</li>
+      <li><span class="mono">page</span>: the language of the page the request came from;</li>
+      <li><span class="mono">consent</span>: your consent to this policy.</li>
+    </ul>
+    <p>We do not collect passport data, addresses or card details on the site. Please do not put passwords or access keys into the form.</p>
+    <p><b>Technical analytics data:</b> IP address, device and browser type, where you came from, which pages you viewed and what you did on them (clicks, scrolling, cursor movement), cookie identifiers.</p>
+    <p><b>If you write to us on Telegram or by e-mail,</b> we receive what you sent and the profile data visible there.</p>
+  </section>
+
+  <section data-i18n="pv.s3">
+    <h2>3. Why</h2>
+    <ul>
+      <li>to reply to your request, discuss the task and provide the installation service;</li>
+      <li>to understand how people use the site and where they come from, so we can improve it and measure advertising.</li>
+    </ul>
+    <p>We do not sell data from requests.</p>
+    <p>Legal basis for processing a request: your consent, given with the checkbox in the form. Analytics counters start when you open the site; section 7 explains how to turn them off.</p>
+  </section>
+
+  <section data-i18n="pv.s4">
+    <h2>4. Where the data is processed</h2>
+    <ul>
+      <li><b>Formspree</b> (USA): receives the form and forwards the request to our e-mail. Stores the request and technical submission data such as IP address and time.</li>
+      <li><b>Gmail</b> (Google, USA) and <b>Telegram</b>: where requests and your messages arrive.</li>
+      <li><b>Google Analytics 4</b> (Google, USA): visit statistics.</li>
+      <li><b>Microsoft Clarity</b> (Microsoft, USA): click maps and session recordings.</li>
+      <li><b>Yandex Metrica with Webvisor</b> (Yandex, Russia): visit statistics and session recordings.</li>
+      <li><b>GitHub Pages</b> (GitHub, USA): site hosting, receives IP address and technical request data.</li>
+      <li><b>Google Fonts</b> and <b>unpkg.com</b>: fonts and icons load from here, and these services see your IP address.</li>
+    </ul>
+    <p><b>Cross-border transfer.</b> Most of these services are located outside your country, mainly in the USA, so data is transferred abroad. By sending a request with the consent box checked, you agree to this as well.</p>
+  </section>
+
+  <section data-i18n="pv.s5">
+    <h2>5. How long we keep it</h2>
+    <p><b>Requests</b> are kept while we discuss and provide the service, plus a reasonable period afterwards to answer questions about the install. If no agreement followed, we delete the request no later than 1 year after receiving it.</p>
+    <p><b>Analytics data</b> is kept for the periods set by the services themselves, as stated in their privacy policies.</p>
+  </section>
+
+  <section data-i18n="pv.s6">
+    <h2>6. Your rights</h2>
+    <p>You can find out what data of yours we hold, ask us to correct or delete it, and withdraw your consent. Write to <a href="mailto:aka.alius@gmail.com">aka.alius@gmail.com</a>, preferably from the contact you gave in the request, so we can tell it is you. Once you withdraw consent, we delete your request.</p>
+    <p>If you believe we are violating your rights, you can contact your data protection authority.</p>
+  </section>
+
+  <section data-i18n="pv.s7">
+    <h2>7. Cookies and how to turn them off</h2>
+    <p>The site itself stores only your language choice in your browser (in localStorage). Analytics counters set their own cookies:</p>
+    <ul>
+      <li>Google Analytics: <span class="mono">_ga</span>, <span class="mono">_ga_*</span>;</li>
+      <li>Microsoft Clarity: <span class="mono">_clck</span>, <span class="mono">_clsk</span> and others;</li>
+      <li>Yandex Metrica: <span class="mono">_ym_uid</span>, <span class="mono">_ym_d</span> and others starting with <span class="mono">_ym</span>.</li>
+    </ul>
+    <p>To turn them off: delete and block cookies for getownagent.com in your browser settings (the privacy section in Chrome, Safari or Firefox), open the site in a private window, or use a tracker blocker. Google Analytics has an official <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">opt-out extension</a>, and Yandex Metrica has a <a href="https://yandex.ru/support/metrica/general/opt-out.html" target="_blank" rel="noopener">blocker</a>.</p>
+  </section>
+
+  <section data-i18n="pv.s8">
+    <h2>8. Changes</h2>
+    <p>If the policy changes, we will update it on this page and change the version date at the top.</p>
+  </section>
+
+  <div class="back"><a class="btn" href="../" data-i18n="pv.back">Back to the site</a></div>
+</main>
+
+<footer>
+  <div class="shell">© 2026 OwnAgent · <a href="https://t.me/pasee2" target="_blank" rel="noopener">t.me/pasee2</a></div>
+</footer>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VWBSFKVFRQ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-VWBSFKVFRQ");</script>
+<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "z0j86ikxxd");</script>
+<script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js?id=113690948","ym");ym(113690948,"init",{ssr:true,webvisor:true,clickmap:true,referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/113690948" style="position:absolute;left:-9999px" alt=""></div></noscript>
+</body>
+</html>

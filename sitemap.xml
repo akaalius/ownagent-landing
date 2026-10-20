@@ -12,4 +12,10 @@
   <url><loc>https://getownagent.com/en/report/</loc><lastmod>2026-10-20</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://getownagent.com/report/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://getownagent.com/en/report/"/></url>
+  <url><loc>https://getownagent.com/privacy/</loc><lastmod>2026-10-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://getownagent.com/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://getownagent.com/en/privacy/"/></url>
+  <url><loc>https://getownagent.com/en/privacy/</loc><lastmod>2026-10-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://getownagent.com/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://getownagent.com/en/privacy/"/></url>
 </urlset>

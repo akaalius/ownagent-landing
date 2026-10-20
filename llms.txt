@@ -22,6 +22,7 @@ One-click hosts run the agent on their servers and often expose it to the intern
 - English: https://getownagent.com/en/
 - Russian: https://getownagent.com/
 - Sample report format (14 checks, placeholder values): https://getownagent.com/en/report/
+- Privacy policy: https://getownagent.com/en/privacy/
 
 ## Contact
 - Telegram: https://t.me/pasee2

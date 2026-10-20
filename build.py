@@ -5,6 +5,7 @@ import json, re, html, pathlib, datetime
 
 ROOT = pathlib.Path(__file__).parent
 BASE_URL = "https://getownagent.com"   # сменить на свой домен без слеша в конце
+GA_ID = ""   # Google Analytics 4 Measurement ID вида G-XXXXXXXXXX; пусто = без счётчика
 TPL = (ROOT / "src/index.html").read_text(encoding="utf-8")
 EN = json.loads((ROOT / "src/i18n.en.json").read_text(encoding="utf-8"))
 HTML_KEYS = {"ap.alt", "term.body"}
@@ -87,6 +88,11 @@ def build(lang):
                 .replace("__OG_DESC__", m["og_desc"]).replace("__CANONICAL__", canonical).replace("__OG_LOCALE__", m["locale"])
                 .replace("__RU_HREF__", m["ru_href"]).replace("__EN_HREF__", m["en_href"])
                 .replace("__RU_CUR__", 'aria-current="page"' if lang == "ru" else "").replace("__EN_CUR__", 'aria-current="page"' if lang == "en" else ""))
+    analytics = ""
+    if GA_ID:
+        analytics = ('<script async src="https://www.googletagmanager.com/gtag/js?id=%s"></script>\n'
+                     '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","%s");</script>') % (GA_ID, GA_ID)
+    page = page.replace("__ANALYTICS__", analytics)
     page = page.replace(' >', '>')
     assert "__" not in re.sub(r"__(?:proto)", "", page.replace("--", "")), "unfilled placeholder"
     out = ROOT / ("index.html" if lang == "ru" else "en/index.html")

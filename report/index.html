@@ -115,7 +115,7 @@
 
   <div class="meta">
     <div><span data-i18n="rp.m1">Сервер</span><b class="mono">203.0.113.10, Ubuntu 24.04</b></div>
-    <div><span data-i18n="rp.m2">Агент</span><b data-i18n="rp.m2v">Hermes Agent, версия закреплена</b></div>
+    <div><span data-i18n="rp.m2">Агент</span><b data-i18n="rp.m2v">Hermes Agent, версия &lt;версия&gt;, SHA &lt;SHA&gt;</b></div>
     <div><span data-i18n="rp.m3">Канал</span><b class="mono">@your_agent_bot</b></div>
     <div><span data-i18n="rp.m4">Дата сдачи</span><b class="mono" data-i18n="rp.m4v">ДД.ММ.ГГГГ</b></div>
   </div>
@@ -155,11 +155,11 @@ Restart=always</pre></div><span class="st" data-i18n="rp.ok">✓ пройден�
       <div class="row"><span class="n mono">07</span><div class="what" data-i18n="rp.7"><b>Ключи и токены не в логах и не в истории shell</b><small>поиск по логам и истории команд</small></div>
         <div class="art" data-i18n="rp.7a">Результат поиска по шаблонам ключей: совпадений нет</div><span class="st" data-i18n="rp.ok">✓ пройдено</span></div>
 
-      <div class="row"><span class="n mono">08</span><div class="what" data-i18n="rp.8"><b>Скиллы только из белого списка, маркетплейс выключен</b><small>список установленных скиллов</small></div>
-        <div class="art" data-i18n="rp.8a">Список установленных скиллов и настройка, которая выключает маркетплейс</div><span class="st" data-i18n="rp.ok">✓ пройдено</span></div>
+      <div class="row"><span class="n mono">08</span><div class="what" data-i18n="rp.8"><b>Скиллы только из белого списка, лишний скилл сразу виден в проверке</b><small>список установленных скиллов</small></div>
+        <div class="art" data-i18n="rp.8a">Список установленных скиллов против белого списка и правило блокировки установки из каталога</div><span class="st" data-i18n="rp.ok">✓ пройдено</span></div>
 
       <div class="row"><span class="n mono">09</span><div class="what" data-i18n="rp.9"><b>Лимит расходов на модель активен и проверен</b><small>настройка ключа OpenRouter</small></div>
-        <div class="art" data-i18n="rp.9a">Лимит ключа в OpenRouter: &lt;сумма&gt; в месяц</div><span class="st" data-i18n="rp.ok">✓ пройдено</span></div>
+        <div class="art" data-i18n="rp.9a">Лимит ключа в OpenRouter: limit &lt;сумма&gt; $, limit_reset: monthly</div><span class="st" data-i18n="rp.ok">✓ пройдено</span></div>
 
       <div class="row"><span class="n mono">10</span><div class="what" data-i18n="rp.10"><b>Бэкап памяти сделан и восстановлен на пробу</b><small>пробное восстановление в отдельную папку</small></div>
         <div class="art" data-i18n="rp.10a">Имя и дата архива, журнал пробного восстановления</div><span class="st" data-i18n="rp.ok">✓ пройдено</span></div>
@@ -173,14 +173,14 @@ Restart=always</pre></div><span class="st" data-i18n="rp.ok">✓ пройден�
       <div class="row"><span class="n mono">13</span><div class="what" data-i18n="rp.13"><b>Версия агента без известных CVE и закреплена</b><small>автообновления только для системы</small></div>
         <div class="art" data-i18n="rp.13a">Установленная версия агента, сверка с известными уязвимостями на дату сдачи, запрет автообновления агента</div><span class="st" data-i18n="rp.ok">✓ пройдено</span></div>
 
-      <div class="row"><span class="n mono">14</span><div class="what" data-i18n="rp.14"><b>Снапшот перед обновлением агента сделан, откат проверен</b><small>пробный откат на снапшот</small></div>
-        <div class="art" data-i18n="rp.14a">Идентификатор снапшота и журнал пробного отката</div><span class="st" data-i18n="rp.ok">✓ пройдено</span></div>
+      <div class="row"><span class="n mono">14</span><div class="what" data-i18n="rp.14"><b>Снимок состояния агента перед обновлением сделан, откат проверен</b><small>пробный откат к снимку</small></div>
+        <div class="art" data-i18n="rp.14a">Снимок состояния агента (идентификатор) и журнал пробного отката</div><span class="st" data-i18n="rp.ok">✓ пройдено</span></div>
     </div>
   </section>
 
   <section class="att">
     <h2 data-i18n="rp.ah">Приложения к отчёту</h2>
-    <p data-i18n="rp.a1">Полный вывод внешнего скана портов и встроенного аудита безопасности агента.</p>
+    <p data-i18n="rp.a1">Полный вывод внешнего скана портов и встроенной проверки агента.</p>
     <p data-i18n="rp.a2">Инструкция на одну страницу.</p>
   </section>
 

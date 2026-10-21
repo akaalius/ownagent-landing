@@ -115,7 +115,7 @@
 
   <div class="meta">
     <div><span data-i18n="rp.m1">Server</span><b class="mono">203.0.113.10, Ubuntu 24.04</b></div>
-    <div><span data-i18n="rp.m2">Agent</span><b data-i18n="rp.m2v">Hermes Agent, version pinned</b></div>
+    <div><span data-i18n="rp.m2">Agent</span><b data-i18n="rp.m2v">Hermes Agent, version &lt;version&gt;, SHA &lt;SHA&gt;</b></div>
     <div><span data-i18n="rp.m3">Channel</span><b class="mono">@your_agent_bot</b></div>
     <div><span data-i18n="rp.m4">Handover date</span><b class="mono" data-i18n="rp.m4v">DD.MM.YYYY</b></div>
   </div>
@@ -155,11 +155,11 @@ Restart=always</pre></div><span class="st" data-i18n="rp.ok">✓ passed</span></
       <div class="row"><span class="n mono">07</span><div class="what" data-i18n="rp.7"><b>No keys or tokens in logs or shell history</b><small>search across logs and command history</small></div>
         <div class="art" data-i18n="rp.7a">Search result for key patterns: no matches</div><span class="st" data-i18n="rp.ok">✓ passed</span></div>
 
-      <div class="row"><span class="n mono">08</span><div class="what" data-i18n="rp.8"><b>Skills from allowlist only, marketplace off</b><small>installed skills list</small></div>
-        <div class="art" data-i18n="rp.8a">Installed skills list and the setting that turns the marketplace off</div><span class="st" data-i18n="rp.ok">✓ passed</span></div>
+      <div class="row"><span class="n mono">08</span><div class="what" data-i18n="rp.8"><b>Skills from allowlist only, an extra skill shows up in the check right away</b><small>installed skills list</small></div>
+        <div class="art" data-i18n="rp.8a">Installed skills list against the allowlist and the rule that blocks installing from the catalog</div><span class="st" data-i18n="rp.ok">✓ passed</span></div>
 
       <div class="row"><span class="n mono">09</span><div class="what" data-i18n="rp.9"><b>Model spending cap active and tested</b><small>OpenRouter key settings</small></div>
-        <div class="art" data-i18n="rp.9a">OpenRouter key limit: &lt;amount&gt; per month</div><span class="st" data-i18n="rp.ok">✓ passed</span></div>
+        <div class="art" data-i18n="rp.9a">OpenRouter key limit: limit $&lt;amount&gt;, limit_reset: monthly</div><span class="st" data-i18n="rp.ok">✓ passed</span></div>
 
       <div class="row"><span class="n mono">10</span><div class="what" data-i18n="rp.10"><b>Memory backup made and test-restored</b><small>test restore into a separate folder</small></div>
         <div class="art" data-i18n="rp.10a">Archive name and date, test restore log</div><span class="st" data-i18n="rp.ok">✓ passed</span></div>
@@ -173,14 +173,14 @@ Restart=always</pre></div><span class="st" data-i18n="rp.ok">✓ passed</span></
       <div class="row"><span class="n mono">13</span><div class="what" data-i18n="rp.13"><b>Agent version without known CVEs and pinned</b><small>auto-updates for the system only</small></div>
         <div class="art" data-i18n="rp.13a">Installed agent version, check against known vulnerabilities on the handover date, agent auto-update disabled</div><span class="st" data-i18n="rp.ok">✓ passed</span></div>
 
-      <div class="row"><span class="n mono">14</span><div class="what" data-i18n="rp.14"><b>Snapshot taken before agent updates, rollback tested</b><small>test rollback to the snapshot</small></div>
-        <div class="art" data-i18n="rp.14a">Snapshot ID and test rollback log</div><span class="st" data-i18n="rp.ok">✓ passed</span></div>
+      <div class="row"><span class="n mono">14</span><div class="what" data-i18n="rp.14"><b>Agent state snapshot taken before updates, rollback tested</b><small>test rollback to the snapshot</small></div>
+        <div class="art" data-i18n="rp.14a">Agent state snapshot ID and test rollback log</div><span class="st" data-i18n="rp.ok">✓ passed</span></div>
     </div>
   </section>
 
   <section class="att">
     <h2 data-i18n="rp.ah">Report attachments</h2>
-    <p data-i18n="rp.a1">Full output of the external port scan and the agent's built-in security audit.</p>
+    <p data-i18n="rp.a1">Full output of the external port scan and the agent's built-in check.</p>
     <p data-i18n="rp.a2">A one-page guide.</p>
   </section>
 

@@ -206,14 +206,14 @@ SUB_URLS = "".join(
 > Turnkey, hardened installation of a personal AI agent (Hermes Agent by Nous Research, or OpenClaw) on the client's own VPS. The agent and its data stay on the client's server. Fixed price, done within one working day, with a written report on 14 security and reliability checks.
 
 ## What is included (Personal, $99 one-time / 9 900 RUB; launch price for the first 20 installs, then $149 / 14 900 RUB)
-- Hermes Agent or OpenClaw, client's choice, on the client's Ubuntu 22.04/24.04 VPS at any provider
+- Hermes Agent or OpenClaw, client's choice, on the client's Ubuntu 24.04 VPS (22.04 on request) at any provider
 - Telegram channel with the client's own bot token
-- Model access via OpenRouter with a monthly spending cap
+- Model access via OpenRouter with a monthly dollar cap on the agent's key
 - Hardening: only SSH open from outside, agent panel on localhost, SSH keys only, root login disabled, fail2ban, unattended security updates, agent runs unprivileged under systemd
 - Daily memory backup with a tested restore; downtime alert to Telegram
-- Skills from an allowlist only, marketplace disabled
-- Report on 14 checks with the external port scan and the agent's security audit attached, one-page guide, 14 days of support, 14-day refund, 30-day install guarantee
-- Agent version pinned without known CVEs, snapshot before updates with tested rollback; nothing depends on the provider's account after handover
+- Skills from an allowlist only, an extra skill shows up in the check right away
+- Report on 14 checks with the external port scan and the agent's built-in check attached, one-page guide, 14 days of support, 14-day refund, 30-day install guarantee
+- Agent version pinned without known CVEs, agent state snapshot before updates with tested rollback; nothing depends on the provider's account after handover
 
 ## Business (from $390 one-time / from 39 000 RUB)
 Personal plus two integrations (Gmail, Google Calendar, Notion, Jira, Bitrix24, WhatsApp, Slack, Discord, n8n) with minimal permissions, an express security audit with a prioritized report, a setup call, 30 days of support. Optional support plan: $19/month (1 900 RUB).

@@ -17,7 +17,7 @@
  "rp.1": "<b>Only SSH open outside</b><small>port scan from an external server</small>",
  "rp.1a": "<span>External port scan output</span><pre class=\"mono\">PORT     STATE     SERVICE\n22/tcp   open      ssh\n(all other ports: filtered)</pre>",
  "rp.2": "<b>Agent panel listens on localhost only</b><small>listening ports on the server</small>",
- "rp.2a": "<span>Listening sockets output</span><pre class=\"mono\">LISTEN 127.0.0.1:&lt;port&gt;  agent-gateway\nLISTEN 0.0.0.0:22         sshd</pre>",
+ "rp.2a": "<span>Listening sockets output</span><pre class=\"mono\">LISTEN 127.0.0.1:18789  agent-gateway\nLISTEN 0.0.0.0:22         sshd</pre>",
  "rp.3": "<b>SSH by key only, root login disabled</b><small>effective sshd configuration</small>",
  "rp.3a": "Excerpt from the SSH configuration",
  "rp.4": "<b>fail2ban active</b><small>SSH brute-force protection status</small>",

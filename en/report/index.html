@@ -134,7 +134,7 @@
 (all other ports: filtered)</pre></div><span class="st" data-i18n="rp.ok">✓ passed</span></div>
 
       <div class="row"><span class="n mono">02</span><div class="what" data-i18n="rp.2"><b>Agent panel listens on localhost only</b><small>listening ports on the server</small></div>
-        <div class="art" data-i18n="rp.2a"><span>Listening sockets output</span><pre class="mono">LISTEN 127.0.0.1:&lt;port&gt;  agent-gateway
+        <div class="art" data-i18n="rp.2a"><span>Listening sockets output</span><pre class="mono">LISTEN 127.0.0.1:18789  agent-gateway
 LISTEN 0.0.0.0:22         sshd</pre></div><span class="st" data-i18n="rp.ok">✓ passed</span></div>
 
       <div class="row"><span class="n mono">03</span><div class="what" data-i18n="rp.3"><b>SSH by key only, root login disabled</b><small>effective sshd configuration</small></div>
@@ -143,7 +143,7 @@ permitrootlogin no</pre></div><span class="st" data-i18n="rp.ok">✓ passed</spa
 
       <div class="row"><span class="n mono">04</span><div class="what" data-i18n="rp.4"><b>fail2ban active</b><small>SSH brute-force protection status</small></div>
         <div class="art"><span data-i18n="rp.4a">fail2ban status for SSH</span><pre class="mono">Jail: sshd   Status: active
-Currently banned: &lt;N&gt;</pre></div><span class="st" data-i18n="rp.ok">✓ passed</span></div>
+Currently banned: 7 с</pre></div><span class="st" data-i18n="rp.ok">✓ passed</span></div>
 
       <div class="row"><span class="n mono">05</span><div class="what" data-i18n="rp.5"><b>Security updates install themselves</b><small>auto-update settings and log</small></div>
         <div class="art" data-i18n="rp.5a">unattended-upgrades settings and the last run record</div><span class="st" data-i18n="rp.ok">✓ passed</span></div>

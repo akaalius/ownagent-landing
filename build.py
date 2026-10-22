@@ -69,22 +69,28 @@ def service_jsonld(lang):
             ]}
 
 def analytics_html():
-    analytics = ""
+    # Счётчики грузятся только на боевом домене. Свои браузеры отключаются ссылкой
+    # https://getownagent.com/?notrack=1 (включить обратно: ?notrack=0), флаг живёт в localStorage.
+    # Без загрузки gtag/ym/clarity остаются заглушками, чтобы вызовы событий на странице не падали.
+    load = ""
     if GA_ID:
-        analytics = ('<script async src="https://www.googletagmanager.com/gtag/js?id=%s"></script>\n'
-                     '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","%s");</script>') % (GA_ID, GA_ID)
+        load += ('s("https://www.googletagmanager.com/gtag/js?id=%s");gtag("js",new Date());gtag("config","%s");' % (GA_ID, GA_ID))
     if CLARITY_ID:
-        analytics += ('\n<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};'
-                      't=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})'
-                      '(window, document, "clarity", "script", "%s");</script>') % CLARITY_ID
+        load += 's("https://www.clarity.ms/tag/%s");' % CLARITY_ID
     if METRIKA_ID:
-        analytics += ('\n<script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();'
-                      'for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}'
-                      'k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})'
-                      '(window,document,"script","https://mc.yandex.ru/metrika/tag.js?id=%s","ym");'
-                      'ym(%s,"init",{ssr:true,webvisor:true,clickmap:true,referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});</script>'
-                      '\n<noscript><div><img src="https://mc.yandex.ru/watch/%s" style="position:absolute;left:-9999px" alt=""></div></noscript>') % ((METRIKA_ID,) * 3)
-    return analytics
+        load += ('s("https://mc.yandex.ru/metrika/tag.js?id=%s");ym(%s,"init",{ssr:true,webvisor:true,clickmap:true,'
+                 'referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});' % (METRIKA_ID, METRIKA_ID))
+    if not load:
+        return ""
+    return ('<script>(function(w,d){var q=function(n){return function(){(w[n].q=w[n].q||[]).push(arguments)}};'
+            'w.dataLayer=w.dataLayer||[];w.gtag=function(){dataLayer.push(arguments)};w.clarity=w.clarity||q("clarity");'
+            'w.ym=w.ym||function(){(w.ym.a=w.ym.a||[]).push(arguments)};w.ym.l=1*new Date();'
+            'var p=new URLSearchParams(location.search).get("notrack"),off=false;'
+            'try{if(p==="1")localStorage.setItem("oa_notrack","1");if(p==="0")localStorage.removeItem("oa_notrack");'
+            'off=localStorage.getItem("oa_notrack")==="1"}catch(e){}'
+            'if(location.hostname!=="%s"||off)return;'
+            'var s=function(u){var k=d.createElement("script");k.async=1;k.src=u;d.head.appendChild(k)};'
+            '%s})(window,document);</script>') % (BASE_URL.split("//")[1], load)
 
 def build(lang):
     m = META[lang]; page = TPL

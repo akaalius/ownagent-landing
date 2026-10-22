@@ -213,8 +213,6 @@
     .apply { background: var(--bg-2); }
     .apply .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
     form { display: grid; gap: 16px; }
-    .lead-ya iframe { display: block; width: 100%; min-height: 560px; border: 0; border-radius: 12px; background: #fff; }
-    .lead-ya .hint { margin-top: 10px; }
     label { display: grid; gap: 6px; font-size: 14px; color: var(--fg-2); font-weight: 500; }
     input, select, textarea { width: 100%; background: var(--bg); border: 1px solid var(--line-2); border-radius: var(--r); padding: 12px 14px; font-size: 16px; color: var(--fg); }
     input::placeholder, textarea::placeholder { color: var(--muted); }
@@ -560,12 +558,12 @@
   });
   // Кнопки в карточках цены выбирают тариф в форме
   document.querySelectorAll("[data-plan]").forEach(function (el) {
-    el.addEventListener("click", function () { var f = document.getElementById("lead"); if (f) f.plan.value = el.getAttribute("data-plan"); });
+    el.addEventListener("click", function () { document.getElementById("lead").plan.value = el.getAttribute("data-plan"); });
   });
 
   // Форма: состояния отправки, успеха и ошибки
   var form = document.getElementById("lead"), msg = document.getElementById("form-msg"), btn = document.getElementById("submit");
-  if (form) form.addEventListener("submit", function (ev) {
+  form.addEventListener("submit", function (ev) {
     ev.preventDefault();
     var lang = document.documentElement.lang;
     var contact = form.contact.value.trim();

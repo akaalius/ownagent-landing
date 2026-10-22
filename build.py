@@ -8,6 +8,7 @@ BASE_URL = "https://getownagent.com"   # сменить на свой домен
 GA_ID = "G-VWBSFKVFRQ"   # Google Analytics 4 Measurement ID вида G-XXXXXXXXXX; пусто = без счётчика
 CLARITY_ID = "z0j86ikxxd"   # Microsoft Clarity project id; пусто = выключено
 METRIKA_ID = "113690948"   # Яндекс Метрика, номер счётчика; пусто = выключено
+YA_FORM_ID = "6ada336b6d2d731b1480e18e"   # Яндекс Форма заявки для RU (152-ФЗ: данные в РФ); пусто = Formspree
 TPL = (ROOT / "src/index.html").read_text(encoding="utf-8")
 EN = json.loads((ROOT / "src/i18n.en.json").read_text(encoding="utf-8"))
 HTML_KEYS = {"ap.alt", "term.body"} | {"inc.f%d" % i for i in range(1, 15)}
@@ -92,6 +93,14 @@ def analytics_html():
             'var s=function(u){var k=d.createElement("script");k.async=1;k.src=u;d.head.appendChild(k)};'
             '%s})(window,document);</script>') % (BASE_URL.split("//")[1], load)
 
+def ru_form_html():
+    # RU-заявки хранятся в Яндекс Формах (серверы в РФ, ч.5 ст.18 152-ФЗ); EN остаётся на Formspree
+    return ('    <div id="lead-ya" class="lead-ya">\n'
+            f'      <iframe src="https://forms.yandex.ru/u/{YA_FORM_ID}?iframe=1" frameborder="0" name="ya-form-{YA_FORM_ID}" width="100%" title="Заявка OwnAgent"></iframe>\n'
+            '      <script src="https://forms.yandex.ru/_static/embed.js"></script>\n'
+            '      <div class="hint">Без рассылок. Контакт нужен только для ответа.</div>\n'
+            '    </div>\n')
+
 def build(lang):
     m = META[lang]; page = TPL
     if lang == "en":
@@ -100,6 +109,8 @@ def build(lang):
             page = replace_i18n(page, k, v)
         for a, b in EN_ATTRS.items():
             page = page.replace(a, b)
+    if lang == "ru" and YA_FORM_ID:
+        page = re.sub(r'    <!-- Форма отправляется в Formspree.*?</form>\n', ru_form_html(), page, count=1, flags=re.S)
     canonical = BASE_URL + m["path"]
     head = "\n  ".join([
         f'<link rel="canonical" href="{canonical}">',

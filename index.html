@@ -213,6 +213,8 @@
     .apply { background: var(--bg-2); }
     .apply .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
     form { display: grid; gap: 16px; }
+    .lead-ya iframe { display: block; width: 100%; min-height: 560px; border: 0; border-radius: 12px; background: #fff; }
+    .lead-ya .hint { margin-top: 10px; }
     label { display: grid; gap: 6px; font-size: 14px; color: var(--fg-2); font-weight: 500; }
     input, select, textarea { width: 100%; background: var(--bg); border: 1px solid var(--line-2); border-radius: var(--r); padding: 12px 14px; font-size: 16px; color: var(--fg); }
     input::placeholder, textarea::placeholder { color: var(--muted); }
@@ -494,30 +496,11 @@
       <p class="lead" style="margin-top:18px" data-i18n="ap.lead">Ответим в тот же день, уточним пару деталей и назовём дату установки.</p>
       <p class="alt" data-i18n="ap.alt">Удобнее в мессенджере: напишите в <a href="https://t.me/pasee2" target="_blank" rel="noopener" data-track="tg_link">Telegram</a>.</p>
     </div>
-    <!-- Форма отправляется в Formspree (форма xoejzygw) -->
-    <form id="lead" action="https://formspree.io/f/xoejzygw" method="POST" novalidate>
-      <label><span data-i18n="ap.f1">Как с вами связаться</span><input name="contact" type="text" required placeholder="@telegram или email" autocomplete="off"></label>
-      <label><span data-i18n="ap.fp">Тариф</span>
-        <select name="plan">
-          <option value="personal" data-i18n="ap.fpa">Personal, 9 900 ₽</option>
-          <option value="business" data-i18n="ap.fpb">Business, от 39 000 ₽</option>
-          <option value="undecided" selected data-i18n="ap.fpc">Пока не знаю</option>
-        </select></label>
-      <label><span data-i18n="ap.f2">Сервер</span>
-        <select name="server">
-          <option value="have" data-i18n="ap.f2a">Есть сервер</option>
-          <option value="need" data-i18n="ap.f2b">Нужна помощь с выбором</option>
-        </select></label>
-      <label><span data-i18n="ap.f3">Для чего нужен агент</span><textarea name="goal" rows="3" placeholder="" data-i18n-ph="ap.f3ph"></textarea></label>
-      <input type="hidden" name="_subject" value="Заявка OwnAgent с getownagent.com">
-      <input type="hidden" name="page" value="ru">
-      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-      <p class="next-steps" data-i18n="ap.next">Ответим в Telegram в тот же день → уточним задачу (можно созвониться на 15 минут) → счёт → установка → отчёт по 14 проверкам</p>
-      <label class="consent"><input type="checkbox" name="consent" value="yes"><span data-i18n="ap.consent">Отправляя заявку, вы соглашаетесь с обработкой персональных данных по <a href="privacy/" target="_blank" rel="noopener">политике конфиденциальности</a></span></label>
-      <div class="form-msg" id="form-msg" role="status" aria-live="polite"></div>
-      <button class="btn btn-primary" type="submit" id="submit" data-i18n="cta">Оставить заявку</button>
-      <div class="hint" data-i18n="ap.hint">Без рассылок. Контакт нужен только для ответа.</div>
-    </form>
+    <div id="lead-ya" class="lead-ya">
+      <iframe src="https://forms.yandex.ru/u/6ada336b6d2d731b1480e18e?iframe=1" frameborder="0" name="ya-form-6ada336b6d2d731b1480e18e" width="100%" title="Заявка OwnAgent"></iframe>
+      <script src="https://forms.yandex.ru/_static/embed.js"></script>
+      <div class="hint">Без рассылок. Контакт нужен только для ответа.</div>
+    </div>
   </div>
 </section>
 
@@ -558,12 +541,12 @@
   });
   // Кнопки в карточках цены выбирают тариф в форме
   document.querySelectorAll("[data-plan]").forEach(function (el) {
-    el.addEventListener("click", function () { document.getElementById("lead").plan.value = el.getAttribute("data-plan"); });
+    el.addEventListener("click", function () { var f = document.getElementById("lead"); if (f) f.plan.value = el.getAttribute("data-plan"); });
   });
 
   // Форма: состояния отправки, успеха и ошибки
   var form = document.getElementById("lead"), msg = document.getElementById("form-msg"), btn = document.getElementById("submit");
-  form.addEventListener("submit", function (ev) {
+  if (form) form.addEventListener("submit", function (ev) {
     ev.preventDefault();
     var lang = document.documentElement.lang;
     var contact = form.contact.value.trim();

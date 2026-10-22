@@ -55,14 +55,14 @@ def faq_jsonld(page):
 def service_jsonld(lang):
     ru = lang == "ru"
     return {"@context": "https://schema.org", "@type": "Service",
-            "name": "OwnAgent", "serviceType": "AI agent deployment on client VPS" if not ru else "Развёртывание ИИ-агента на VPS клиента",
+            "name": "OwnAgent", "serviceType": "AI agent deployment on client VPS" if not ru else "Развёртывание ИИ-агента на сервере клиента",
             "description": META[lang]["desc"], "url": BASE_URL + META[lang]["path"], "areaServed": "Worldwide",
             "provider": {"@type": "Organization", "name": "OwnAgent", "email": "hello@getownagent.com", "url": BASE_URL + "/",
                          "sameAs": ["https://t.me/pasee2"]},
             "offers": [
               {"@type": "Offer", "name": "Personal (launch price, first 20 installs)", "price": "9900" if ru else "99", "priceCurrency": "RUB" if ru else "USD", "url": BASE_URL + META[lang]["path"] + "#price",
                "description": "Hermes Agent or OpenClaw on your VPS, hardened, Telegram, spending cap, backups, monitoring, 14-check report, 14 days of support" if not ru else
-                              "Hermes Agent или OpenClaw на вашем VPS с защитой, Telegram, лимит расходов, бэкапы, мониторинг, отчёт по 14 проверкам, 14 дней поддержки"},
+                              "Hermes Agent или OpenClaw на вашем сервере с защитой, Telegram, лимит расходов, бэкапы, мониторинг, отчёт по 14 проверкам, 14 дней поддержки"},
               {"@type": "Offer", "name": "Business", "price": "39000" if ru else "390", "priceCurrency": "RUB" if ru else "USD", "url": BASE_URL + META[lang]["path"] + "#price",
                "description": "Personal plus two integrations, express security audit, setup call, 30 days of support" if not ru else
                               "Personal плюс две интеграции, экспресс-аудит безопасности, созвон по настройке, 30 дней поддержки"}

@@ -271,13 +271,13 @@
     </div>
     <div class="term" aria-label="Пример вывода установщика">
       <div class="term-head mono"><span data-i18n="term.title">вывод установщика, пример</span><span>ubuntu 24.04</span></div>
-<pre class="mono" data-i18n="term.body"><span class="c"># сервер клиента, доступ по SSH-туннелю</span>
+<pre class="mono" data-i18n="term.body"><span class="c"># сервер клиента, доступ по SSH</span>
 <span class="p">$</span> ownagent install --agent hermes --channel telegram
 <span class="ok">✓</span> пользователь agent без root, sudo для обновлений
 <span class="ok">✓</span> ufw: снаружи открыт только 22/tcp, gateway на 127.0.0.1
 <span class="ok">✓</span> fail2ban, unattended-upgrades включены
 <span class="ok">✓</span> Hermes Agent установлен, systemd-сервис активен
-<span class="ok">✓</span> OpenRouter подключён, <span class="a">лимит $30/мес</span>
+<span class="ok">✓</span> модель подключена, <span class="a">лимит 3 000 ₽/мес</span>
 <span class="ok">✓</span> Telegram: @your_agent_bot отвечает
 <span class="ok">✓</span> бэкап памяти ежедневно, алерт при падении в Telegram
 <span class="c"># 14 проверок пройдено, отчёт отправлен владельцу</span></pre>
@@ -332,7 +332,7 @@
         <div class="ic"><i class="ph ph-hard-drives"></i></div>
         <div>
           <h3 data-i18n="how.s1h">Вы даёте сервер</h3>
-          <p data-i18n="how.s1p">Любой VPS на Ubuntu 24.04: минимум 2 ГБ памяти, рекомендуем 4 ГБ, диск от 20 ГБ; обычно 500–1 000 ₽ в месяц. Браузерные навыки OpenClaw требуют 8 ГБ и ставятся отдельно. Нет сервера: покажем, где взять за пять минут и какие три кнопки нажать. Терминал не понадобится.</p>
+          <p data-i18n="how.s1p">Любой облачный сервер на Ubuntu 24.04: минимум 2 ГБ памяти, рекомендуем 4 ГБ, диск от 20 ГБ; обычно 500–1 000 ₽ в месяц. Браузерные навыки OpenClaw требуют 8 ГБ и ставятся отдельно. Нет сервера: покажем, где взять за пять минут и какие три кнопки нажать. Терминал не понадобится.</p>
           <div class="time mono" data-i18n="how.s1t">10 минут вашего времени</div>
         </div>
       </div>
@@ -386,7 +386,7 @@
     </div>
     <div class="price-side">
         <p><b data-i18n="pr.s1b">Поддержка и обновления:</b> <span data-i18n="pr.s1">1 900 ₽ в месяц, по желанию. Обновляем агента и систему, следим за мониторингом, отвечаем на вопросы.</span></p>
-        <p><b data-i18n="pr.s2b">Что вы платите напрямую:</b> <span data-i18n="pr.s2">VPS своему провайдеру, обычно 500-1 000 ₽ в месяц, и токены модели через OpenRouter, обычно 1 000-3 000 ₽ в зависимости от нагрузки.</span></p>
+        <p><b data-i18n="pr.s2b">Что вы платите напрямую:</b> <span data-i18n="pr.s2">аренду сервера своему провайдеру, обычно 500-1 000 ₽ в месяц, и токены модели, обычно 1 000-3 000 ₽ в зависимости от нагрузки.</span></p>
         <p><b data-i18n="pr.s3b">Не подошло:</b> <span data-i18n="pr.s3">если за 14 дней агент вам не пригодился, вернём деньги за установку. Сервер остаётся вашим.</span></p>
       <p><b data-i18n="pr.s4b">Гарантия 30 дней:</b> <span data-i18n="pr.s4">если что-то из 14 проверок перестало работать не из-за ваших правок, чиним бесплатно.</span></p>
     </div>
@@ -398,13 +398,13 @@
     <h2 data-i18n="inc.h2">Что входит в фиксированную цену</h2>
     <div class="bento">
       <div class="cell c-a"><i class="ph ph-robot"></i><div><h3 data-i18n="inc.a">Hermes или OpenClaw на выбор</h3><p data-i18n="inc.ap">Оба open-source, оба живут у вас. Поможем выбрать под задачи.</p></div></div>
-      <div class="cell c-b"><i class="ph ph-lock-key"></i><div><h3 data-i18n="inc.b">Закрытый контур</h3><p data-i18n="inc.bp">Агент не виден из интернета. В его панель попадёте только вы, через защищённый туннель. Перебор паролей блокируется, обновления системы ставятся сами.</p></div></div>
+      <div class="cell c-b"><i class="ph ph-lock-key"></i><div><h3 data-i18n="inc.b">Закрытый контур</h3><p data-i18n="inc.bp">Агент не виден из интернета. В его панель попадёте только вы, по защищённому подключению. Перебор паролей блокируется, обновления системы ставятся сами.</p></div></div>
       <div class="cell c-c"><i class="ph ph-telegram-logo"></i><div><h3 data-i18n="inc.c">Telegram-канал</h3><p data-i18n="inc.cp">Ваш бот, ваш токен.</p></div></div>
-      <div class="cell c-d"><i class="ph ph-gauge"></i><div><h3 data-i18n="inc.d">Лимит расходов</h3><p data-i18n="inc.dp">Модель через OpenRouter, потолок в долларах на ключе агента, сбрасывается раз в месяц. Сюрпризов в счёте нет.</p></div></div>
+      <div class="cell c-d"><i class="ph ph-gauge"></i><div><h3 data-i18n="inc.d">Лимит расходов</h3><p data-i18n="inc.dp">Потолок расходов на модель стоит на ключе агента и сбрасывается раз в месяц. Сюрпризов в счёте нет.</p></div></div>
       <div class="cell c-e"><i class="ph ph-archive"></i><div><h3 data-i18n="inc.e">Бэкап памяти</h3><p data-i18n="inc.ep">Ежедневно, с восстановлением.</p></div></div>
       <div class="cell c-f"><i class="ph ph-list-checks"></i><div><h3 data-i18n="inc.f">Отчёт по 14 проверкам после установки</h3>
         <div class="list">
-          <span data-i18n="inc.f1"><b>снаружи открыт только SSH, проверено сканом извне</b><i>агент не виден из интернета, его не найти сканером</i></span><span data-i18n="inc.f2"><b>панель агента слушает только localhost</b><i>в панель агента попадёте только вы, через защищённый туннель</i></span>
+          <span data-i18n="inc.f1"><b>снаружи открыт только SSH, проверено сканом извне</b><i>агент не виден из интернета, его не найти сканером</i></span><span data-i18n="inc.f2"><b>панель агента слушает только localhost</b><i>в панель агента попадёте только вы, по защищённому подключению</i></span>
           <span data-i18n="inc.f3"><b>SSH только по ключу, вход root запрещён</b><i>подобрать пароль к серверу невозможно</i></span><span data-i18n="inc.f4"><b>fail2ban активен</b><i>перебор паролей блокируется автоматически</i></span>
           <span data-i18n="inc.f5"><b>обновления безопасности ставятся сами</b><i>дыры в системе закрываются без вашего участия</i></span><span data-i18n="inc.f6"><b>агент работает не от root, перезапускается сам</b><i>сбой агента не ломает сервер, после падения он встаёт сам</i></span>
           <span data-i18n="inc.f7"><b>ключи и токены не в логах и не в истории shell</b><i>ваши пароли и ключи нигде не лежат открытым текстом</i></span><span data-i18n="inc.f8"><b>скиллы только из белого списка, лишний скилл сразу виден в проверке</b><i>чужой скилл не встанет незаметно</i></span>
@@ -460,9 +460,9 @@
     <h2 data-i18n="faq.h2">Вопросы</h2>
     <div class="faq">
       <details><summary data-i18n="faq.q1">Чем это отличается от хостинга OpenClaw за 900 ₽ в месяц?</summary><div class="a" data-i18n="faq.a1">Там агент стоит на чужом сервере и, как правило, открыт в интернет по умолчанию. У нас он на вашем сервере, за закрытыми портами, с лимитом расходов и бэкапами. Вы платите один раз за установку, а не каждый месяц за аренду, которая после промо-периода дорожает вдвое: Hostinger $5,99 → $11,99, xCloud $9,99 → $19,99, а KiloClaw поднял цену с $9 до $55 и закрылся.</div></details>
-      <details><summary data-i18n="faq.q2">Что такое Hermes и OpenClaw?</summary><div class="a" data-i18n="faq.a2">Открытые фреймворки персональных агентов. Это программа на вашем сервере, с которой вы общаетесь в Telegram: она помнит контекст, умеет работать с файлами, почтой, календарём и учится на ваших задачах. Модель (Claude, GPT, Gemini и другие) подключается через OpenRouter. Нужен другой фреймворк, например ZeroClaw или PicoClaw для слабых серверов: обсудим.</div></details>
-      <details><summary data-i18n="faq.q3">У меня нет VPS. Что делать?</summary><div class="a" data-i18n="faq.a3">Подскажем провайдера под вашу страну и бюджет, регистрация занимает пять минут. Сервер оформляется на вас, мы не посредник.</div></details>
-      <details><summary data-i18n="faq.q4">Клиентам из России это доступно?</summary><div class="a" data-i18n="faq.a4">Да. Сервер берётся у зарубежного провайдера, модели подключаются через OpenRouter, оплата установки возможна в рублях.</div></details>
+      <details><summary data-i18n="faq.q2">Что такое Hermes и OpenClaw?</summary><div class="a" data-i18n="faq.a2">Открытые фреймворки персональных агентов. Это программа на вашем сервере, с которой вы общаетесь в Telegram: она помнит контекст, умеет работать с файлами, почтой, календарём и учится на ваших задачах. Модель (Claude, GPT, Gemini и другие) подключается через ваш ключ с лимитом расходов. Нужен другой фреймворк, например ZeroClaw или PicoClaw для слабых серверов: обсудим.</div></details>
+      <details><summary data-i18n="faq.q3">У меня нет сервера. Что делать?</summary><div class="a" data-i18n="faq.a3">Подскажем провайдера под вашу страну и бюджет, регистрация занимает пять минут. Сервер оформляется на вас, мы не посредник.</div></details>
+      <details><summary data-i18n="faq.q4">Клиентам из России это доступно?</summary><div class="a" data-i18n="faq.a4">Да. Сервер и модель подбираем под вашу ситуацию, оплата установки возможна в рублях.</div></details>
       <details><summary data-i18n="faq.q5">Что будет, если агент сломается?</summary><div class="a" data-i18n="faq.a5">Мониторинг пришлёт вам алерт в Telegram. 30 дней гарантии на установку: если что-то из проверок перестало работать не из-за ваших правок, чиним бесплатно. Дальше по поддержке или разово.</div></details>
       <details><summary data-i18n="faq.q6">Вы сами тоже агенты?</summary><div class="a" data-i18n="faq.a6">Установку делает наш автоматизированный конвейер, результат проверяет человек. Поэтому цена фиксированная, а срок один день.</div></details>
     </div>
@@ -500,7 +500,7 @@
         </select></label>
       <label><span data-i18n="ap.f2">Сервер</span>
         <select name="server">
-          <option value="have" data-i18n="ap.f2a">Есть VPS</option>
+          <option value="have" data-i18n="ap.f2a">Есть сервер</option>
           <option value="need" data-i18n="ap.f2b">Нужна помощь с выбором</option>
         </select></label>
       <label><span data-i18n="ap.f3">Для чего нужен агент</span><textarea name="goal" rows="3" placeholder="" data-i18n-ph="ap.f3ph"></textarea></label>
